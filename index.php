@@ -19,7 +19,7 @@
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="psw" required>
             
-                <a href="CurrentDisplay.php"><button type="submit">Login</button></a>
+                <a href="CurrentDisplay.php"><!--<button type="submit">Login</button>-->Login</a>
                 </div>
             
                 <span class="psw"><a href="#">Forgot password?</a></span>

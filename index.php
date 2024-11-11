@@ -2,7 +2,7 @@
 
 ?>
 
-ech <<<GFG
+<GFG
             <header>
                 <div class="HeaderImg">
                     <img src="" alt="" class="">
@@ -29,6 +29,3 @@ ech <<<GFG
             <footer>
                 <p>&copy; 2023 Your Website</p>
             </footer>
-
-GFG;
-?>

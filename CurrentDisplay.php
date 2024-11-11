@@ -1,6 +1,8 @@
 <?php
     $url1=$_SERVER['REQUEST_URI'];
-    header("Refresh: 5; URL=$url1");
+    header("Refresh: 30; URL=$url1");
+
+    
 ?>
 
 <GFG
@@ -10,8 +12,8 @@
     <nav>
         <ul>
             <li><a href="CurrentDisplay">Current Display</a></li>
-            <li><a href="about.php">Presets</a></li>
-            <li><a href="contact.php">Change Display</a></li>
+            <li><a href="Presets.php">Presets</a></li>
+            <li><a href="ChangeDisplay.php">Change Display</a></li>
             <li><a href="/">Logout</a></li>
         </ul>
     </nav>

@@ -1,8 +1,20 @@
 <?php
     $url1=$_SERVER['REQUEST_URI'];
-    header("Refresh: 30; URL=$url1");
+    header("Refresh: 60; URL=$url1");
 
-    
+    try {
+        $conn = new PDO("sqlsrv:server = tcp:office-message-board-sqlserver.database.windows.net,1433; Database = OfficeMessageBoardSQLDB", "ONUMBC", "Am!At@Bd#Jt$Th%");
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }
+    catch (PDOException $e) {
+        print("Error connecting to SQL Server.");
+        die(print_r($e));
+    }
+
+    $tsql= "SELECT 'CurrentDisplay' FROM 'CurrentDisplays' WHERE 'UserId' IS 1";
+    $getResults= sqlsrv_query($conn, $tsql);
+
+    echo $getResults;
 ?>
 
 <GFG
@@ -18,7 +30,7 @@
         </ul>
     </nav>
     <section>
-        <h2>Current Display</h2>>
+        <h2>Current Display is -> $getResults</h2>
     </section>
     <footer>
         <p>&copy; 2023 Your Website</p>

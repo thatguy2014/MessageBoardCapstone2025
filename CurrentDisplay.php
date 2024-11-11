@@ -9,10 +9,10 @@
     </header>
     <nav>
         <ul>
-            <li><a href="index.php">Current Display</a></li>
+            <li><a href="CurrentDisplay">Current Display</a></li>
             <li><a href="about.php">Presets</a></li>
             <li><a href="contact.php">Change Display</a></li>
-            <li><a href="contact.php">Logout</a></li>
+            <li><a href="/">Logout</a></li>
         </ul>
     </nav>
     <section>

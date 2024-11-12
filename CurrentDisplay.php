@@ -1,22 +1,15 @@
-<?php
-    /*$url1=$_SERVER['REQUEST_URI'];
-    header("Refresh: 60; URL=$url1");*/         //this should autorefresh
-
+ <?php
     $connectionString = getenv('AZURE_MYSQL_CONNECTIONSTRING');
-
-    try {
-        $conn = new PDO($connectionString);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $tsql = "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = 1";
-        $getResults = sqlsrv_query($conn, $tsql);
-    }
-    catch (PDOException $e) {
-        print("Error connecting to MySQL Server: " . $e->getMessage());
-        die(print_r($e));
-    }
-
     
+    if ($connectionString === false) {
+        throw new Exception("Environment variable AZURE_MYSQL_CONNECTIONSTRING is not set");
+    }
+    
+    $conn = mysqli_connect($host, $username, $password, $dbname);
+    
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
 ?>
 
 <GFG

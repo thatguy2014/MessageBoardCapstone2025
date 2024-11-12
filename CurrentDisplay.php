@@ -7,7 +7,7 @@
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch (PDOException $e) {
-        print("Error connecting to SQL Server lol. \n");
+        print("Error connecting to SQL Server lol.");
         die(print_r($e));
     }
 

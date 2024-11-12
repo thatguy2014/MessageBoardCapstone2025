@@ -12,8 +12,8 @@
         die(print("Connection failed: " . mysqli_connect_error()));
     }
 
-    $tsql = "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = 1";
-    $getResults = sqlsrv_query($conn, $tsql);
+    //$tsql = "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = 1";
+    //$getResults = sqlsrv_query($conn, $tsql);
 ?>
 
 <GFG

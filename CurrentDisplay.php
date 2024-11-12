@@ -1,7 +1,7 @@
 <?php
     /*$url1=$_SERVER['REQUEST_URI'];
     header("Refresh: 60; URL=$url1");*/         //this should autorefresh
-
+/*
     $host = "office-message-board-sqlserver.database.windows.net";
     $username = "ONUMBC";
     $password = "Am!At@Bd#Jt\$Th%";
@@ -11,7 +11,7 @@
     if (!$conn) {
         die(print("Connection failed: " . mysqli_connect_error()));
     }
-
+*/
     //$tsql = "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = 1";
     //$getResults = sqlsrv_query($conn, $tsql);
 ?>

@@ -1,6 +1,6 @@
 <?php
-    $url1=$_SERVER['REQUEST_URI'];
-    header("Refresh: 60; URL=$url1");
+    /*$url1=$_SERVER['REQUEST_URI'];
+    header("Refresh: 60; URL=$url1");*/         //this should autorefresh
 
     try {
         $conn = new PDO("sqlsrv:server = tcp:office-message-board-sqlserver.database.windows.net,1433; Database = OfficeMessageBoardSQLDB", "ONUMBC", "Am!At@Bd#Jt$Th%");

@@ -1,10 +1,11 @@
- <?php
-    $connectionString = getenv('AZURE_MYSQL_CONNECTIONSTRING');
-    
-    if ($connectionString === false) {
-        throw new Exception("Environment variable AZURE_MYSQL_CONNECTIONSTRING is not set");
-    }
-    
+<?php
+    /*$url1=$_SERVER['REQUEST_URI'];
+    header("Refresh: 60; URL=$url1");*/         //this should autorefresh
+
+    $host = "office-message-board-sqlserver.database.windows.net";
+    $username = "ONUMBC"
+    $password = "Am!At@Bd#Jt$Th%"
+    $dbname = "OfficeMessageBoardSQLDB"
     $conn = mysqli_connect($host, $username, $password, $dbname);
     
     if (!$conn) {

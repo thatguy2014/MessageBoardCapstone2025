@@ -5,16 +5,18 @@
     try {
         $conn = new PDO("sqlsrv:server = tcp:office-message-board-sqlserver.database.windows.net,1433; Database = OfficeMessageBoardSQLDB", "ONUMBC", "Am!At@Bd#Jt\$Th%");
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $tsql= "SELECT 'CurrentDisplay' FROM 'CurrentDisplays' WHERE 'UserId' IS 1";
+        $getResults= sqlsrv_query($conn, $tsql);
+
+        echo $getResults;
     }
     catch (PDOException $e) {
-        print("Error connecting to SQL Server lol.");
+        print("Error connecting to SQL Server.");
         die(print_r($e));
     }
 
-    $tsql= "SELECT 'CurrentDisplay' FROM 'CurrentDisplays' WHERE 'UserId' IS 1";
-    $getResults= sqlsrv_query($conn, $tsql);
-
-    echo $getResults;
+    
 ?>
 
 <GFG

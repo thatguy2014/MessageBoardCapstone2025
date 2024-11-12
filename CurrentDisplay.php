@@ -4,7 +4,7 @@
 
     $host = "office-message-board-sqlserver.database.windows.net";
     $username = "ONUMBC";
-    $password = "Am!At@Bd#Jt$Th%";
+    $password = "Am!At@Bd#Jt\$Th%";
     $dbname = "OfficeMessageBoardSQLDB";
     $conn = mysqli_connect($host, $username, $password, $dbname);
     

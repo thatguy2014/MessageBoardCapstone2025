@@ -1,4 +1,5 @@
 DirectoryIndex ChangeDisplay.php Login.php Presets.php CurrentDisplay.php
+
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /

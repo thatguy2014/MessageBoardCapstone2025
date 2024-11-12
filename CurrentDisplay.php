@@ -3,17 +3,15 @@
     header("Refresh: 60; URL=$url1");
 
     try {
-        $conn = new PDO("sqlsrv:server = tcp:office-message-board-sqlserver.database.windows.net,1433; Database = OfficeMessageBoardSQLDB", "ONUMBC", "Am!At@Bd#Jt\$Th%");
+        $conn = new PDO("sqlsrv:server = tcp:office-message-board-sqlserver.database.windows.net,1433; Database = OfficeMessageBoardSQLDB", "ONUMBC", "Am!At@Bd#Jt$Th%");
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $tsql= "SELECT 'CurrentDisplay' FROM 'CurrentDisplays' WHERE 'UserId' IS 1";
-        $getResults= sqlsrv_query($conn, $tsql);
-
-        echo $getResults;
+        $tsql = "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = 1";
+        $getResults = sqlsrv_query($conn, $tsql);
     }
     catch (PDOException $e) {
         print("Error connecting to SQL Server.");
-        die(print_r($e));
+        //die(print_r($e));
     }
 
     
@@ -32,7 +30,7 @@
         </ul>
     </nav>
     <section>
-        <h2>Current Display is -> $getResults</h2>
+        <h2>Current Display is -> <?php echo htmlspecialchars($getResults); ?></h2>
     </section>
     <footer>
         <p>&copy; 2023 Your Website</p>

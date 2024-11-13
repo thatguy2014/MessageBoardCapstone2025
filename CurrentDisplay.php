@@ -1,17 +1,19 @@
 <?php
     /*$url1=$_SERVER['REQUEST_URI'];
     header("Refresh: 60; URL=$url1");*/         //this should autorefresh
-
-    $con = mysqli_init();
-    mysqli_ssl_set($con,NULL,NULL, "ssl\DigiCertGlobalRootCA.crt.pem", NULL, NULL);
+try {
+    $conn = mysqli_init();
+    mysqli_ssl_set($conn,NULL,NULL, "ssl\DigiCertGlobalRootCA.crt.pem", NULL, NULL);
     mysqli_real_connect($conn, "mbcwebbapp-server.mysql.database.azure.com", "qzmbodniyz", "YgM0Smd$bLYYepT1", "mbcwebbapp-database", 3306, MYSQLI_CLIENT_SSL);
-    
-    if (!$conn) {
-        die(print("Connection failed: " . mysqli_connect_error()));
-    }
-
     $tsql = "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = 1";
     $getResults = sqlsrv_query($conn, $tsql);
+}
+catch {
+    die(print("Connection failed: " . mysqli_connect_error()));
+}
+
+
+
 ?>
 
 <GFG

@@ -1,4 +1,1 @@
-DirectoryIndex Login.php
 
-RewriteEngine On
-RewriteRule    "^/CurrentDisplay\.php$"  "CurrentDisplay"  [R]

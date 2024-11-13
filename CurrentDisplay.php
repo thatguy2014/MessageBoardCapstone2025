@@ -1,15 +1,15 @@
 <?php
     /*$url1=$_SERVER['REQUEST_URI'];
     header("Refresh: 60; URL=$url1");*/         //this should autorefresh
-try {
-    $conn = mysqli_init();
-    mysqli_ssl_set($conn,NULL,NULL, "ssl\DigiCertGlobalRootCA.crt.pem", NULL, NULL);
-    mysqli_real_connect($conn, "mbcwebbapp-server.mysql.database.azure.com", "qzmbodniyz", "YgM0Smd$bLYYepT1", "mbcwebbapp-database", 3306, MYSQLI_CLIENT_SSL);
-    $tsql = "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = 1";
-    $getResults = sqlsrv_query($conn, $tsql);
-}
-catch {
-    die(print("Connection failed: " . mysqli_connect_error()));
+    try {
+        $conn = mysqli_init();
+        mysqli_ssl_set($conn,NULL,NULL, "ssl\DigiCertGlobalRootCA.crt.pem", NULL, NULL);
+        //mysqli_real_connect($conn, "mbcwebbapp-server.mysql.database.azure.com", "qzmbodniyz", "YgM0Smd$bLYYepT1", "mbcwebbapp-database", 3306, MYSQLI_CLIENT_SSL);
+        //$tsql = "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = 1";
+        //$getResults = sqlsrv_query($conn, $tsql);
+    }
+    catch {
+        print("Connection failed: " . mysqli_connect_error());
 }
 
 

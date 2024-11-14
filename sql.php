@@ -15,7 +15,7 @@
     $res = mysqli_real_query($conn, 'SELECT * FROM userinfo');
     while ($row = mysqli_fetch_assoc($res)) {
     //var_dump($row);
-    print($row[0]);
+    printf ("%s (%s)\n", $row["userid"], $row["username"]);
     }
 
     //Close the connection

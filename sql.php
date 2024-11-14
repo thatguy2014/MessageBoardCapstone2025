@@ -21,7 +21,7 @@ try {
             echo "<div style='color: red;'>No results found.</div>";
         }*/
 
-        mysqli_free_result($result);
+        //mysqli_free_result($result);
         //print($result);
         /*while ($row=mysqli_fetch_row($result))
         {

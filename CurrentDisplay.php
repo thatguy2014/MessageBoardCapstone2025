@@ -2,7 +2,7 @@
     /*$url1=$_SERVER['REQUEST_URI'];
     header("Refresh: 60; URL=$url1");*/         //this should autorefresh
    
-    //include('sql.php'); 
+    include('sql.php'); 
     $tsql = "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = 1";
     //$params = array(NULL);
     //$options = array(5,true)

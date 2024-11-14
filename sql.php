@@ -10,9 +10,9 @@ try {
         
         
 
-        //if (mysqli_connect_errno($conn)) {
-        //    throw new Exception("Failed to connect to MySQL server: " . mysqli_error($con));
-        //} 
+        if (mysqli_connect_errno($conn)) {
+            throw new Exception("Failed to connect to MySQL server: " . mysqli_error($conn));
+        } 
             
         
     
@@ -22,8 +22,8 @@ try {
     }
     
     /*finally {
-        if (isset($con)) {
-            mysqli_close($con);
+        if (isset($conn)) {
+            mysqli_close($conn);
         }
     }*/
 ?>

@@ -13,7 +13,7 @@ try {
         
         $result = mysqli_real_query($conn, $tsql);
 
-        //$row = mysqli_fetch_assoc($result);
+        $row = mysqli_fetch_assoc($result);
 /*
         if ($row) {
             echo "<div style='color: green;'>Current Display: " . htmlspecialchars($row['CurrentDisplay']) . "</div>";
@@ -21,7 +21,15 @@ try {
             echo "<div style='color: red;'>No results found.</div>";
         }*/
 
-        //mysqli_free_result($result);
+
+
+
+
+
+
+
+
+        //mysqli_free_result($result);          //this was breaking it earlier
         //print($result);
         /*while ($row=mysqli_fetch_row($result))
         {

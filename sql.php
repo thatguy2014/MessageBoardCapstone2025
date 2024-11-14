@@ -13,7 +13,7 @@ try {
         
 
         $getResults = mysqli_real_query($conn, $tsql);
-        
+        print($getResults);
 
 
         //if (mysqli_connect_errno($conn)) {

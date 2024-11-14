@@ -13,7 +13,10 @@ try {
         
         $result = mysqli_real_query($conn, $tsql);
 
-        $row = mysqli_fetch_assoc($result);
+        $storeresult = store_result($conn);
+
+        print($storeresult);
+        //$row = mysqli_fetch_assoc($result);
 /*
         if ($row) {
             echo "<div style='color: green;'>Current Display: " . htmlspecialchars($row['CurrentDisplay']) . "</div>";

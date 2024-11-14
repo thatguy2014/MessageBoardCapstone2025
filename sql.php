@@ -13,7 +13,7 @@ try {
         
         $result = mysqli_real_query($conn, $tsql);
 
-        $storeresult = mysqli_use_result($conn);
+        $storeresult = mysqli_store_result($conn);
 
         print($storeresult);
         //$row = mysqli_fetch_assoc($result);

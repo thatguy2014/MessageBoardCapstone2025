@@ -8,17 +8,6 @@ mysqli_real_connect($conn, "mbcwebbapp-server.mysql.database.azure.com", "PHPLog
 
 $displaydata = $_REQUEST['Input'];
 
-
-if(mysqli_query($conn, 'UPDATE CurrentDisplays SET CurrentDisplay = '$displaydata' WHERE UserId = 1')){
-    echo "<h3>data stored in a database successfully." 
-        . " Please browse your localhost php my admin" 
-        . " to view the updated data</h3>"; 
-    } else{
-        echo "ERROR: Hush! Sorry $sql. " 
-            . mysqli_error($conn);
-    }
-    
-    // Close connection
-    mysqli_close($conn);
+mysqli_query($conn, 'UPDATE CurrentDisplays SET CurrentDisplay = '$displaydata' WHERE UserId = 1')
 
 ?>

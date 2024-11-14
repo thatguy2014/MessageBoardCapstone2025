@@ -13,9 +13,10 @@
         //Run the Select query
     printf("Reading data from table: \n");
     $res = mysqli_real_query($conn, 'SELECT * FROM userinfo');
-    //while ($row = mysqli_fetch_assoc($res)) {
+    while ($row = mysqli_fetch_assoc($res)) {
     //var_dump($row);
-    //}
+    print($row);
+    }
 
     //Close the connection
     //mysqli_close($conn);

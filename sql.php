@@ -11,7 +11,7 @@ try {
         
 
         if (mysqli_connect_errno($conn)) {
-            throw new Exception("Failed to connect to MySQL server: " . mysqli_error($conn));
+            //throw new Exception("Failed to connect to MySQL server: " . mysqli_error($conn));
         } 
             
         

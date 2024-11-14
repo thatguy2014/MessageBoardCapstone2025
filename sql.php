@@ -4,13 +4,21 @@ try {
         if (!$conn) {
             throw new Exception("Failed to initialize MySQL connection");
         }
-        
+
+        $tsql = "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = 1";
+
         mysqli_options($conn, MYSQLI_OPT_CONNECT_TIMEOUT, 10);
         mysqli_ssl_set($conn, NULL, NULL, "ssl/DigiCertGlobalRootCA.crt.pem", NULL, NULL);
         mysqli_real_connect($conn, "mbcwebbapp-server.mysql.database.azure.com", "PHPLogin", "OctoberNovemberUniform", "mbcwebbapp-database", 3306, MYSQLI_CLIENT_SSL);
         
+
+        $params = array(NULL);
+        $options = array(5,true)
+        $getResults = sqlsrv_query($conn, $tsql,$params,$options);
+        
         print_r(mysqli_get_connection_stats($conn));
         
+
 
         //if (mysqli_connect_errno($conn)) {
             //throw new Exception("Failed to connect to MySQL server: " . mysqli_error($conn));

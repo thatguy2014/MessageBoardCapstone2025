@@ -12,10 +12,10 @@
 
         //Run the Select query
     printf("Reading data from table: \n");
-    $res = mysqli_real_query($conn, 'SELECT * FROM userinfo');
+    $res = mysqli_real_query($conn, 'SELECT UserId, Username FROM userinfo');
     while ($row = mysqli_fetch_assoc($res)) {
     //var_dump($row);
-    printf ("%s (%s)\n", $row["userid"], $row["username"]);
+    printf ("%s (%s)\n", $row["UserId"], $row["Username"]);
     }
 
     //Close the connection

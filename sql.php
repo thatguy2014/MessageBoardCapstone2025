@@ -10,6 +10,8 @@ try {
         
         if (mysqli_connect_errno($conn)) {
             throw new Exception("Failed to connect to MySQL server: " . mysqli_error($con));
+        } else {
+            print("connection to MySQL server succeeded");
         }
     
     } catch (Exception $e) {

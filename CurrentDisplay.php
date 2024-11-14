@@ -5,6 +5,7 @@
     include('sql.php'); 
     //$tsql = "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = 1";
     //$getResults = sqlsrv_query($conn, $tsql);
+    //mysqli_close($con);
 ?>
 
 <GFG

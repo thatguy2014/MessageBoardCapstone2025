@@ -6,7 +6,7 @@ try {
         }
         
         mysqli_ssl_set($conn, NULL, NULL, "ssl/DigiCertGlobalRootCA.crt.pem", NULL, NULL);
-        mysqli_real_connect($conn, "mbcwebbapp-server.mysql.database.azure.com", "qzmbodniyz", "YgM0Smd$bLYYepT", "mbcwebbapp-database", 3306, MYSQLI_CLIENT_SSL);
+        mysqli_real_connect($conn, "mbcwebbapp-server.mysql.database.azure.com", "PHPLogin", "OctoberNovemberUniform", "mbcwebbapp-database", 3306, MYSQLI_CLIENT_SSL);
         
         if (mysqli_connect_errno($conn)) {
             throw new Exception("Failed to connect to MySQL server: " . mysqli_error($con));

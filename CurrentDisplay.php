@@ -3,8 +3,8 @@
     header("Refresh: 60; URL=$url1");*/         //this should autorefresh
    
     include('sql.php'); 
-    $tsql = "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = 1";
-    $getResults = sqlsrv_query($conn, $tsql);
+    //$tsql = "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = 1";
+    //$getResults = sqlsrv_query($conn, $tsql);
 ?>
 
 <GFG

@@ -20,7 +20,7 @@ try {
         $error_message = "An error occurred: " . $e->getMessage();
         die(print("<div style='color: red;'>Error: $error_message</div>"));
     }
-    print("debug \n");
+    
     /*finally {
         if (isset($con)) {
             mysqli_close($con);

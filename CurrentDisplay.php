@@ -3,39 +3,27 @@
     header("Refresh: 60; URL=$url1");*/         //this should autorefresh
    
     include('sql.php'); 
-    //$tsql = "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = 1";
-    //$params = array(NULL);
-    //$options = array(5,true)
-    //$getResults = sqlsrv_query($conn, $tsql,$params,$options);
-    //mysqli_close($con);
-    //print("$getResults \n");
-    echo file_get_contents("CurrentDisplay.html");
 ?>
 
 <html>
-    <head>
-
-    </head>
-    <body>
-        <header>
-            <h1>Office Message Board</h1>
-        </header>
-        <nav>
-            <ul>
-                <li><a href="CurrentDisplay">Current Display</a></li>
-                <li><a href="Presets.php">Presets</a></li>
-                <li><a href="ChangeDisplay.php">Change Display</a></li>
-                <li><a href="/">Logout</a></li>
-            </ul>
-        </nav>
-        <section>
-            <h2>Current Display is -> <?php echo htmlspecialchars($getResults); ?></h2>
-        </section>
-        <footer>
-            <p>&copy; 2023 Your Website</p>
-        </footer>
-    </body>
-</html>
-
-
-
+    <header>
+        <h1>Office Message Board</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="CurrentDisplay">Current Display</a></li>
+            <li><a href="Presets.php">Presets</a></li>
+            <li><a href="ChangeDisplay.php">Change Display</a></li>
+            <li><a href="/">Logout</a></li>
+        </ul>
+    </nav>
+    <section>
+        <h2>Current Display is -> 
+            <?php   while ($row = mysqli_fetch_assoc($res)) {
+                        printf ("%s \n", $row["CurrentDisplay"]);
+                    } ?>
+        </h2>
+    </section>
+    <footer>
+        <p>&copy; 2023 Your Website</p>
+    </footer>

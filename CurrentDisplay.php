@@ -12,4 +12,30 @@
     echo file_get_contents("CurrentDisplay.html");
 ?>
 
+<html>
+    <head>
+
+    </head>
+    <body>
+        <header>
+            <h1>Office Message Board</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="CurrentDisplay">Current Display</a></li>
+                <li><a href="Presets.php">Presets</a></li>
+                <li><a href="ChangeDisplay.php">Change Display</a></li>
+                <li><a href="/">Logout</a></li>
+            </ul>
+        </nav>
+        <section>
+            <h2>Current Display is -> <?php echo htmlspecialchars($getResults); ?></h2>
+        </section>
+        <footer>
+            <p>&copy; 2023 Your Website</p>
+        </footer>
+    </body>
+</html>
+
+
 

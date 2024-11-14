@@ -11,6 +11,6 @@
     printf("Reading data from table: \n");
     $res = mysqli_query($conn, 'SELECT CurrentDisplay FROM CurrentDisplays');
     while ($row = mysqli_fetch_assoc($res)) {
-    printf ("%s \n", $row["CurrentDisplay"]);
+        printf ("%s \n", $row["CurrentDisplay"]);
     }
 ?>

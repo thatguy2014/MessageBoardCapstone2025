@@ -13,7 +13,7 @@ html {
     background:white;
 }
 h2 {
-  font-size: 4em;
+  font-size: 10em;
 }
 
     </style>

@@ -22,6 +22,21 @@
             <li><a href="/">Logout</a></li>
         </ul>
     </nav>
+
+    <!--Iframe so it'll auto refresh and be fullscreen-->
+    <iframe id="iframe" src="Display.php"></iframe>
+    <script>
+        window.setInterval(function() {
+            reloadIFrame()
+        }, 3000);
+
+        function reloadIFrame() {
+            console.log('reloading..');
+            document.getElementById('iframe').contentWindow.location.reload();
+        }
+    </script>
+
+    <!--deprecated code for testing-->
     <section>
         <h2 id="currentdisplay" style="background:white">Current Display is -> 
             <?php   while ($row = mysqli_fetch_assoc($res)) {
@@ -29,6 +44,8 @@
                     } ?>
         </h2>
         <button onclick = "openFullscreen()" > Fullscreen </button>
+
+        <!--script that lets you go fullscreen-->
         <script>
         /* Get the element you want displayed in fullscreen mode (a video in this example): */
         var elem = document.getElementById("currentdisplay");

@@ -1,15 +1,3 @@
-<?php
-    $url1=$_SERVER['REQUEST_URI'];
-    header("Refresh: 60; URL=$url1");         //this should autorefresh
-
-    $conn = mysqli_init();
-    mysqli_options($conn, MYSQLI_OPT_CONNECT_TIMEOUT, 10);
-    mysqli_ssl_set($conn, NULL, NULL, "ssl/DigiCertGlobalRootCA.crt.pem", NULL, NULL);
-    mysqli_real_connect($conn, "mbcwebbapp-server.mysql.database.azure.com", "qzmbodniyz", "YgM0Smd\$bLYYepT1", "mbcwebbapp-database", 3306, MYSQLI_CLIENT_SSL);
-
-    $res = mysqli_query($conn, 'SELECT CurrentDisplay FROM CurrentDisplays');
-?>
-
 <html>
     <header>
         <h1>Office Message Board</h1>
@@ -24,7 +12,7 @@
     </nav>
 
     <!--Iframe so it'll auto refresh and be fullscreen-->
-    <iframe id="iframe" src="Display.php"></iframe>
+    <iframe id="iframe" src="Display.php" height="200" width="300"></iframe>
     <script>
         window.setInterval(function() {
             reloadIFrame()
@@ -35,20 +23,12 @@
             document.getElementById('iframe').contentWindow.location.reload();
         }
     </script>
-
-    <!--deprecated code for testing-->
-    <section>
-        <h2 id="currentdisplay" style="background:white">Current Display is -> 
-            <?php   while ($row = mysqli_fetch_assoc($res)) {
-                        printf ("%s \n", $row["CurrentDisplay"]);
-                    } ?>
-        </h2>
         <button onclick = "openFullscreen()" > Fullscreen </button>
 
         <!--script that lets you go fullscreen-->
         <script>
         /* Get the element you want displayed in fullscreen mode (a video in this example): */
-        var elem = document.getElementById("currentdisplay");
+        var elem = document.getElementById("iframe");
 
         /* When the openFullscreen() function is executed, open the video in fullscreen.
         Note that we must include prefixes for different browsers, as they don't support the requestFullscreen method yet */

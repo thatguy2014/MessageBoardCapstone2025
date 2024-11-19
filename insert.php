@@ -18,9 +18,10 @@
                     $selectedInput = htmlspecialchars($_POST['selected_input']);
                     
                     //testing the received value
-                    echo "Received value: " . $selectedInput . "<br>";
+                    //echo "Received value: " . $selectedInput . "<br>";
+
                     // Update the database with the selected input
-                    mysqli_query($conn, "UPDATE CurrentDisplays SET CurrentDisplay = '" . $selectedInput . "' WHERE UserId = 1");
+                    mysqli_query($conn, "UPDATE CurrentDisplays SET CurrentDisplay = '$selectedInput' WHERE UserId = 1");
                     
                     // Display success message
                     echo "<p>Preset updated successfully.</p>";
@@ -29,9 +30,9 @@
                 }
             }
             
-            $displaydata = $_REQUEST['Input'];
+            //$displaydata = $_REQUEST['Input'];
 
-            mysqli_query($conn, "UPDATE CurrentDisplays SET CurrentDisplay = '$displaydata' WHERE UserId = 1")
+            //mysqli_query($conn, "UPDATE CurrentDisplays SET CurrentDisplay = '$displaydata' WHERE UserId = 1")
             ?>
             <p>query sent,click <a href="CurrentDisplay.php">here</a> to view current display</p>
     </body>

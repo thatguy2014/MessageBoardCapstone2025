@@ -1,6 +1,4 @@
 <?php
-    $url1=$_SERVER['REQUEST_URI'];
-    header("Refresh: 60; URL=$url1");         //this should autorefresh
     //the following lines should connect to the database and run the query
     $conn = mysqli_init();
     mysqli_options($conn, MYSQLI_OPT_CONNECT_TIMEOUT, 10);

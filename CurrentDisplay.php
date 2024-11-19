@@ -40,7 +40,7 @@
         <script>
             window.setInterval(function() {
                 reloadIFrame()
-            }, 3000);
+            }, 60000);
 
             function reloadIFrame() {
                 console.log('reloading..');

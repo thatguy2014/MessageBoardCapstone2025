@@ -17,9 +17,8 @@
 
             mysqli_query($conn, "UPDATE CurrentDisplays SET CurrentDisplay = '$displaydata' WHERE UserId = 1")
 
-
-            header("Location: /CurrentDisplay.php");
-            die();
+            $newURL = "/CurrentDisplay.html";
+            header('Location: '.$newURL);       //should redirect
             ?>
     </body>
 

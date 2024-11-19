@@ -12,6 +12,10 @@
 html {                  
     background:white;
 }
+h2 {
+  font-size: 4em;
+}
+
     </style>
 <html>
     <h2 id="currentdisplay" style="background:white">Current Display is -> 

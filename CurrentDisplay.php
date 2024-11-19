@@ -23,7 +23,7 @@
         </ul>
     </nav>
     <section>
-        <h2 id="currentdisplay">Current Display is -> 
+        <h2 id="currentdisplay" style="background:white">Current Display is -> 
             <?php   while ($row = mysqli_fetch_assoc($res)) {
                         printf ("%s \n", $row["CurrentDisplay"]);
                     } ?>

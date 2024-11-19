@@ -4,7 +4,7 @@
    
     include('sql.php');               //I will need to go back to this but want to test
 
-    $conn = mysqli_init();
+    /*$conn = mysqli_init();
 
     $tsql = "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = 1";
 
@@ -17,7 +17,7 @@
     $res = mysqli_query($conn, 'SELECT CurrentDisplay FROM CurrentDisplays');
     //while ($row = mysqli_fetch_assoc($res)) {
     //    printf ("%s \n", $row["CurrentDisplay"]);
-    //}     
+    //}  */   
 ?>
 
 <html>

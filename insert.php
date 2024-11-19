@@ -13,6 +13,20 @@
             mysqli_real_connect($conn, "mbcwebbapp-server.mysql.database.azure.com", "qzmbodniyz", "YgM0Smd\$bLYYepT1", "mbcwebbapp-database", 3306, MYSQLI_CLIENT_SSL);
 
 
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if (isset($_POST['selected_input'])) {
+                    $selectedInput = $_POST['selected_input'];
+                    
+                    // Update the database with the selected input
+                    mysqli_query($conn, "UPDATE CurrentDisplays SET CurrentDisplay = '$selectedInput' WHERE UserId = 1");
+                    
+                    // Display success message
+                    echo "<p>Preset updated successfully.</p>";
+                } else {
+                    echo "<p>Error: No preset selected.</p>";
+                }
+            }
+            
             $displaydata = $_REQUEST['Input'];
 
             mysqli_query($conn, "UPDATE CurrentDisplays SET CurrentDisplay = '$displaydata' WHERE UserId = 1")

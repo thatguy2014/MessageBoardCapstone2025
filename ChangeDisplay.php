@@ -18,7 +18,7 @@
     <form action="insert.php" method="post"> 
             <p>
                 <label for="Input">Input what you'd like to display:</label>
-                <input type="text" name="Input" id="Input">
+                <input type="text" name="selected_input" id="Input">
             </p>
             
             <input type="submit" value="Submit">

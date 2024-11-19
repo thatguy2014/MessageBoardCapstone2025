@@ -29,7 +29,7 @@
                 var form = document.getElementById('presetform');
                 var submitButton = form.querySelector('input[type="submit"]');
                 
-                } else {
+                if (submitButton.disabled = false) {
                     var selectedValue = form.querySelector('[name="selected_input"]').value;
                     if (selectedValue === "") {
                         submitButton.disabled = true;

@@ -5,11 +5,7 @@
     $conn = mysqli_init();
     mysqli_options($conn, MYSQLI_OPT_CONNECT_TIMEOUT, 10);
     mysqli_ssl_set($conn, NULL, NULL, "ssl/DigiCertGlobalRootCA.crt.pem", NULL, NULL);
-    //mysqli_real_connect($conn, "mbcwebbapp-server.mysql.database.azure.com", "PHPLogin", "OctoberNovemberUniform", "mbcwebbapp-database", 3306, MYSQLI_CLIENT_SSL);
-
-    if (!mysqli_real_connect($conn, "mbcwebbapp-server.mysql.database.azure.com", "PHPLogin", "OctoberNovemberUniform", "mbcwebbapp-database", 3306, MYSQLI_CLIENT_SSL)) {
-        // If connection failed, print error message
-        die("Connection failed: " . mysqli_connect_error());}
+    mysqli_real_connect($conn, "mbcwebbapp-server.mysql.database.azure.com", "PHPLogin", "OctoberNovemberUniform", "mbcwebbapp-database", 3306, MYSQLI_CLIENT_SSL);
 
     //Run the Select query
     //$res = mysqli_query($conn, 'SELECT CurrentDisplay FROM CurrentDisplays');   

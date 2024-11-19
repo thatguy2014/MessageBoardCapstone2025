@@ -20,7 +20,7 @@
                     //testing the received value
                     echo "Received value: " . $selectedInput . "<br>";
                     // Update the database with the selected input
-                    mysqli_query($conn, "UPDATE CurrentDisplays SET CurrentDisplay = $selectedInput WHERE UserId = 1");
+                    mysqli_query($conn, "UPDATE CurrentDisplays SET CurrentDisplay = '" . $selectedInput . "' WHERE UserId = 1");
                     
                     // Display success message
                     echo "<p>Preset updated successfully.</p>";

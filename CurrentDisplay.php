@@ -28,6 +28,7 @@
                         printf ("%s \n", $row["CurrentDisplay"]);
                     } ?>
         </h2>
+        <button onclick = "openFullscreen()" > Fullscreen </button>
         <script>
         /* Get the element you want displayed in fullscreen mode (a video in this example): */
         var elem = document.getElementById("currentdisplay");

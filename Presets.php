@@ -15,14 +15,35 @@
                 <option value="I'll be back soon">I'll be back soon</option>
                 <option value="I'm in class and will be back after">I'm in class and will be back after</option>
             </select>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" disabled>
         </form>
 
         <script>
             function setSelectedValue(select) {
                 var selectedValue = select.value;
                 document.getElementById('presetform').querySelector('[name="selected_input"]').value = selectedValue;
+                validateForm();
             }
+
+            function validateForm() {
+                var form = document.getElementById('presetform');
+                var submitButton = form.querySelector('input[type="submit"]');
+                
+                if (submitButton.disabled) {
+                    submitButton.disabled = false;
+                } else {
+                    var selectedValue = form.querySelector('[name="selected_input"]').value;
+                    if (selectedValue === "") {
+                        submitButton.disabled = true;
+                    } else {
+                        submitButton.disabled = false;
+                    }
+                }
+            }
+
+window.onload = function() {
+    validateForm();
+};
         </script>
     </body>
 </html>

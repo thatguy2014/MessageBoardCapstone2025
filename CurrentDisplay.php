@@ -17,7 +17,7 @@
     </header>
     <nav>
         <ul>
-            <li><a href="CurrentDisplay">Current Display</a></li>
+            <li><a href="CurrentDisplay.php">Current Display</a></li>
             <li><a href="Presets.php">Presets</a></li>
             <li><a href="ChangeDisplay.php">Change Display</a></li>
             <li><a href="/">Logout</a></li>

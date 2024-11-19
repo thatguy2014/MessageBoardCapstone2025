@@ -2,7 +2,7 @@
     /*$url1=$_SERVER['REQUEST_URI'];
     header("Refresh: 60; URL=$url1");*/         //this should autorefresh
    
-    //include('sql.php');               //I will need to go back to this but want to test
+    include('sql.php');               //I will need to go back to this but want to test
 
     $conn = mysqli_init();
 

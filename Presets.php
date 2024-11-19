@@ -29,8 +29,6 @@
                 var form = document.getElementById('presetform');
                 var submitButton = form.querySelector('input[type="submit"]');
                 
-                if (submitButton.disabled) {
-                    submitButton.disabled = false;
                 } else {
                     var selectedValue = form.querySelector('[name="selected_input"]').value;
                     if (selectedValue === "") {

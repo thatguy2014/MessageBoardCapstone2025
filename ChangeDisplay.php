@@ -23,5 +23,5 @@
 
     </body>
     <footer>
-        <p>&copy; 2023 Your Website</p>
+        
     </footer>

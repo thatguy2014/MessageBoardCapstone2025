@@ -9,6 +9,11 @@
 
     $res = mysqli_query($conn, 'SELECT CurrentDisplay FROM CurrentDisplays');
 ?>
+<style>
+html {
+    background:white;
+}
+    </style>
 <html>
     <h2 id="currentdisplay" style="background:white">Current Display is -> 
         <?php   

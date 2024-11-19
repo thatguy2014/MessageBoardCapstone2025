@@ -10,10 +10,10 @@
             <input type="hidden" name="selected_input" value="">
             <select name="presets" id="presets" onchange="setSelectedValue(this)">
                 <option value="">Select...</option>
-                <option value="backin5">I'll be back in 5</option>
-                <option value="offcampus">I'm off campus for the rest of the day</option>
-                <option value="bebacksoon">I'll be back soon</option>
-                <option value="inclass">I'm in class and will be back after</option>
+                <option value="I'll be back in 5">I'll be back in 5</option>
+                <option value="I'm off campus for the rest of the day">I'm off campus for the rest of the day</option>
+                <option value="I'll be back soon">I'll be back soon</option>
+                <option value="I'm in class and will be back after">I'm in class and will be back after</option>
             </select>
             <input type="submit" value="Submit">
         </form>

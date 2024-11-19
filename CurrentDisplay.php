@@ -13,7 +13,7 @@
     </nav>
 
     <!--Iframe so it'll auto refresh and be fullscreen-->
-    <iframe id="iframe" src="Display.php" height="500" width="800"></iframe><br>
+    <iframe id="iframe" src="Display.php" height="400" width="1000"></iframe><br>
     
     
         <button onclick = "openFullscreen()" > Fullscreen </button>

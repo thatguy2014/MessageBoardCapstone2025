@@ -17,6 +17,8 @@
                 if (isset($_POST['selected_input'])) {
                     $selectedInput = $_POST['selected_input'];
                     
+                    //testing the received value
+                    echo "Received value: " . htmlspecialchars($_POST['selected_input']) . "<br>";
                     // Update the database with the selected input
                     mysqli_query($conn, "UPDATE CurrentDisplays SET CurrentDisplay = '$selectedInput' WHERE UserId = 1");
                     

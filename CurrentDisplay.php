@@ -23,11 +23,27 @@
         </ul>
     </nav>
     <section>
-        <h2>Current Display is -> 
+        <h2 id="currentdisplay">Current Display is -> 
             <?php   while ($row = mysqli_fetch_assoc($res)) {
                         printf ("%s \n", $row["CurrentDisplay"]);
                     } ?>
         </h2>
+        <script>
+        /* Get the element you want displayed in fullscreen mode (a video in this example): */
+        var elem = document.getElementById("currentdisplay");
+
+        /* When the openFullscreen() function is executed, open the video in fullscreen.
+        Note that we must include prefixes for different browsers, as they don't support the requestFullscreen method yet */
+        function openFullscreen() {
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) { /* Safari */
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE11 */
+            elem.msRequestFullscreen();
+        }
+        }
+        </script>
     </section>
     <footer>
         <p>&copy; 2023 Your Website</p>

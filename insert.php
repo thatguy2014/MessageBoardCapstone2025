@@ -6,7 +6,6 @@
     </head>
 
     <body>
-        <center>
             <?php
             $conn = mysqli_init();
             mysqli_options($conn, MYSQLI_OPT_CONNECT_TIMEOUT, 10);
@@ -18,8 +17,10 @@
 
             mysqli_query($conn, "UPDATE CurrentDisplays SET CurrentDisplay = '$displaydata' WHERE UserId = 1")
 
+
+            header("Location: /CurrentDisplay.php");
+            die();
             ?>
-        </center>
     </body>
 
 </html>

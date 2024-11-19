@@ -1,6 +1,3 @@
-<?php
-
-?>
 
 <html>
     <header>
@@ -23,10 +20,6 @@
             
             <input type="submit" value="Submit">
     </form>
-
-
-
-
 
     </body>
     <footer>

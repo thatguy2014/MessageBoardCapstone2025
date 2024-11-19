@@ -1,7 +1,7 @@
 <?php
     $url1=$_SERVER['REQUEST_URI'];
     header("Refresh: 60; URL=$url1");         //this should autorefresh
-
+    //the following lines should connect to the database and run the query
     $conn = mysqli_init();
     mysqli_options($conn, MYSQLI_OPT_CONNECT_TIMEOUT, 10);
     mysqli_ssl_set($conn, NULL, NULL, "ssl/DigiCertGlobalRootCA.crt.pem", NULL, NULL);
@@ -9,8 +9,9 @@
 
     $res = mysqli_query($conn, 'SELECT CurrentDisplay FROM CurrentDisplays');
 ?>
+<!--the style is so the fullscreen view looks right-->
 <style>
-html {
+html {                  
     background:white;
 }
     </style>

@@ -16,10 +16,8 @@
             $displaydata = $_REQUEST['Input'];
 
             mysqli_query($conn, "UPDATE CurrentDisplays SET CurrentDisplay = '$displaydata' WHERE UserId = 1")
-
-            $newURL = "/CurrentDisplay.html";
-            header('Location: '.$newURL);       //should redirect
             ?>
+            <p>query sent,click <a href="CurrentDisplay.php">here</a> to view current display</p>
     </body>
 
 </html>

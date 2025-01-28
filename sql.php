@@ -18,5 +18,6 @@ if (!$link) {
 }
 
 print(gettype($link));
+print(gettype($conn));
 // Now $link contains the MySQLi object
 ?>

@@ -17,7 +17,5 @@ if (!$link) {
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
 
-print(gettype($link));
-print(gettype($conn));
-// Now $link contains the MySQLi object
+// Now $conn contains the MySQLi object
 ?>

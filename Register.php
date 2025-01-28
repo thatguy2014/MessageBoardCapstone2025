@@ -8,7 +8,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 
-if ($link === false) {
+if ($conn === false) {
 	die("ERROR: Could not connect. " . mysqli_connect_error());
 }
 
@@ -19,11 +19,11 @@ $username_err = $password_err = $confirm_password_err = "";
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     //login with sql if sql is not connected
-        if ($link instanceof mysqli && $link->connected) {
+        if ($conn instanceof mysqli && $conn->connected) {
             echo "Connection is active";
         } else {
             require_once "sql.php";
-            if ($link instanceof mysqli && $link->connected) {
+            if ($conn instanceof mysqli && $conn->connected) {
                 echo "<pre>Error: database not connected</pre>";
             } else{
                 echo "<pre>Connection is active</pre>";
@@ -40,13 +40,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Prepare a select statement
         $sql = "SELECT Username FROM userinfo WHERE Username = ?";
         
-        if ($link instanceof mysqli) {
-            echo "<pre>Before line 43: $link is a mysqli object</pre>";
+        if ($conn instanceof mysqli) {
+            echo "<pre>Before line 43: $conn is a mysqli object</pre>";
         } else {
-            echo "<pre>Before line 43: $link is not a mysqli object</pre>";
+            echo "<pre>Before line 43: $conn is not a mysqli object</pre>";
         }
         
-        if($stmt = mysqli_prepare($link, $sql)){
+        if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
             
@@ -96,7 +96,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Prepare an insert statement
         $sql = "call AddUser (?, ?);";
         
-        if($stmt = mysqli_prepare($link, $sql)){
+        if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
             
@@ -119,8 +119,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Close statement
-    if (isset($link) && is_object($link)) {
-        mysqli_close($link);
+    if (isset($conn) && is_object($conn)) {
+        mysqli_close($conn);
     }
 }
 ?>

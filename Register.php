@@ -2,7 +2,6 @@
 
 // Include config file
 require_once "sql.php";
-print("debug0");
 
 // starts displaying errors when things go wrong
 ini_set('display_errors', 1);
@@ -12,10 +11,8 @@ error_reporting(E_ALL);
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
  
-print("debug1");
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
- print("debug in if");
     // Validate username
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter a username.";
@@ -101,7 +98,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Close connection
     mysqli_close($link);
 }
-print("debug after if");
 ?>
  
 <!DOCTYPE html>

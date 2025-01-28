@@ -48,10 +48,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 echo "Oops! Something went wrong. Please try again later.";
             }
 
-            // Close statement
-            if (isset($link) && is_object($link)) {
-                mysqli_close($link);
-            }
+            
         }
     }
     
@@ -102,8 +99,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
     
-    // Close connection
-    mysqli_close($link);
+    // Close statement
+    if (isset($link) && is_object($link)) {
+        mysqli_close($link);
+    }
 }
 ?>
  

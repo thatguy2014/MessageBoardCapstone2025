@@ -49,7 +49,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
 
             // Close statement
-            mysqli_stmt_close($stmt);
+            if (isset($link) && is_object($link)) {
+                mysqli_close($link);
+            }
         }
     }
     

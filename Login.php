@@ -28,7 +28,7 @@ mysqli_real_connect($conn, "mbcwebbapp-server.mysql.database.azure.com", "qzmbod
                 </div>
             
                 <span class="psw"><a href="#">Forgot password?</a></span>
-
+                <span class="psw"><a href="Register.php">Create Account</a></span>
             </form>
 
             <footer>

@@ -7,6 +7,11 @@ require_once "sql.php";
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+
+if ($link === false) {
+	die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";

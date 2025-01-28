@@ -4,8 +4,8 @@
 require_once "sql.php";
 
 // starts displaying errors when things go wrong
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//error_reporting(E_ALL);
 
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
@@ -14,17 +14,17 @@ $username_err = $password_err = $confirm_password_err = "";
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     //login with sql if sql is not connected
+    //note that some echos are commented out but can be uncommented for debugging
         if ($conn instanceof mysqli && $conn->connected) {
-            echo "Connection is active";
+            //echo "Connection is active";
         } else {
             require_once "sql.php";
             if ($conn instanceof mysqli && $conn->connected) {
-                echo "<pre>Error: database not connected</pre>";
+                //echo "<pre>Error: database not connected</pre>";
             } else{
-                echo "<pre>Connection is active</pre>";
+                //echo "<pre>Connection is active</pre>";
             }
         }
-    
     
     // Validate username
     if(empty(trim($_POST["username"]))){

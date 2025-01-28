@@ -26,6 +26,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             die("error: could not connect to database" . mysqli_connect_error());
         }
     }
+    //prints the value of link to verify connection
+    echo "<pre>Final value of $link: " . print_r($link, true) . "</pre>";
     
     // Validate username
     if(empty(trim($_POST["username"]))){

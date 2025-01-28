@@ -18,6 +18,15 @@ $username_err = $password_err = $confirm_password_err = "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+    //login with sql if sql is not connected
+    if($link === false) {
+        require_once "sql.php";
+
+        if($link === false) {
+            die("error: could not connect to database" . mysqli_connect_error());
+        }
+    }
+    
     // Validate username
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter a username.";

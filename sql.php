@@ -14,12 +14,12 @@
         if (mysqli_connect_errno()) {
             die("ERROR: Could not connect. " . mysqli_connect_error());
         }
-/*
+
         //Run the Select query
     printf("Reading data from table: \n");
     $res = mysqli_real_query($conn, 'SELECT CurrentDisplay FROM CurrentDisplays');
     $res = mysqli_query($conn, 'SELECT CurrentDisplay FROM CurrentDisplays');
     while ($row = mysqli_fetch_assoc($res)) {
         printf ("%s \n", $row["CurrentDisplay"]);
-    }*/
+    }
 ?>

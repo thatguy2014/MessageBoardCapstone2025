@@ -1,4 +1,4 @@
-<?php/*
+<?php
 // Include config file
 require_once "sql.php";
  
@@ -92,7 +92,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Close connection
     mysqli_close($link);
-}*/
+}
 ?>
  
 <!DOCTYPE html>

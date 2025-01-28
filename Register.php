@@ -25,6 +25,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             require_once "sql.php";
             if ($link instanceof mysqli && $link->connected) {
                 echo "Error: database not connected";
+            } else{
+                echo "Connection is active";
             }
         }
     

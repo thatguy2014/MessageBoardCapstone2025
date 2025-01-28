@@ -24,9 +24,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         } else {
             require_once "sql.php";
             if ($link instanceof mysqli && $link->connected) {
-                echo "Error: database not connected";
+                echo "<pre>Error: database not connected</pre>";
             } else{
-                echo "Connection is active";
+                echo "<pre>Connection is active</pre>";
             }
         }
     
@@ -39,6 +39,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         // Prepare a select statement
         $sql = "SELECT Username FROM userinfo WHERE Username = ?";
+        
+        if ($link instanceof mysqli) {
+            echo "<pre>Before line 43: $link is a mysqli object</pre>";
+        } else {
+            echo "<pre>Before line 43: $link is not a mysqli object</pre>";
+        }
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters

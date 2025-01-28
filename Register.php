@@ -19,15 +19,15 @@ $username_err = $password_err = $confirm_password_err = "";
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     //login with sql if sql is not connected
-    if($link === false) {
-        require_once "sql.php";
-
-        if($link === false) {
-            die("error: could not connect to database" . mysqli_connect_error());
+        if ($link instanceof mysqli && $link->connected) {
+            echo "Connection is active";
+        } else {
+            require_once "sql.php";
+            if ($link instanceof mysqli && $link->connected) {
+                echo "Error: database not connected";
+            }
         }
-    }
-    //prints the value of link to verify connection
-    echo "<pre>Final value of $link: " . print_r($link, true) . "</pre>";
+    
     
     // Validate username
     if(empty(trim($_POST["username"]))){

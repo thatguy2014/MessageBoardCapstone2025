@@ -11,9 +11,10 @@ error_reporting(E_ALL);
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
  
+print("debug1");
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
+ print("debug in if");
     // Validate username
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter a username.";
@@ -72,7 +73,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         
         // Prepare an insert statement
-        $sql = "call AddUser (\"?\", \"?\");";
+        $sql = "call AddUser (?, ?);";
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -99,7 +100,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Close connection
     mysqli_close($link);
 }
-
+print("debug after if");
 ?>
  
 <!DOCTYPE html>

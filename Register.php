@@ -2,7 +2,8 @@
 
 // Include config file
 require_once "sql.php";
- 
+print("debug0");
+
 // starts displaying errors when things go wrong
 ini_set('display_errors', 1);
 error_reporting(E_ALL);

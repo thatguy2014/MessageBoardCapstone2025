@@ -14,21 +14,4 @@
         if (mysqli_connect_errno()) {
             die("ERROR: Could not connect. " . mysqli_connect_error());
         }
-        //everything below here is for testing the connection
-        //below will all be commented out once everything works
-        //it all works and is connecting right
-        //Run the Select query
-    //$res = mysqli_query($conn, 'SELECT CurrentDisplay FROM CurrentDisplays');
 ?>
-<!--
-<html>
-    <p>
-        Reading Data from table:
-        <?php/*
-            while ($row = mysqli_fetch_assoc($res)) {
-                printf ("%s \n", $row["CurrentDisplay"]);
-            }*/
-        ?>
-    </p>
-</html>
-        -->

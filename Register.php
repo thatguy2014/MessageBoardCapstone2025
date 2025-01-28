@@ -7,11 +7,6 @@ require_once "sql.php";
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-
-if ($conn === false) {
-	die("ERROR: Could not connect. " . mysqli_connect_error());
-}
-
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
@@ -39,13 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         // Prepare a select statement
         $sql = "SELECT Username FROM userinfo WHERE Username = ?";
-        
-        if ($conn instanceof mysqli) {
-            echo "<pre>Before line 43: $conn is a mysqli object</pre>";
-        } else {
-            echo "<pre>Before line 43: $conn is not a mysqli object</pre>";
-        }
-        
+
         if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);

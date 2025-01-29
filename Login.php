@@ -30,7 +30,7 @@ $username_err = $password_err = $login_err = "";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    print("debug: login pressed");
+    //print("debug: login pressed \n");
     // Check if username is empty
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter username.";
@@ -54,7 +54,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         //prepare the statement
         if($stmt = mysqli_prepare($conn, $sql)) {
             // Bind variables to the prepared statement as parameters
-            print("debug: statement prepared");
+            //print("debug: statement prepared \n");
             mysqli_stmt_bind_param($stmt, "ssb", $param_username, $param_password, $boolean_value);
 
             //set parameters
@@ -64,16 +64,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)) {
-                print("debug: statement executed");
-                // Get the result
-                mysqli_stmt_store_result($stmt);
-
-                // Bind the result to get the boolean result
-                mysqli_stmt_bind_result($stmt, $result_boolean);
-
-                //Fetch the result
-                if(mysqli_stmt_fetch($stmt)) {
-                    if($result_boolean) {
+                //fetch updated rows
+                if(mysqli_stmt_affected_rows($stmt) > 0) {
+                //print("debug: statement executed \n");
+                    if($boolean_value) {
                         //logged in, start a new session
                         session_start();
 

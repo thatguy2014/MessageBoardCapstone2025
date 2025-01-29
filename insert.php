@@ -24,8 +24,10 @@
                         
                         // Display success message
                         echo "<p>Message updated successfully.</p>";
+
+                        header("location: currentdisplay.php");
                     } else {
-                        echo "<p>Error: No message selected.</p>";
+                        echo "<p>Error: No message selected. <a href=CurrentDisplay.php>Go Back</a></p>";
                     }
                 }
             ?>

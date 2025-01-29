@@ -1,5 +1,6 @@
 <?php
-    print("Debug: running php \n");
+    //start the session
+    session_start();
     // starts displaying errors when things go wrong
     ini_set('display_errors', 1);
     error_reporting(E_ALL);

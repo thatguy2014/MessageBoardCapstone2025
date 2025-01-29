@@ -10,7 +10,7 @@ require_once "VerifyLogin.php";
             <li><a href="CurrentDisplay.php">Current Display</a></li>
             <li><a href="Presets.php">Presets</a></li>
             <li><a href="ChangeDisplay.php">Change Display</a></li>
-            <li><a href="/">Logout</a></li>
+            <li><a href="Logout.php">Logout</a></li>
         </ul>
     </nav>
     <body>

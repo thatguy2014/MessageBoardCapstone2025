@@ -1,4 +1,9 @@
 <?php
+
+// starts displaying errors when things go wrong
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 //connection data
 $conn = mysqli_init();
 mysqli_options($conn, MYSQLI_OPT_CONNECT_TIMEOUT, 10);
@@ -93,7 +98,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Close connection
-    mysqli_close($link);
+    mysqli_close($conn);
 }
 ?>
 

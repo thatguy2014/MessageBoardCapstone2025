@@ -65,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 mysqli_stmt_store_result($stmt);
 
                 // Bind the result to get the boolean result
-                mysqli_stmt_bind_result($stmt, $result_boolean);
+                mysqli_stmt_bind_result($stmt, $result_boolean,$result_userid);
 
                 //Fetch the result
                 if(mysqli_stmt_fetch($stmt)) {
@@ -75,7 +75,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                         // Store data in session variables
                         $_SESSION["loggedin"] = true;
-                        $_SESSION["username"] = $param_username;                            
+                        $_SESSION["UserId"] = $result_userid;                            
                         
                         // Redirect user to welcome page
                         header("location: CurrentDisplay.php");
@@ -93,6 +93,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Close statement
             mysqli_stmt_close($stmt);
         }
+        
+
     }
     
     // Close connection

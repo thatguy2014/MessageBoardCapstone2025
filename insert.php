@@ -30,7 +30,7 @@
                         $selectedInput = htmlspecialchars($_POST['selected_input']);
                         
                         // verify the current database input exists (it'll fail if it already exists which is good)
-                        mysqli_query($conn, "INSERT INTO CurrentDisplays VALUES ($userid, ' ');")
+                        mysqli_query($conn, "INSERT INTO CurrentDisplays VALUES ($userid, ' ');");
                         // Update the database with the selected input
                         mysqli_query($conn, "UPDATE CurrentDisplays SET CurrentDisplay = '$selectedInput' WHERE UserId = '$userid';");
                         

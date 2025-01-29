@@ -5,7 +5,17 @@ require_once "VerifyLogin.php";
     <head>
 
     </head>
-
+    <header>
+        <h1>Office Message Board</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="CurrentDisplay.php">Current Display</a></li>
+            <li><a href="Presets.php">Presets</a></li>
+            <li><a href="ChangeDisplay.php">Change Display</a></li>
+            <li><a href="/">Logout</a></li>
+        </ul>
+    </nav>
     <body>
         <h3>Presets</h3>
         <p>Select a preset below:</p>

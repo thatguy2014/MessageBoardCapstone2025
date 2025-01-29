@@ -2,12 +2,12 @@
 <html>
 
     <head>
-        <title>Insert Page page</title>
+        <title>Insert Page</title>
     </head>
 
     <body>
             <?php
-
+                print("Debug: running php \n");
                 // starts displaying errors when things go wrong
                 ini_set('display_errors', 1);
                 error_reporting(E_ALL);

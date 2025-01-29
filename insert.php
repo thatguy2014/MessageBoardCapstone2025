@@ -2,8 +2,8 @@
     //start the session
     //session_start();
     // starts displaying errors when things go wrong
-    ini_set('display_errors', 1);
-    error_reporting(E_ALL);
+    //ini_set('display_errors', 1);
+    //error_reporting(E_ALL);
     //Verify the user is logged in
     require_once "VerifyLogin.php";
     //print("Debug: Login Verified \n");
@@ -30,7 +30,12 @@
                         $selectedInput = htmlspecialchars($_POST['selected_input']);
                         
                         // verify the current database input exists (it'll fail if it already exists which is good)
+                        try{
                         mysqli_query($conn, "INSERT INTO CurrentDisplays VALUES ($userid, ' ');");
+                        } catch(Exception $e) {
+                            error_log("Error occured while adding new line to database " . $e->getMessage());
+                        }
+                        
                         // Update the database with the selected input
                         mysqli_query($conn, "UPDATE CurrentDisplays SET CurrentDisplay = '$selectedInput' WHERE UserId = '$userid';");
                         

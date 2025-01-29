@@ -30,7 +30,7 @@ $username_err = $password_err = $login_err = "";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
+    print("debug: login pressed");
     // Check if username is empty
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter username.";
@@ -54,6 +54,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         //prepare the statement
         if($stmt = mysqli_prepare($conn, $sql)) {
             // Bind variables to the prepared statement as parameters
+            print("debug: statement prepared");
             mysqli_stmt_bind_param($stmt, "ssb", $param_username, $param_password, $boolean_value);
 
             //set parameters
@@ -63,11 +64,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)) {
+                print("debug: statement executed");
                 // Get the result
                 mysqli_stmt_store_result($stmt);
 
                 // Bind the result to get the boolean result
-                mysqli_stmt_bind_result($stmt, $result_username, $result_password, $result_boolean);
+                mysqli_stmt_bind_result($stmt, $result_boolean);
 
                 //Fetch the result
                 if(mysqli_stmt_fetch($stmt)) {
@@ -77,7 +79,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                         // Store data in session variables
                         $_SESSION["loggedin"] = true;
-                        $_SESSION["username"] = $result_username;                            
+                        $_SESSION["username"] = $param_username;                            
                         
                         // Redirect user to welcome page
                         header("location: CurrentDisplay.php");
@@ -87,7 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     }
                 } else {
                     // no result found
-                    $$login_err = "Invalid username or password.";
+                    $login_err = "Invalid username or password.";
                 }
             } else {
                 echo "Oops! Something went wrong. Please try again later";

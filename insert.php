@@ -1,6 +1,3 @@
-<?php
-require_once "VerifyLogin.php";
-?>
 <!DOCTYPE html>
 <html>
 
@@ -10,8 +7,10 @@ require_once "VerifyLogin.php";
 
     <body>
             <?php
+                //Verify the user is logged in
+                require_once "VerifyLogin.php";
                 //should connect to database
-                require_once "sql.php"
+                require_once "sql.php";
                 //setting a constant userid for use later
                 $userid = 1;
                 

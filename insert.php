@@ -23,14 +23,16 @@
                 
                 //setting up the userid for use later
                 $userid = $_SESSION["UserId"];
-                print($_SESSION["UserId"]);
+                //print($_SESSION["UserId"]);
                 //when it receives a post it should update the currentdisplay
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if (isset($_POST['selected_input'])) {
                         $selectedInput = htmlspecialchars($_POST['selected_input']);
                         
+                        // verify the current database input exists (it'll fail if it already exists which is good)
+                        mysqli_query($conn, "INSERT INTO CurrentDisplays VALUES ($userid, ' ');")
                         // Update the database with the selected input
-                        mysqli_query($conn, "UPDATE CurrentDisplays SET CurrentDisplay = '$selectedInput' WHERE UserId = '$userid'");
+                        mysqli_query($conn, "UPDATE CurrentDisplays SET CurrentDisplay = '$selectedInput' WHERE UserId = '$userid';");
                         
                         // Display success message
                         echo "<p>Message updated successfully.</p>";

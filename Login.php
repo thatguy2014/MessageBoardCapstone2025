@@ -64,10 +64,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)) {
-                //fetch updated rows
-                if(mysqli_stmt_affected_rows($stmt) > 0) {
                 //print("debug: statement executed \n");
-                    if($boolean_value) {
+                // Get the result
+                mysqli_stmt_store_result($stmt);
+
+                // Bind the result to get the boolean result
+                mysqli_stmt_bind_result($stmt, $result_boolean);
+
+                //Fetch the result
+                if(mysqli_stmt_fetch($stmt)) {
+                    if($result_boolean) {
                         //logged in, start a new session
                         session_start();
 

@@ -1,5 +1,7 @@
 <?php
-
+//functionality is working but needs some error reporting better
+//does not currently return an issue for some cases but still won't make
+//an incorrect account
 // Include config file
 require_once "sql.php";
 

@@ -1,3 +1,7 @@
+<?php
+require_once "VerifyLogin.php"
+?>
+
 <html>
     <header>
         <h1>Office Message Board</h1>
@@ -8,7 +12,7 @@
             <li><a href="CurrentDisplay.php">Current Display</a></li>
             <li><a href="Presets.php">Presets</a></li>
             <li><a href="ChangeDisplay.php">Change Display</a></li>
-            <li><a href="/">Logout</a></li>
+            <li><a href="logout.php">Sign Out of Your Account</a></li>
         </ul>
     </nav>
 

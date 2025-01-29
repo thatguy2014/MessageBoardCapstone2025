@@ -5,32 +5,137 @@ mysqli_options($conn, MYSQLI_OPT_CONNECT_TIMEOUT, 10);
 mysqli_ssl_set($conn, NULL, NULL, "ssl/DigiCertGlobalRootCA.crt.pem", NULL, NULL);
 mysqli_real_connect($conn, "mbcwebbapp-server.mysql.database.azure.com", "qzmbodniyz", "YgM0Smd\$bLYYepT1", "mbcwebbapp-database", 3306, MYSQLI_CLIENT_SSL);
 
+//start a session
+session_start();
+
+// Check if the user is already logged in, if yes then redirect him to welcome page
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    header("location: currentdisplay.php");
+    exit;
+}
+
+// Include config file
+require_once "sql.php";
+
+
+
+// Define variables and initialize with empty values
+$username = $password = "";
+$username_err = $password_err = $login_err = "";
+
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+ 
+    // Check if username is empty
+    if(empty(trim($_POST["username"]))){
+        $username_err = "Please enter username.";
+    } else{
+        $username = trim($_POST["username"]);
+    }
+    
+    // Check if password is empty
+    if(empty(trim($_POST["password"]))){
+        $password_err = "Please enter your password.";
+    } else{
+        $password = trim($_POST["password"]);
+    }
+    
+    // Validate credentials
+    if(empty($username_err) && empty($password_err)){
+
+        //Prepare a login statement
+        $sql = "call Login(?,?,?);";
+
+        //prepare the statement
+        if($stmt = mysqli_prepare($conn, $sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "ssb", $param_username, $param_password, $boolean_value);
+
+            //set parameters
+            $param_username = $username;
+            $param_password = $password;
+            $boolean_value = false;
+
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)) {
+                // Get the result
+                mysqli_stmt_store_result($stmt);
+
+                // Bind the result to get the boolean result
+                mysqli_stmt_bind_result($stmt, $result_username, $result_password, $result_boolean);
+
+                //Fetch the result
+                if(mysqli_stmt_fetch($stmt)) {
+                    if($result_boolean) {
+                        //logged in, start a new session
+                        session_start();
+
+                        // Store data in session variables
+                        $_SESSION["loggedin"] = true;
+                        $_SESSION["username"] = $result_username;                            
+                        
+                        // Redirect user to welcome page
+                        header("location: CurrentDisplay.php");
+                    } else {
+                        //not logged in
+                        $login_err = "Invalid username or password.";
+                    }
+                } else {
+                    // no result found
+                    $$login_err = "Invalid username or password.";
+                }
+            } else {
+                echo "Oops! Something went wrong. Please try again later";
+            }
+            // Close statement
+            mysqli_stmt_close($stmt);
+        }
+    }
+    
+    // Close connection
+    mysqli_close($link);
+}
 ?>
 
-<GFG
-            <header>
-                <div class="HeaderImg">
-                    <img src="" alt="" class="">
-                </div>
-                <h1>Ohio Northern University</h1>
-            </header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body{ font: 14px sans-serif; }
+        .wrapper{ width: 360px; padding: 20px; }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h2>Ohio Northern University Office Message Boards</h2>
+        <p>Please fill in your credentials to login.</p>
 
-            <form action="action_page.php" method="post">
-            
-                <div class="container">
-                <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="uname" required>
-            
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
-            
-                <a href="CurrentDisplay.php"><!--<button type="submit">Login</button>-->Login</a>
-                </div>
-            
-                <span class="psw"><a href="#">Forgot password?</a></span>
-                <span class="psw"><a href="Register.php">Create Account</a></span>
-            </form>
+        <?php 
+        if(!empty($login_err)){
+            echo '<div class="alert alert-danger">' . $login_err . '</div>';
+        }        
+        ?>
 
-            <footer>
-
-            </footer>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                <span class="invalid-feedback"><?php echo $username_err; ?></span>
+            </div>    
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
+                <span class="invalid-feedback"><?php echo $password_err; ?></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Login">
+            </div>
+            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+            <p>Forgot your password? <a href="">Reset your password</a>.</p>
+        </form>
+    </div>
+</body>
+</html>

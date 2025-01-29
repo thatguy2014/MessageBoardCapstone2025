@@ -7,12 +7,18 @@
 
     <body>
             <?php
+
+                // starts displaying errors when things go wrong
+                ini_set('display_errors', 1);
+                error_reporting(E_ALL);
                 //Verify the user is logged in
                 require_once "VerifyLogin.php";
+                print("Debug: Login Verified \n");
                 //should connect to database
                 require_once "sql.php";
-                //setting a constant userid for use later
-                $userid = 1;
+                print("Debug: SQL connected \n");
+                //setting up the userid for use later
+                $userid = $_SESSION["UserId"];
                 
                 //when it receives a post it should update the currentdisplay
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

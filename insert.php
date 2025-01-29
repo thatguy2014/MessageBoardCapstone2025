@@ -1,3 +1,6 @@
+<?php
+require_once "VerifyLogin.php";
+?>
 <!DOCTYPE html>
 <html>
 
@@ -8,11 +11,7 @@
     <body>
             <?php
                 //should connect to database
-                $conn = mysqli_init();
-                mysqli_options($conn, MYSQLI_OPT_CONNECT_TIMEOUT, 10);
-                mysqli_ssl_set($conn, NULL, NULL, "ssl/DigiCertGlobalRootCA.crt.pem", NULL, NULL);
-                mysqli_real_connect($conn, "mbcwebbapp-server.mysql.database.azure.com", "qzmbodniyz", "YgM0Smd\$bLYYepT1", "mbcwebbapp-database", 3306, MYSQLI_CLIENT_SSL);
-
+                require_once "sql.php"
                 //setting a constant userid for use later
                 $userid = 1;
                 

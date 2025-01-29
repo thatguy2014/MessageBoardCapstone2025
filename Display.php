@@ -1,10 +1,9 @@
 <?php
-    //the following lines should connect to the database and run the query
-    $conn = mysqli_init();
-    mysqli_options($conn, MYSQLI_OPT_CONNECT_TIMEOUT, 10);
-    mysqli_ssl_set($conn, NULL, NULL, "ssl/DigiCertGlobalRootCA.crt.pem", NULL, NULL);
-    mysqli_real_connect($conn, "mbcwebbapp-server.mysql.database.azure.com", "qzmbodniyz", "YgM0Smd\$bLYYepT1", "mbcwebbapp-database", 3306, MYSQLI_CLIENT_SSL);
+    require_once "VerifyLogin.php";
 
+    require_once "sql.php";
+    //the following lines should connect to the database and run the query
+    
     $res = mysqli_query($conn, 'SELECT CurrentDisplay FROM CurrentDisplays');
 ?>
 <!--the style is so the fullscreen view looks right-->

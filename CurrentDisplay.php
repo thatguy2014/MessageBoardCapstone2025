@@ -1,5 +1,5 @@
 <?php
-require_once "VerifyLogin.php"
+require_once "VerifyLogin.php";
 ?>
 
 <html>

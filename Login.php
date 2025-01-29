@@ -5,11 +5,7 @@
 //error_reporting(E_ALL);
 
 //connection data
-$conn = mysqli_init();
-mysqli_options($conn, MYSQLI_OPT_CONNECT_TIMEOUT, 10);
-mysqli_ssl_set($conn, NULL, NULL, "ssl/DigiCertGlobalRootCA.crt.pem", NULL, NULL);
-mysqli_real_connect($conn, "mbcwebbapp-server.mysql.database.azure.com", "qzmbodniyz", "YgM0Smd\$bLYYepT1", "mbcwebbapp-database", 3306, MYSQLI_CLIENT_SSL);
-
+require_once "sql.php";
 //start a session
 session_start();
 
@@ -141,7 +137,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
             <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
-            <p>Forgot your password? <a href="">Reset your password</a>.</p>
         </form>
     </div>
 </body>

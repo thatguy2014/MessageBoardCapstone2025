@@ -1,4 +1,6 @@
-
+<?php
+require_once "VerifyLogin.php";
+?>
 <html>
     <header>
         <h1>Office Message Board</h1>

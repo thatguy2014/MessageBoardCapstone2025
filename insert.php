@@ -2,8 +2,8 @@
     //start the session
     //session_start();
     // starts displaying errors when things go wrong
-    //ini_set('display_errors', 1);
-    //error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
     //Verify the user is logged in
     require_once "VerifyLogin.php";
     //print("Debug: Login Verified \n");

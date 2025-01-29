@@ -41,6 +41,7 @@
                     } else {
                         echo "<p>Error: No message selected. <a href=CurrentDisplay.php>Go Back</a></p>";
                     }
+                    mysqli_close($conn);
                 }
             ?>
             <p>query sent,click <a href="CurrentDisplay.php">here</a> to view current display</p>

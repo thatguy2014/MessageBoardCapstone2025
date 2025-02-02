@@ -25,7 +25,7 @@ require_once "VerifyLogin.php";
             color: #333;
         }
 
-        /* Navigation styles */
+        
         nav {
             display: flex;
             justify-content: center;
@@ -38,7 +38,7 @@ require_once "VerifyLogin.php";
         }
 
         .nav-buttons button {
-            background-color: #007bff;
+            background-color: #F15A29;  
             color: white;
             border: none;
             padding: 10px 20px;
@@ -49,7 +49,7 @@ require_once "VerifyLogin.php";
         }
 
         .nav-buttons button:hover {
-            background-color: #0056b3;
+            background-color: #D7481C; 
         }
 
         iframe {
@@ -66,6 +66,7 @@ require_once "VerifyLogin.php";
             text-align: center;
             margin-top: 20px;
         }
+
     </style>
 </head>
 <body>
@@ -74,7 +75,7 @@ require_once "VerifyLogin.php";
             <h1>Office Message Board</h1>
         </header>
 
-        <!-- Navbar -->
+        
         <nav>
             <div class="nav-buttons">
                 <button onclick="location.href='CurrentDisplay.php'">Current Display</button>
@@ -84,28 +85,28 @@ require_once "VerifyLogin.php";
             </div>
         </nav>
 
-        <!-- Iframe for auto-refresh -->
+        
         <div class="iframe-container">
             <iframe id="iframe" src="Display.php" height="400" width="1000"></iframe><br>
             <button onclick="openFullscreen()">Fullscreen</button>
         </div>
 
-        <!-- Fullscreen script -->
+        
         <script>
             var elem = document.getElementById("iframe");
 
             function openFullscreen() {
                 if (elem.requestFullscreen) {
                     elem.requestFullscreen();
-                } else if (elem.webkitRequestFullscreen) { /* Safari */
+                } else if (elem.webkitRequestFullscreen) { 
                     elem.webkitRequestFullscreen();
-                } else if (elem.msRequestFullscreen) { /* IE11 */
+                } else if (elem.msRequestFullscreen) { 
                     elem.msRequestFullscreen();
                 }
             }
         </script>
 
-        <!-- Auto-refresh script -->
+        
         <script>
             window.setInterval(function() {
                 reloadIFrame()
@@ -118,7 +119,7 @@ require_once "VerifyLogin.php";
         </script>
         
         <footer>
-            <!-- Footer content if necessary -->
+           
         </footer>
     </div>
 </body>

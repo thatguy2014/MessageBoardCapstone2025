@@ -109,28 +109,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-    body {
-        font: 14px sans-serif;
-        height: 100vh; 
-        margin: 0;
-        display: flex;
-        justify-content: center; 
-        align-items: center; 
-        background-color: #f4f4f4; 
-    }
+        body {
+            font: 14px sans-serif;
+            height: 100vh; 
+            margin: 0;
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            background-color: #f4f4f4; 
+        }
 
-    .wrapper {
-        width: 360px;
-        padding: 20px;
-        background-color: white; 
-        border-radius: 10px; 
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    }
+        .wrapper {
+            width: 360px;
+            padding: 20px;
+            background-color: white; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+        }
 
-    h2 {
-        color: red;
-        text-align: center; 
-    }
+        h2 {
+            color: red;
+            text-align: center; 
+        }
     </style>
 </head>
 <body>

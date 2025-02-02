@@ -109,27 +109,68 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body {
-            font: 14px sans-serif;
-            height: 100vh; 
-            margin: 0;
-            display: flex;
-            justify-content: center; 
-            align-items: center; 
-            background-color: #f4f4f4; 
+        
+        html {
+            font-size: 16px;
         }
 
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;  
+            line-height: 1.5; 
+            color: #333; 
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+      
         .wrapper {
-            width: 360px;
+            width: 100%;
+            max-width: 360px;
             padding: 20px;
-            background-color: white; 
-            border-radius: 10px; 
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         h2 {
-            color: red;
-            text-align: center; 
+            color: #e63946; 
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        
+        input, button {
+            font-size: 1rem; 
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input:focus, button:focus {
+            outline: 3px solid #4D90FE; 
+        }
+
+        
+        .invalid-feedback {
+            color: #e63946; 
+        }
+
+        
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:focus, a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>

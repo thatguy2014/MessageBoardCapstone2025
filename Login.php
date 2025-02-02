@@ -138,7 +138,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin-top: 20px; /* Adds space at the top */
+            margin-top: 10px; /* Adds space at the top */
         }
 
         h2 {

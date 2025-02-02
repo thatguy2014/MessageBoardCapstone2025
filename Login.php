@@ -116,17 +116,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         body {
             font-family: 'Roboto', sans-serif;
-            font-size: 1rem;  
-            line-height: 1.5; 
-            color: #333; 
+            font-size: 1rem;  /* 16px by default */
+            line-height: 1.5; /* Ensures better readability */
+            color: #333; /* Dark text for contrast */
             background-color: #f4f4f4;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh; 
         }
 
-      
         .wrapper {
             width: 100%;
             max-width: 360px;
@@ -138,6 +138,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            margin-top: 20px; /* Adds space at the top */
         }
 
         h2 {

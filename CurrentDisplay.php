@@ -3,44 +3,110 @@ require_once "VerifyLogin.php";
 ?>
 
 <html>
-    <header>
-        <h1>Office Message Board</h1>
-    </header>
-    <!--Navbar-->
-    <nav>
-        <ul>
-            <li><a href="CurrentDisplay.php">Current Display</a></li>
-            <li><a href="Presets.php">Presets</a></li>
-            <li><a href="ChangeDisplay.php">Change Display</a></li>
-            <li><a href="Logout.php">Logout</a></li>
-        </ul>
-    </nav>
+<head>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
 
-    <!--Iframe so it'll auto refresh and be fullscreen-->
-    <iframe id="iframe" src="Display.php" height="400" width="1000"></iframe><br>
-    
-    
-        <button onclick = "openFullscreen()" > Fullscreen </button>
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-        <!--Script to let you go fullscreen-->
+        h1 {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-buttons button {
+            background-color: #F15A29;  
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .nav-buttons button:hover {
+            background-color: #D7481C; 
+        }
+
+        iframe {
+            border: 2px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .iframe-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <header>
+            <h1>Office Message Board</h1>
+        </header>
+
+        
+        <nav>
+            <div class="nav-buttons">
+                <button onclick="location.href='CurrentDisplay.php'">Current Display</button>
+                <button onclick="location.href='Presets.php'">Presets</button>
+                <button onclick="location.href='ChangeDisplay.php'">Change Display</button>
+                <button onclick="location.href='Logout.php'">Sign Out</button>
+            </div>
+        </nav>
+
+        
+        <div class="iframe-container">
+            <iframe id="iframe" src="Display.php" height="400" width="1000"></iframe><br>
+            <button onclick="openFullscreen()">Fullscreen</button>
+        </div>
+
+        
         <script>
-            /* Get the element you want displayed in fullscreen mode (a video in this example): */
             var elem = document.getElementById("iframe");
 
-            /* When the openFullscreen() function is executed, open the video in fullscreen.
-            Note that we must include prefixes for different browsers, as they don't support the requestFullscreen method yet */
             function openFullscreen() {
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.webkitRequestFullscreen) { /* Safari */
-                elem.webkitRequestFullscreen();
-            } else if (elem.msRequestFullscreen) { /* IE11 */
-                elem.msRequestFullscreen();
-            }
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.webkitRequestFullscreen) { 
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) { 
+                    elem.msRequestFullscreen();
+                }
             }
         </script>
 
-        <!--Script to auto refresh the iframe-->
+        
         <script>
             window.setInterval(function() {
                 reloadIFrame()
@@ -51,7 +117,10 @@ require_once "VerifyLogin.php";
                 document.getElementById('iframe').contentWindow.location.reload();
             }
         </script>
-    </section>
-    <footer>
-
-    </footer>
+        
+        <footer>
+           
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,5 +1,4 @@
 <?php
-
 // starts displaying errors when things go wrong
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
@@ -10,8 +9,8 @@ require_once "sql.php";
 session_start();
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: currentdisplay.php");
+if(isset($_SESSION["Displayloggedin"]) && $_SESSION["DisplayLoggedin"] === true){
+    header("location: ViewDisplayOnly.php");
     exit;
 }
 
@@ -21,8 +20,8 @@ require_once "sql.php";
 
 
 // Define variables and initialize with empty values
-$username = $password = "";
-$username_err = $password_err = $login_err = "";
+$username = "";
+$username_err = $login_err = "";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -34,29 +33,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $username = trim($_POST["username"]);
     }
     
-    // Check if password is empty
-    if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter your password.";
-    } else{
-        $password = trim($_POST["password"]);
-    }
-    
     // Validate credentials
-    if(empty($username_err) && empty($password_err)){
+    if(empty($username_err)){
 
         //Prepare a login statement
-        $sql = "call Login(?,?,?);";
+        $sql = "Select UserId FROM userinfo where Username = ?";
 
         //prepare the statement
         if($stmt = mysqli_prepare($conn, $sql)) {
             // Bind variables to the prepared statement as parameters
             //print("debug: statement prepared \n");
-            mysqli_stmt_bind_param($stmt, "ssb", $param_username, $param_password, $boolean_value);
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
 
-            //set parameters
+            //set parameter
             $param_username = $username;
-            $param_password = $password;
-            $boolean_value = false;
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)) {
@@ -65,20 +55,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 mysqli_stmt_store_result($stmt);
 
                 // Bind the result to get the boolean result
-                mysqli_stmt_bind_result($stmt, $result_boolean,$result_userid);
+                mysqli_stmt_bind_result($stmt,$result_userid);
 
                 //Fetch the result
                 if(mysqli_stmt_fetch($stmt)) {
-                    if($result_boolean) {
+                    if($result_userid > 0) {
                         //logged in, start a new session
                         session_start();
 
                         // Store data in session variables
-                        $_SESSION["loggedin"] = true;
+                        $_SESSION["Displayloggedin"] = true;
                         $_SESSION["UserId"] = $result_userid;                            
                         
                         // Redirect user to welcome page
-                        header("location: CurrentDisplay.php");
+                        header("location: ViewDisplayOnly.php");
                     } else {
                         //not logged in
                         $login_err = "Invalid username or password.";
@@ -102,19 +92,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-<!--external stylesheet is required -->
+<!--external style sheet is required -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="Login.css">
 </head>
 <body>
     <div class="wrapper">
-        <h2>Ohio Northern University Office Message Boards</h2>
-        <p>Please fill in your credentials to login.</p>
+        <h2>Ohio Northern University Office Message Boards (Display Only)</h2>
+        <p>Please enter the username of the account you'd like to view.</p>
 
         <?php 
         if(!empty($login_err)){
@@ -129,15 +129,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <span class="invalid-feedback"><?php echo $username_err; ?></span>
             </div>    
             <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
-                <span class="invalid-feedback"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
-            <p>Is this a display only device?> <a href="DisplayLogin.php">Login Here</a>.</p>
+            <p>Is this not a display only device?> <a href="Login.php">Login Here</a>.</p>
         </form>
     </div>
 </body>

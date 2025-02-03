@@ -1,9 +1,9 @@
 <?php
 
 define('DB_SERVER', getenv("CUSTOMCONNSTR_DB_Server"));
-define('DB_USERNAME', 'qzmbodniyz');
-define('DB_PASSWORD', "YgM0Smd\$bLYYepT1");
-define('DB_NAME', 'mbcwebbapp-database');
+define('DB_USERNAME', getenv("CUSTOMCONNSTR_DB_Username"));
+define('DB_PASSWORD', getenv("CUSTOMCONNSTR_DB_Password"));
+define('DB_NAME', getenv("CUSTOMCONNSTR_DB_Name"));
 
 
 $conn = mysqli_init();

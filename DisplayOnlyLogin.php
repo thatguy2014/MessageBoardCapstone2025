@@ -131,7 +131,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Is this not a display only device?> <a href="Login.php">Login Here</a>.</p>
+            <p>Is this not a display only device? <a href="Login.php">Login Here</a>.</p>
         </form>
     </div>
 </body>

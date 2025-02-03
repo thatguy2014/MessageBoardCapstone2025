@@ -66,8 +66,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty(trim($_POST["password"]))){
         $password_err = "Please enter a password.";     
     } elseif(strlen(trim($_POST["password"])) < 12){
-        $password_err = "Password must have atleast 12 characters.";
-    } else{
+        $password_err = "Password must have at least 12 characters";
+    } elseif(!preg_match("/[A-Z]/",trim($_POST["password"]) )){
+        $password_err = "Password must have at least 1 uppercase character";
+    } elseif(!preg_match("/[a-z]/",trim($_POST["password"]) )){
+        $password_err = "Password must have at least 1 lowercase character";
+    }elseif(!preg_match("/\d/",trim($_POST["password"]) )){
+        $password_err = "Password must have at least 1 digit";
+    }elseif(!preg_match("/\W/",trim($_POST["password"]) )){
+        $password_err = "Password must have at least 1 special character";
+    }elseif(preg_match("/\s/",trim($_POST["password"]) )){
+        $password_err = "Password not contain spaces";
+    }else{
         $password = trim($_POST["password"]);
     }
     
@@ -139,6 +149,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>    
             <div class="form-group">
                 <label>Password</label>
+                <p>Please input a password containing a special character, an uppercase character, a lowercase character, and a digit. The password should also not contain any spaces and be at least 12 characters long</p>
                 <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
                 <span class="invalid-feedback"><?php echo $password_err; ?></span>
             </div>

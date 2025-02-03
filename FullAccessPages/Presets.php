@@ -6,11 +6,10 @@ require_once "/../ScriptFiles/VerifyLogin.php";
         <link rel="stylesheet" type="text/css" href="/../css/Main.css" />
     </head>
     <header>
-        <h1>Office Message Board</h1>
+        <h1>Office Message Board Presets</h1>
     </header>
     <?php include '/../templates/navbar.html'; ?>
     <body>
-        <h3>Presets</h3>
         <p>Select a preset below:</p>
         <form action="insert.php" method="post" id="presetform">
             <input type="hidden" name="selected_input" value="">

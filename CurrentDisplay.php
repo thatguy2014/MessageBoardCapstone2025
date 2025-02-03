@@ -9,18 +9,10 @@ require_once "VerifyLogin.php";
     <body>
         <div>
             <header>
-                <h1>Office Message Board</h1>
+                <h1>Office Message Board Current Display</h1>
             </header>
-
-            
-            <nav>
-                <div class="nav-buttons">
-                    <button onclick="location.href='CurrentDisplay.php'">Current Display</button>
-                    <button onclick="location.href='Presets.php'">Presets</button>
-                    <button onclick="location.href='ChangeDisplay.php'">Change Display</button>
-                    <button onclick="location.href='Logout.php'">Sign Out</button>
-                </div>
-            </nav>
+            <!--Should import the navbar -->
+            <?php include 'navbar.html'; ?>
 
             
             <div class="iframe-container">

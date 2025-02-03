@@ -1,10 +1,10 @@
 <?php
-require_once "VerifyLogin.php";
+require_once "/../ScriptFiles/VerifyLogin.php";
 ?>
 
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="CurrentDisplay.css" />
+        <link rel="stylesheet" type="text/css" href="/../css/CurrentDisplay.css" />
     </head>
     <body>
         <div>
@@ -12,7 +12,7 @@ require_once "VerifyLogin.php";
                 <h1>Office Message Board Current Display</h1>
             </header>
             <!--Should import the navbar -->
-            <?php include 'navbar.html'; ?>
+            <?php include '/../templates/navbar.html'; ?>
 
             
             <div class="iframe-container">

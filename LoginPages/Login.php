@@ -5,18 +5,18 @@
 //error_reporting(E_ALL);
 
 //connection data
-require_once "sql.php";
+require_once "/../ScriptFiles/sql.php";
 //start a session
 session_start();
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: currentdisplay.php");
+    header("location: /../FullAccessPages/currentdisplay.php");
     exit;
 }
 
 // Include config file
-require_once "sql.php";
+require_once "/../ScriptFiles/sql.php";
 
 
 
@@ -78,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $_SESSION["UserId"] = $result_userid;                            
                         
                         // Redirect user to welcome page
-                        header("location: CurrentDisplay.php");
+                        header("location: /../FullAccessPages/CurrentDisplay.php");
                     } else {
                         //not logged in
                         $login_err = "Invalid username or password.";
@@ -109,7 +109,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Login</title>
 <!--external stylesheet is required -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="Login.css">
+    <link rel="stylesheet" href="/../css/Login.css">
 </head>
 <body>
     <div class="wrapper">
@@ -137,7 +137,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
             <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
-            <p>Is this a display only device? <a href="DisplayOnlyLogin.php">Login Here</a>.</p>
+            <p>Is this a display only device? <a href="/../DisplayOnlyPages/DisplayOnlyLogin.php">Login Here</a>.</p>
         </form>
     </div>
 </body>

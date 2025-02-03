@@ -4,7 +4,7 @@
 //error_reporting(E_ALL);
 
 //connection data
-require_once "sql.php";
+require_once "/../ScriptFiles/sql.php";
 //start a session
 session_start();
 
@@ -15,7 +15,7 @@ if(isset($_SESSION["Displayloggedin"]) && $_SESSION["DisplayLoggedin"] === true)
 }
 
 // Include config file
-require_once "sql.php";
+require_once "/../ScriptFiles/sql.php";
 
 
 
@@ -109,7 +109,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Login</title>
 <!--external style sheet is required -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="Login.css">
+    <link rel="stylesheet" href="/../css/Login.css">
 </head>
 <body>
     <div class="wrapper">
@@ -131,7 +131,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Is this not a display only device? <a href="Login.php">Login Here</a>.</p>
+            <p>Is this not a display only device? <a href="/../LoginPages/Login.php">Login Here</a>.</p>
         </form>
     </div>
 </body>

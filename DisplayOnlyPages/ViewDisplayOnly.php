@@ -1,10 +1,11 @@
 <?php
 
     // starts displaying errors when things go wrong
-    ini_set('display_errors', 1);
-    error_reporting(E_ALL);
-    session_start();            //this is a test
-    require_once "sql.php";
+    //ini_set('display_errors', 1);
+    //error_reporting(E_ALL);
+    //session_start();            //this is a test
+    require_once "/../ScriptFiles/sql.php";
+    require_once "/../ScriptFiles/VerifyViewOnlyLogin.php";
     //the following lines should connect to the database and run the query
     $userid = $_SESSION["UserId"];
     $res = mysqli_query($conn, "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = '" . $userid . "'");

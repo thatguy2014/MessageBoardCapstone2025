@@ -1,5 +1,5 @@
 <?php
-require_once "VerifyLogin.php";
+require_once "/../ScriptFiles/VerifyLogin.php";
 ?>
 <html>
     <head>
@@ -8,14 +8,7 @@ require_once "VerifyLogin.php";
     <header>
         <h1>Office Message Board</h1>
     </header>
-    <nav>
-        <ul>
-            <li><a href="CurrentDisplay.php">Current Display</a></li>
-            <li><a href="Presets.php">Presets</a></li>
-            <li><a href="ChangeDisplay.php">Change Display</a></li>
-            <li><a href="Logout.php">Logout</a></li>
-        </ul>
-    </nav>
+    <?php include '/../templates/navbar.html'; ?>
     <body>
         <h3>Presets</h3>
         <p>Select a preset below:</p>

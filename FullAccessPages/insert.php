@@ -1,15 +1,11 @@
 <?php
-    //start the session
-    //session_start();
     // starts displaying errors when things go wrong
     //ini_set('display_errors', 1);
     //error_reporting(E_ALL);
     //Verify the user is logged in
-    require_once "VerifyLogin.php";
-    //print("Debug: Login Verified \n");
+    require_once "/../ScriptFiles/VerifyLogin.php";
     //should connect to database
-    require_once "sql.php";
-    //print("Debug: SQL connected \n");
+    require_once "/../ScriptFiles/sql.php";
 ?>
 <!DOCTYPE html>
 <html>

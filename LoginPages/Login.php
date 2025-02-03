@@ -5,7 +5,8 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 //connection data
-require_once "..\ScriptFiles\sql.php";
+echo getcwd();
+require_once "./ScriptFiles/sql.php";
 //start a session
 session_start();
 

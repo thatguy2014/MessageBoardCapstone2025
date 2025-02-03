@@ -4,7 +4,7 @@ require_once "/../ScriptFiles/VerifyLogin.php";
 
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="/../css/CurrentDisplay.css" />
+        <link rel="stylesheet" type="text/css" href="/../css/Main.css" />
     </head>
     <body>
         <div>

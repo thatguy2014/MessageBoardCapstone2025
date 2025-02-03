@@ -2,6 +2,9 @@
 require_once "/../ScriptFiles/VerifyLogin.php";
 ?>
 <html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/../css/Main.css" />
+    </head>
     <header>
         <h1>Office Message Board</h1>
     </header>

@@ -1,6 +1,6 @@
 <?php
 
-define('DB_SERVER', 'mbcwebbapp-server.mysql.database.azure.com');
+define('DB_SERVER', CUSTOMCONSTR_DB_Server);
 define('DB_USERNAME', 'qzmbodniyz');
 define('DB_PASSWORD', "YgM0Smd\$bLYYepT1");
 define('DB_NAME', 'mbcwebbapp-database');

@@ -1,16 +1,20 @@
 <?php
 require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
 ?>
+
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="/../css/Main.css" />
     </head>
-    <?php include '/home/site/wwwroot/templates/navbar.html'; ?>
+    
     <body>
         <div>
             <header>
                 <h1>Office Message Board Presets</h1>
             </header>
+
+            <?php include '/home/site/wwwroot/templates/navbar.html'; ?>
+            
             <p>Select a preset below:</p>
             <form action="insert.php" method="post" id="presetform">
                 <input type="hidden" name="selected_input" value="">

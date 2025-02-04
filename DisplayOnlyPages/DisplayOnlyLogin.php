@@ -109,7 +109,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Login</title>
 <!--external style sheet is required -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/home/site/wwwroot/css/Login.css">
+    <link rel="stylesheet" href="/../css/Login.css">
 </head>
 <body>
     <div class="wrapper">

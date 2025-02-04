@@ -3,7 +3,7 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
 ?>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="/home/site/wwwroot/css/Main.css" />
+        <link rel="stylesheet" type="text/css" href="/../css/Main.css" />
     </head>
     <header>
         <h1>Office Message Board Presets</h1>

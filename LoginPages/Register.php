@@ -3,7 +3,7 @@
 //does not currently return an issue for some cases but still won't make
 //an incorrect account
 // Include config file
-require_once "/../ScriptFiles/sql.php";
+require_once "/home/site/wwwroot/ScriptFiles/sql.php";
 
 // starts displaying errors when things go wrong
 //ini_set('display_errors', 1);
@@ -20,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if ($conn instanceof mysqli && $conn->connected) {
             //echo "Connection is active";
         } else {
-            require_once "/../ScriptFiles/sql.php";
+            require_once "/home/site/wwwroot/ScriptFiles/sql.php";
             if ($conn instanceof mysqli && $conn->connected) {
                 //echo "<pre>Error: database not connected</pre>";
             } else{

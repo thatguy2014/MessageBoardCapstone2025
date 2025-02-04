@@ -1,14 +1,14 @@
 <?php
-require_once "/../ScriptFiles/VerifyLogin.php";
+require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
 ?>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="/../css/Main.css" />
+        <link rel="stylesheet" type="text/css" href="/home/site/wwwroot/css/Main.css" />
     </head>
     <header>
         <h1>Office Message Board Custom Display</h1>
     </header>
-    <?php include '/../templates/navbar.html'; ?>
+    <?php include '/home/site/wwwroot/templates/navbar.html'; ?>
     <body>
     <form action="insert.php" method="post"> 
             <p>

@@ -8,7 +8,7 @@ define('DB_NAME', getenv("CUSTOMCONNSTR_DB_Name"));
 
 $conn = mysqli_init();
 mysqli_options($conn, MYSQLI_OPT_CONNECT_TIMEOUT, 10);
-mysqli_ssl_set($conn, NULL, NULL, "ssl/DigiCertGlobalRootCA.crt.pem", NULL, NULL);
+mysqli_ssl_set($conn, NULL, NULL, "/home/site/wwwroot/ssl/DigiCertGlobalRootCA.crt.pem", NULL, NULL);
 
 // Connect to MySQL
 $link = mysqli_real_connect($conn, DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME, 3306, MYSQLI_CLIENT_SSL);

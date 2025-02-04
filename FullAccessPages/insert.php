@@ -3,9 +3,9 @@
     //ini_set('display_errors', 1);
     //error_reporting(E_ALL);
     //Verify the user is logged in
-    require_once "/../ScriptFiles/VerifyLogin.php";
+    require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
     //should connect to database
-    require_once "/../ScriptFiles/sql.php";
+    require_once "/home/site/wwwroot/ScriptFiles/sql.php";
 ?>
 <!DOCTYPE html>
 <html>

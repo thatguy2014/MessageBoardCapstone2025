@@ -11,7 +11,7 @@ session_start();
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: /home/site/wwwroot/FullAccessPages/currentdisplay.php");
+    header("location: /../FullAccessPages/currentdisplay.php");
     exit;
 }
 
@@ -78,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $_SESSION["UserId"] = $result_userid;                            
                         
                         // Redirect user to welcome page
-                        header("location: /home/site/wwwroot/FullAccessPages/CurrentDisplay.php");
+                        header("location: /../FullAccessPages/CurrentDisplay.php");
                     } else {
                         //not logged in
                         $login_err = "Invalid username or password.";

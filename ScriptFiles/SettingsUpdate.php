@@ -1,7 +1,7 @@
 <?php
     //start error reporting for testing
-    ini_set('display_errors', 1);
-    error_reporting(E_ALL);
+    //ini_set('display_errors', 1);
+    //error_reporting(E_ALL);
 
     //verify user is logged in
     require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
@@ -12,9 +12,9 @@
     //pass in the radio button answer
     //send a sequel update statement to change the userinfo table ImageView to 1
     $userid = $_SESSION["UserId"];
-    echo "<p>debug running if </p><br>";
+    //echo "<p>debug running if </p><br>";
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        echo "<p>recieved post</p>";
+        //echo "<p>recieved post</p>";
         if (isset($_POST['ImageSetting'])) {
             $selectedInput = htmlspecialchars($_POST['ImageSetting']);
             // Update the database with the selected input

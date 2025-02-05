@@ -4,6 +4,11 @@
     //ini_set('display_errors', 1);
     //error_reporting(E_ALL);
     session_start();           
+
+    //verify user is logged in (full)
+    require_once "home/site/wwwroot/ScriptFiles/VerifyLogin.php";
+
+    //make sure we have sql access
     require_once "/home/site/wwwroot/ScriptFiles/sql.php";
     //the following lines should connect to the database and run the query
     $userid = $_SESSION["UserId"];

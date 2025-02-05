@@ -66,8 +66,7 @@
             //need to store the file location
             $userid = $_SESSION["UserId"];
             try{
-                echo "The sql query is: UPDATE CurrentDisplays SET ImageLocation = $target_file WHERE UserId = $userid \n";
-                mysqli_query($conn, "UPDATE CurrentDisplays SET ImageLocation = $target_file WHERE UserId = $userid;");
+                mysqli_query($conn, "UPDATE CurrentDisplays SET ImageLocation = '$target_file' WHERE UserId = $userid;");
             } catch(Exception $e) {
                 error_log("Error occured while updating database with file location " . $e->getMessage());
             }

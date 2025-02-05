@@ -18,7 +18,7 @@
         mysqli_stmt_fetch($stmt);
     }
 
-    $ImageStmt = mysqli_prepare($conn, "SELECT ImageLocation FROM currentdisplays where UserId = ?")
+    $ImageStmt = mysqli_prepare($conn, "SELECT ImageLocation FROM currentdisplays where UserId = ?");
     mysqli_stmt_bind_param($ImageStmt, "i", $userid);
     if (mysqli_stmt_execute($ImageStmt)) {
         mysqli_stmt_store_result($ImageStmt);

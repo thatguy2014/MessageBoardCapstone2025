@@ -7,7 +7,17 @@
     require_once "/home/site/wwwroot/ScriptFiles/sql.php";
     //the following lines should connect to the database and run the query
     $userid = $_SESSION["UserId"];
+    $stmt = mysqli_prepare($conn, "SELECT ImageView FROM userinfo WHERE UserId = '?'");
     $res = mysqli_query($conn, "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = '" . $userid . "'");
+    
+    mysqli_stmt_bind_param($stmt, "i", $userid);
+
+    if(mysqli_stmt_execute($stmt)) {
+        mysqli_stmt_store_result($ImageView);
+        mysqli_stmt_bind_result($ImageView, $resultbool);
+        mysqli_stmt_fetch($stmt);
+    }
+
 ?>
 <!--the style is so the fullscreen view looks right-->
 <style>
@@ -20,11 +30,15 @@ h2 {
 
     </style>
 <html>
-    <h2 id="currentdisplay" style="background:white">Current Display is -> 
+    <h2 id="currentdisplay" style="background:white">
         <?php   
-            while ($row = mysqli_fetch_assoc($res)) {
-                printf ("%s \n", $row["CurrentDisplay"]);
-            } 
+            if($resultbool) {
+                echo "<p>Image goes here, this is just filler for now.</p>"
+            }else {
+                while ($row = mysqli_fetch_assoc($res)) {
+                    printf ("%s \n", $row["CurrentDisplay"]);
+                } 
+            }
         ?>
     </h2>
         </html>

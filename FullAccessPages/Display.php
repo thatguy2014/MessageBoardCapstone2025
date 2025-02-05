@@ -6,7 +6,7 @@
     session_start();           
 
     //verify user is logged in (full)
-    require_once "home/site/wwwroot/ScriptFiles/VerifyLogin.php";
+    require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
 
     //make sure we have sql access
     require_once "/home/site/wwwroot/ScriptFiles/sql.php";

@@ -33,7 +33,7 @@ h2 {
     <h2 id="currentdisplay" style="background:white">
         <?php   
             if($resultbool) {
-                echo "<p>Image goes here, this is just filler for now.</p>"
+                echo "<p>Image goes here, this is just filler for now.</p>";
             }else {
                 while ($row = mysqli_fetch_assoc($res)) {
                     printf ("%s \n", $row["CurrentDisplay"]);

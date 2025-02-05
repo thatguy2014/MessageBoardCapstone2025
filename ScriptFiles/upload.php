@@ -2,14 +2,24 @@
     //start error reporting for testing
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
-    
+
     //verify user is logged in
     require_once "/home/site/wwwroot/ScriptFiles/sql.php";
 
     $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $target_file = dirname(dirname(__FILE__)) . '/' . $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+    //ensure directory exists
+    if (!is_dir($target_dir)) {
+        mkdir($target_dir, 0755, true);
+    }
+
+    //ensure directory is writable
+    if (!is_writable($target_dir)) {
+        die("Directory is not writable");
+    }
 
     // Check if image file is a actual image or fake image
     if(isset($_POST["submit"])) {
@@ -47,6 +57,7 @@
         echo "Sorry, your file was not uploaded.";
         // if everything is ok, try to upload file
     } else {
+
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
             //need to store the file location

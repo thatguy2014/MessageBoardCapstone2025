@@ -10,16 +10,13 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
     <body>
         <div>
             <header>
-                <h1>Office Message Board Custom Text Display</h1>
+                <h1>Office Message Board Custom Image Display</h1>
             </header>
             <?php include '/home/site/wwwroot/templates/navbar.html'; ?>
-            <form action="insert.php" method="post"> 
-                    <p>
-                        <label for="Input">Input what you'd like to display:</label>
-                        <input type="text" name="selected_input" id="Input">
-                    </p>
-                    
-                    <input type="submit" value="Submit">
+            <form action="/../ScriptFiles/upload.php" method="post" enctype="multipart/form-data">
+                Select image to upload:
+                <input type="file" name="fileToUpload" id="fileToUpload">
+                <input type="submit" value="Upload Image" name="submit">
             </form>
         </div>
     </body>

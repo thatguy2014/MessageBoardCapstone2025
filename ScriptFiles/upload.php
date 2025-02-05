@@ -9,6 +9,15 @@
     //access sql server
     require_once "/home/site/wwwroot/ScriptFiles/sql.php";
 
+    //create a function for deleting the current file
+    function deleteExistingFile($filepath) {
+        if (file_exists($filepath)) {
+            unlink($filepath);
+            return true;
+        }
+        return false;
+    }
+
     $target_dir = "uploads/";
     $target_file = dirname(dirname(__FILE__)) . '/' . $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
@@ -58,8 +67,30 @@
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         echo "Sorry, your file was not uploaded. \n";
-        // if everything is ok, try to upload file
+        // if everything is ok, delete the current file then try to upload file
     } else {
+
+        // Delete existing file
+        try{
+            $stmt = mysqli_prepare($conn, "Select ImageLocation FROM currentdisplays WHERE UserId = $userid;");
+            if(mysqli_stmt_execute($stmt)) {
+                // Get the result
+                mysqli_stmt_store_result($stmt);
+
+                // Bind the result to get the string result
+                mysqli_stmt_bind_result($stmt, $delete_dir);
+
+                if(mysqli_stmt_fetch($stmt)) {
+                    if (deleteExistingFile($delete_dir)) {
+                        echo "Previous file has been deleted.";
+                    } else {
+                        echo "Failed to delete previous file.";
+                    }
+                }
+            }
+        } catch(Exception $e) {
+            error_log("Error occured while deleting old file: " . $e->getMessage());
+        }
 
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";

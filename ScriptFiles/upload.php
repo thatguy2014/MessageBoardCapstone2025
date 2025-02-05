@@ -4,6 +4,9 @@
     error_reporting(E_ALL);
 
     //verify user is logged in
+    require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
+
+    //access sql server
     require_once "/home/site/wwwroot/ScriptFiles/sql.php";
 
     $target_dir = "uploads/";
@@ -61,13 +64,13 @@
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
             //need to store the file location
-            $userid = $_SESSION['UserId'];
+            $userid = $_SESSION["UserId"];
             try{
                 mysqli_query($conn, "UPDATE CurrentDisplays SET ImageLocation = $target_file WHERE UserId = $userid;");
             } catch(Exception $e) {
                 error_log("Error occured while updating database with file location " . $e->getMessage());
             }
-            echo "<p>Message updated successfully.</p>";
+            echo "<p>Message updated successfully please click here <a href=/../FullAccessPages/currentdisplay.php>Go Back</a>.</p>";
             header("location: /../FullAccessPages/currentdisplay.php");
         } else {
             echo "Sorry, there was an error uploading your file.";

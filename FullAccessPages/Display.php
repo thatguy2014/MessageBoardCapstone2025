@@ -1,8 +1,8 @@
 <?php
 
     // starts displaying errors when things go wrong
-    ini_set('display_errors', 1);
-    error_reporting(E_ALL);
+    //ini_set('display_errors', 1);
+    //error_reporting(E_ALL);
     session_start();            //this is a test
     require_once "/home/site/wwwroot/ScriptFiles/sql.php";
     //the following lines should connect to the database and run the query
@@ -28,7 +28,6 @@
 
     $ImageDir = substr($ImageDir, 18);
     $ImageDir = "/.." . $ImageDir;
-    echo "$ImageDir <br>";
 ?>
 <!--the style is so the fullscreen view looks right-->
 <style>

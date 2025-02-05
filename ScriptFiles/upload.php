@@ -1,7 +1,7 @@
 <?php
     //start error reporting for testing
-    ini_set('display_errors', 1);
-    error_reporting(E_ALL);
+    //ini_set('display_errors', 1);
+    //error_reporting(E_ALL);
 
     //verify user is logged in
     require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";

@@ -18,6 +18,14 @@
         mysqli_stmt_fetch($stmt);
     }
 
+    $ImageStmt = mysqli_prepare($conn, "SELECT ImageLocation FROM currentdisplays where UserId = ?")
+    mysqli_stmt_bind_param($ImageStmt, "i", $userid);
+    if (mysqli_stmt_execute($ImageStmt)) {
+        mysqli_stmt_store_result($ImageStmt);
+        mysqli_stmt_bind_result($ImageStmt, $ImageDir);
+        mysqli_stmt_fetch($ImageStmt);
+    }
+
 ?>
 <!--the style is so the fullscreen view looks right-->
 <style>
@@ -33,7 +41,7 @@ h2 {
     <h2 id="currentdisplay" style="background:white">
         <?php   
             if($resultbool) {
-                echo "<p>Image goes here, this is just filler for now.</p>";
+                echo "<img src=" . $ImageDir . ">";
             }else {
                 while ($row = mysqli_fetch_assoc($res)) {
                     printf ("%s \n", $row["CurrentDisplay"]);

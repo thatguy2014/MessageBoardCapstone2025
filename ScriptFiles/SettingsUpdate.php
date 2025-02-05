@@ -25,10 +25,11 @@
             }
             // Display success message
             echo "<p>Message updated successfully.</p>";
+            echo "<p>Query sent,click <a href='/../FullAccessPages/CurrentDisplay.php'>here</a> to view current display</p>";
             header("location: currentdisplay.php");
         } else {
-            echo "<p>Error: No message selected. <a href=CurrentDisplay.php>Go Back</a></p>";
+            echo "<p>Error: No message selected. <a href=/../FullAccessPages/CurrentDisplay.php>Go Back</a></p>";
         }
-        echo "<p>Query sent,click <a href='CurrentDisplay.php'>here</a> to view current display</p>";
+
     }
 ?>

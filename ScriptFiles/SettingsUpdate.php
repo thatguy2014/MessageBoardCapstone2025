@@ -12,8 +12,9 @@
     //pass in the radio button answer
     //send a sequel update statement to change the userinfo table ImageView to 1
     $userid = $_SESSION["UserId"];
-
+    echo "<p>debug running if </p><br>";
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        echo "<p>recieved post</p>";
         if (isset($_POST['ImageSetting'])) {
             $selectedInput = htmlspecialchars($_POST['ImageSetting']);
             // Update the database with the selected input
@@ -28,6 +29,6 @@
         } else {
             echo "<p>Error: No message selected. <a href=CurrentDisplay.php>Go Back</a></p>";
         }
-        echo "<p>Query sent,click <a href='CurrentDisplay.php'>here</a> to view current display</p>"
+        echo "<p>Query sent,click <a href='CurrentDisplay.php'>here</a> to view current display</p>";
     }
 ?>

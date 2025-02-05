@@ -7,7 +7,7 @@
     session_start();           
     
     //verify user is logged in
-    require_once "home/site/wwwroot/ScriptFiles/VerifyViewOnlyLogin.php";
+    require_once "/home/site/wwwroot/ScriptFiles/VerifyViewOnlyLogin.php";
     
     //verify we are connected to the db
     require_once "/home/site/wwwroot/ScriptFiles/sql.php";

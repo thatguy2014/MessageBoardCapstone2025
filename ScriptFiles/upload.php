@@ -1,7 +1,7 @@
 <?php
     //start error reporting for testing
-    ini_set('display_errors', 1);
-    error_reporting(E_ALL);
+    //ini_set('display_errors', 1);
+    //error_reporting(E_ALL);
 
     //verify user is logged in
     require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
@@ -38,36 +38,36 @@
     if(isset($_POST["submit"])) {
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
         if($check !== false) {
-            echo "File is an image - " . $check["mime"] . ". \n";
+            //echo "File is an image - " . $check["mime"] . ". \n";
             $uploadOk = 1;
         } else {
-            echo "File is not an image. \n";
+            echo "File is not an image. <br>";
             $uploadOk = 0;
         }
     }
 
     // Check if file already exists
     if (file_exists($target_file)) {
-        echo "Sorry, file already exists. \n";
+        echo "Sorry, file already exists. <br>";
         $uploadOk = 0;
     }
 
     // Check file size
     if ($_FILES["fileToUpload"]["size"] > 500000) {
-        echo "Sorry, your file is too large. \n";
+        echo "Sorry, your file is too large. <br>";
         $uploadOk = 0;
     }
 
         // Allow certain file formats
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
     && $imageFileType != "gif" ) {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed. \n";
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed. <br>";
         $uploadOk = 0;
     }
 
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded. \n";
+        echo "Sorry, your file was not uploaded. <br>";
         // if everything is ok, delete the current file then try to upload file
     } else {
 
@@ -83,7 +83,7 @@
 
                 if(mysqli_stmt_fetch($stmt)) {
                     if (deleteExistingFile($delete_dir)) {
-                        echo "Previous file has been deleted.";
+                        //echo "Previous file has been deleted.";
                     } else {
                         echo "Failed to delete previous file.";
                     }
@@ -102,7 +102,7 @@
             } catch(Exception $e) {
                 error_log("Error occured while updating database with file location " . $e->getMessage());
             }
-            echo "<p>Message updated successfully please click here <a href=/../FullAccessPages/currentdisplay.php>Go Back</a>. \n</p>";
+            echo "<p>Message updated successfully please click here <a href=/../FullAccessPages/currentdisplay.php>Go Back</a>. <br></p>";
             header("location: /../FullAccessPages/currentdisplay.php");
         } else {
             echo "Sorry, there was an error uploading your file. 

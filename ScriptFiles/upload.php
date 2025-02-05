@@ -18,6 +18,7 @@
         return false;
     }
 
+    $userid = $_SESSION["UserId"];
     $target_dir = "uploads/";
     $target_file = dirname(dirname(__FILE__)) . '/' . $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;

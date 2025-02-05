@@ -1,8 +1,8 @@
 <?php
 
     // starts displaying errors when things go wrong
-    //ini_set('display_errors', 1);
-    //error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
     //start a session
     session_start();           
     
@@ -11,7 +11,7 @@
     
     //verify we are connected to the db
     require_once "/home/site/wwwroot/ScriptFiles/sql.php";
-    
+
     //the following lines should connect to the database and run the query
     $userid = $_SESSION["UserId"];
     $stmt = mysqli_prepare($conn, "SELECT ImageView FROM userinfo WHERE UserId = ?");

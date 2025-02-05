@@ -4,9 +4,12 @@
     //ini_set('display_errors', 1);
     //error_reporting(E_ALL);
     session_start();           
-
-    //verify user is logged in (full)
-    require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
+    
+    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+        $_SESSION["Displayloggedin"] = false;
+        echo "<h1>please refresh the page and log back in</h1> <br>";
+        exit;
+    }
 
     //make sure we have sql access
     require_once "/home/site/wwwroot/ScriptFiles/sql.php";

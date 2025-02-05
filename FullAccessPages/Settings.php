@@ -13,7 +13,6 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
                 <h1>Office Message Board Custom Text Display</h1>
             </header>
             <?php include '/home/site/wwwroot/templates/navbar.html'; ?>
-            <p>theres gonna be settings options here soon</p>
             <form action="/../ScriptFiles/SettingsUpdate.php" method="post" enctype="multipart/form-data">
                 <p>Would you like to display your uploaded Image or Text?</p>
                 <input type="radio" id="Image" name="ImageSetting" value="Image">

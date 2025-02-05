@@ -3,7 +3,7 @@
     // starts displaying errors when things go wrong
     //ini_set('display_errors', 1);
     //error_reporting(E_ALL);
-    session_start();            //this is a test
+    session_start();           
     require_once "/home/site/wwwroot/ScriptFiles/sql.php";
     //the following lines should connect to the database and run the query
     $userid = $_SESSION["UserId"];

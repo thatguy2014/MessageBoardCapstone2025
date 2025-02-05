@@ -26,6 +26,9 @@
         mysqli_stmt_fetch($ImageStmt);
     }
 
+    $ImageDir = substr($ImageDir, 18);
+    $ImageDir = "/.." . $ImageDir;
+    echo "$ImageDir <br>";
 ?>
 <!--the style is so the fullscreen view looks right-->
 <style>

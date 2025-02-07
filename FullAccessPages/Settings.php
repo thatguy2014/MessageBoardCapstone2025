@@ -10,7 +10,7 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
     <body>
         <div>
             <header>
-                <h1>Office Message Board Custom Text Display</h1>
+                <h1>Office Message Board Display Settings</h1>
             </header>
             <?php include '/home/site/wwwroot/templates/navbar.html'; ?>
             <form action="/../ScriptFiles/SettingsUpdate.php" method="post" enctype="multipart/form-data">

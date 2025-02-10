@@ -14,7 +14,7 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
             </header>
             <?php include '/home/site/wwwroot/templates/navbar.html'; ?>
             <form action="/../ScriptFiles/upload.php" method="post" enctype="multipart/form-data">
-                Select image to upload:
+                Select image to upload (max 500kb):
                 <input type="file" name="fileToUpload" id="fileToUpload">
                 <input type="submit" value="Upload Image" name="submit">
             </form>

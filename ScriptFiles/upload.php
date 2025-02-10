@@ -66,41 +66,43 @@ if (!in_array($imageFileType, ["jpg", "jpeg", "png", "gif"])) {
 
 // If an error occurred, show an alert and stop execution
 if ($uploadOk === 0) {
-    echo "<script>alert('$errorMessage');</script>";
-} else {
-    // Delete existing file
+    echo "<script>alert('$errorMessage'); window.history.back();</script>";
+    exit(); // Prevent further execution
+}
+
+// Proceed with file upload only if no errors
+try {
+    $stmt = mysqli_prepare($conn, "SELECT ImageLocation FROM currentdisplays WHERE UserId = ?");
+    mysqli_stmt_bind_param($stmt, "i", $userid);
+    
+    if (mysqli_stmt_execute($stmt)) {
+        mysqli_stmt_store_result($stmt);
+        mysqli_stmt_bind_result($stmt, $delete_dir);
+
+        if (mysqli_stmt_fetch($stmt) && deleteExistingFile($delete_dir)) {
+            // Previous file deleted successfully
+        }
+    }
+} catch (Exception $e) {
+    error_log("Error deleting old file: " . $e->getMessage());
+}
+
+// Move new file
+if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+    // Update database
     try {
-        $stmt = mysqli_prepare($conn, "SELECT ImageLocation FROM currentdisplays WHERE UserId = ?");
-        mysqli_stmt_bind_param($stmt, "i", $userid);
-        
-        if (mysqli_stmt_execute($stmt)) {
-            mysqli_stmt_store_result($stmt);
-            mysqli_stmt_bind_result($stmt, $delete_dir);
-
-            if (mysqli_stmt_fetch($stmt) && deleteExistingFile($delete_dir)) {
-                // Previous file deleted successfully
-            }
-        }
+        mysqli_query($conn, "UPDATE CurrentDisplays SET ImageLocation = '$target_file' WHERE UserId = $userid;");
     } catch (Exception $e) {
-        error_log("Error deleting old file: " . $e->getMessage());
+        error_log("Error updating database with file location: " . $e->getMessage());
     }
 
-    // Move new file
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        // Update database
-        try {
-            mysqli_query($conn, "UPDATE CurrentDisplays SET ImageLocation = '$target_file' WHERE UserId = $userid;");
-        } catch (Exception $e) {
-            error_log("Error updating database with file location: " . $e->getMessage());
-        }
-
-        $successMessage = "Image uploaded successfully. Redirecting...";
-        echo "<script>
-            setTimeout(() => { window.location.href = '/../FullAccessPages/currentdisplay.php'; }, 6000);
-        </script>";
-    } else {
-        echo "<script>alert('Sorry, there was an error uploading your file.');</script>";
-    }
+    $successMessage = "Image uploaded successfully. Redirecting...";
+    echo "<script>
+        setTimeout(() => { window.location.href = '/../FullAccessPages/currentdisplay.php'; }, 6000);
+    </script>";
+} else {
+    echo "<script>alert('Sorry, there was an error uploading your file.'); window.history.back();</script>";
+    exit();
 }
 ?>
 

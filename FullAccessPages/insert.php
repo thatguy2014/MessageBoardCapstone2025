@@ -1,52 +1,66 @@
 <?php
-    // starts displaying errors when things go wrong
-    //ini_set('display_errors', 1);
-    //error_reporting(E_ALL);
-    //Verify the user is logged in
-    require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
-    //should connect to database
-    require_once "/home/site/wwwroot/ScriptFiles/sql.php";
+// Enable error reporting for debugging (comment out in production)
+// ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+
+// Verify user login
+require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
+
+// Connect to the database
+require_once "/home/site/wwwroot/ScriptFiles/sql.php";
+
+$userid = $_SESSION["UserId"];
+$message = ""; // Initialize message variable
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_input'])) {
+    $selectedInput = htmlspecialchars($_POST['selected_input']);
+
+    // Insert a new row if it doesn't already exist
+    try {
+        mysqli_query($conn, "INSERT INTO CurrentDisplays (UserId, CurrentDisplay) VALUES ('$userid', '')");
+    } catch (Exception $e) {
+        error_log("Error adding new row: " . $e->getMessage());
+    }
+
+    // Update the database with the selected input
+    $updateQuery = "UPDATE CurrentDisplays SET CurrentDisplay = '$selectedInput' WHERE UserId = '$userid'";
+    if (mysqli_query($conn, $updateQuery)) {
+        $message = "<div class='alert alert-success'>Message updated successfully. Redirecting...</div>";
+        header("refresh:2; url=currentdisplay.php"); // Auto redirect after 2 seconds
+    } else {
+        $message = "<div class='alert alert-danger'>Error updating message. Try again.</div>";
+    }
+}
 ?>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Display</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Update Your Display Message</h3>
+            </div>
+            <div class="card-body">
+                <?= $message; ?>
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="selected_input" class="form-label">Enter Your Message:</label>
+                        <input type="text" class="form-control" name="selected_input" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Update Message</button>
+                </form>
+                <a href="currentdisplay.php" class="btn btn-secondary mt-3">View Current Display</a>
+            </div>
+        </div>
+    </div>
 
-    <head>
-        <title>Insert Page</title>
-    </head>
-    
-    <body>
-            <?php
-                
-                //setting up the userid for use later
-                $userid = $_SESSION["UserId"];
-                //print($_SESSION["UserId"]);
-                //when it receives a post it should update the currentdisplay
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    if (isset($_POST['selected_input'])) {
-                        $selectedInput = htmlspecialchars($_POST['selected_input']);
-                        
-                        // verify the current database input exists (it'll fail if it already exists which is good)
-                        try{
-                        mysqli_query($conn, "INSERT INTO CurrentDisplays VALUES ($userid, ' ');");
-                        } catch(Exception $e) {
-                            error_log("Error occured while adding new line to database " . $e->getMessage());
-                        }
-                        
-                        // Update the database with the selected input
-                        mysqli_query($conn, "UPDATE CurrentDisplays SET CurrentDisplay = '$selectedInput' WHERE UserId = '$userid';");
-                        
-                        // Display success message
-                        echo "<p>Message updated successfully.</p>";
-
-                        header("location: currentdisplay.php");
-                    } else {
-                        echo "<p>Error: No message selected. <a href=CurrentDisplay.php>Go Back</a></p>";
-                    }
-                    //the close is commented out bc I think it broke it :|
-                    //mysqli_close($conn);
-                }
-            ?>
-            <p>query sent,click <a href="CurrentDisplay.php">here</a> to view current display</p>
-    </body>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

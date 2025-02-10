@@ -25,18 +25,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_input'])) {
     // Update the database with the selected input
     $updateQuery = "UPDATE CurrentDisplays SET CurrentDisplay = '$selectedInput' WHERE UserId = '$userid'";
     if (mysqli_query($conn, $updateQuery)) {
-        $message = "<div class='alert alert-success text-center p-3 mt-3'>
-                        ✅ Message updated successfully. Redirecting...
-                    </div>";
+        $message = "<div class='alert alert-success'>Message updated successfully. Redirecting...</div>";
         echo "<script>
                 setTimeout(function() {
                     window.location.href = 'currentdisplay.php';
                 }, 6000);
               </script>";
     } else {
-        $message = "<div class='alert alert-danger text-center p-3 mt-3'>
-                        ❌ Error updating message. Try again.
-                    </div>";
+        $message = "<div class='alert alert-danger'>Error updating message. Try again.</div>";
     }
 }
 ?>
@@ -52,12 +48,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_input'])) {
 <body class="bg-light">
     <div class="container mt-5">
         <div class="card shadow-lg">
-            <div class="card-header bg-primary text-white text-center">
-                <h3 class="mb-0">Updating Your Display Message...</h3>
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Update Your Display Message</h3>
             </div>
-            <div class="card-body text-center">
+            <div class="card-body">
                 <?= $message; ?>
-                <p>Click <a href="currentdisplay.php" class="fw-bold">here</a> if not redirected.</p>
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="selected_input" class="form-label">Enter Your Message:</label>
+                        <input type="text" class="form-control" name="selected_input" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Update Message</button>
+                </form>
+                <a href="currentdisplay.php" class="btn btn-secondary mt-3">View Current Display</a>
             </div>
         </div>
     </div>

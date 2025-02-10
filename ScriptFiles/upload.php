@@ -23,7 +23,8 @@ $target_dir = "uploads/";
 $target_file = dirname(dirname(__FILE__)) . '/' . $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-$message = "";
+$errorMessage = "";
+$successMessage = "";
 
 // Ensure directory exists
 if (!is_dir($target_dir)) {
@@ -32,40 +33,41 @@ if (!is_dir($target_dir)) {
 
 // Ensure directory is writable
 if (!is_writable($target_dir)) {
-    die("Directory is not writable");
+    $errorMessage = "Directory is not writable.";
+    $uploadOk = 0;
 }
 
 // Check if file is an image
 if (isset($_POST["submit"])) {
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    if ($check !== false) {
-        $uploadOk = 1;
-    } else {
-        $message = "<div class='alert alert-danger'>File is not an image.</div>";
+    if ($check === false) {
+        $errorMessage = "File is not an image.";
         $uploadOk = 0;
     }
 }
 
 // Check if file already exists
 if (file_exists($target_file)) {
-    $message = "<div class='alert alert-warning'>Sorry, file already exists.</div>";
+    $errorMessage = "Sorry, file already exists.";
     $uploadOk = 0;
 }
 
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 500000) {
-    $message = "<div class='alert alert-danger'>Sorry, your file is too large.</div>";
+    $errorMessage = "Sorry, your file is too large.";
     $uploadOk = 0;
 }
 
 // Allow certain file formats
 if (!in_array($imageFileType, ["jpg", "jpeg", "png", "gif"])) {
-    $message = "<div class='alert alert-danger'>Sorry, only JPG, JPEG, PNG & GIF files are allowed.</div>";
+    $errorMessage = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
     $uploadOk = 0;
 }
 
-// If all checks pass, proceed with the upload
-if ($uploadOk === 1) {
+// If an error occurred, show an alert and stop execution
+if ($uploadOk === 0) {
+    echo "<script>alert('$errorMessage');</script>";
+} else {
     // Delete existing file
     try {
         $stmt = mysqli_prepare($conn, "SELECT ImageLocation FROM currentdisplays WHERE UserId = ?");
@@ -92,10 +94,12 @@ if ($uploadOk === 1) {
             error_log("Error updating database with file location: " . $e->getMessage());
         }
 
-        $message = "<div class='alert alert-success'>Image uploaded successfully. Redirecting...</div>";
-        header("refresh:6; url=/../FullAccessPages/currentdisplay.php");
+        $successMessage = "Image uploaded successfully. Redirecting...";
+        echo "<script>
+            setTimeout(() => { window.location.href = '/../FullAccessPages/currentdisplay.php'; }, 6000);
+        </script>";
     } else {
-        $message = "<div class='alert alert-danger'>Sorry, there was an error uploading your file.</div>";
+        echo "<script>alert('Sorry, there was an error uploading your file.');</script>";
     }
 }
 ?>
@@ -142,10 +146,12 @@ if ($uploadOk === 1) {
 <body>
     <div class="card">
         <h2>Image Upload</h2>
-        <?= $message; ?>
-        <p>You will be redirected in 6 seconds...</p>
-        <div class="loader"></div>
-        <a href="/../FullAccessPages/currentdisplay.php" class="btn btn-dark mt-3">Go Now</a>
+        <?php if ($successMessage): ?>
+            <div class="alert alert-success"><?= $successMessage; ?></div>
+            <p>You will be redirected in 6 seconds...</p>
+            <div class="loader"></div>
+            <a href="/../FullAccessPages/currentdisplay.php" class="btn btn-dark mt-3">Go Now</a>
+        <?php endif; ?>
     </div>
 </body>
 </html>

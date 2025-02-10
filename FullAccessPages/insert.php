@@ -16,6 +16,13 @@ $message = ""; // Initialize message variable
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_input'])) {
     $selectedInput = htmlspecialchars($_POST['selected_input']);
 
+    // Insert a new row if it doesn't already exist
+    try {
+        mysqli_query($conn, "INSERT INTO CurrentDisplays (UserId, CurrentDisplay) VALUES ('$userid', '')");
+    } catch (Exception $e) {
+        error_log("Error adding new row: " . $e->getMessage());
+    }
+    
     // Update the database with the selected input
     $updateQuery = "UPDATE CurrentDisplays SET CurrentDisplay = '$selectedInput' WHERE UserId = '$userid'";
     if (mysqli_query($conn, $updateQuery)) {

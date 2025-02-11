@@ -1,64 +1,65 @@
-<?php
-
-    // starts displaying errors when things go wrong
-    //ini_set('display_errors', 1);
-    //error_reporting(E_ALL);
-    session_start();           
-    
-    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-        $_SESSION["Displayloggedin"] = false;
-        echo "<h1>please refresh the page and log back in</h1> <br>";
-        exit;
-    }
-
-    //make sure we have sql access
-    require_once "/home/site/wwwroot/ScriptFiles/sql.php";
-    //the following lines should connect to the database and run the query
-    $userid = $_SESSION["UserId"];
-    
-    $res = mysqli_query($conn, "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = '" . $userid . "'");
-    //all image things
-    $stmt = mysqli_prepare($conn, "SELECT ImageView FROM userinfo WHERE UserId = ?");
-    mysqli_stmt_bind_param($stmt, "i", $userid);
-    if(mysqli_stmt_execute($stmt)) {
-        mysqli_stmt_store_result($stmt);
-        mysqli_stmt_bind_result($stmt, $resultbool);
-        mysqli_stmt_fetch($stmt);
-    }
-    $ImageStmt = mysqli_prepare($conn, "SELECT ImageLocation FROM currentdisplays where UserId = ?");
-    mysqli_stmt_bind_param($ImageStmt, "i", $userid);
-    if (mysqli_stmt_execute($ImageStmt)) {
-        mysqli_stmt_store_result($ImageStmt);
-        mysqli_stmt_bind_result($ImageStmt, $ImageDir);
-        mysqli_stmt_fetch($ImageStmt);
-    }
-    $ImageDir = substr($ImageDir, 18);
-    $ImageDir = "/.." . $ImageDir;
-
-    //font family sql
-    $Font = mysqli_query($conn, "SELECT Font FROM userinfo WHERE UserId = '" . $userid . "'");
-    $UserFont = mysqli_fetch_assoc($Font);
-?>
-<!--the style is so the fullscreen view looks right-->
 <style>
-html {                  
-    background:white;
+html {
+    background: white;
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Prevents scrolling */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 h2 {
-  font-size: 5em;
-  font-family: <?php echo $UserFont["Font"] ?>;
+    font-size: 10vw; /* Base size, auto-adjusted in JS */
+    font-family: <?php echo $UserFont["Font"] ?>;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    word-wrap: break-word;
+    width: 90%; /* Ensures text stays within bounds */
+    white-space: normal; /* Allows text wrapping */
 }
-    </style>
+</style>
+
 <html>
-    <h2 id="currentdisplay" style="background:white">
+    <h2 id="currentdisplay">
         <?php   
-            if($resultbool) {
-                echo "<img src=" . $ImageDir . ">";
-            }else {
+            if ($resultbool) {
+                echo "<img src='" . $ImageDir . "' style='max-width: 100%; height: auto;'>";
+            } else {
                 while ($row = mysqli_fetch_assoc($res)) {
-                    printf ("%s \n", $row["CurrentDisplay"]);
+                    printf("%s \n", $row["CurrentDisplay"]);
                 } 
             }
         ?>
     </h2>
-        </html>
+
+    <script>
+        function adjustFontSize() {
+            let textElement = document.getElementById("currentdisplay");
+            let parent = document.documentElement;
+            let fontSize = 10; // Starting font size in vw
+            textElement.style.fontSize = fontSize + "vw";
+
+            // Reduce font size if text overflows
+            while (textElement.scrollHeight > parent.clientHeight || textElement.scrollWidth > parent.clientWidth) {
+                fontSize -= 0.5; // Reduce size step by step
+                textElement.style.fontSize = fontSize + "vw";
+                if (fontSize < 2) break; // Prevents infinite loop
+            }
+        }
+
+        window.onload = adjustFontSize;
+        window.onresize = adjustFontSize; // Adjust on window resize
+    </script>
+</html>

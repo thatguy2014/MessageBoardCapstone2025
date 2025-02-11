@@ -14,7 +14,8 @@ $message = ""; // Initialize message variable
 
 // Check if a new message is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_input'])) {
-    $selectedInput = htmlspecialchars($_POST['selected_input']);
+    $selectedInput = substr(htmlspecialchars($_POST['selected_input']), 0, 250);
+
 
     // Insert a new row if it doesn't already exist
     try {

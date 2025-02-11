@@ -15,8 +15,8 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
             <?php include '/home/site/wwwroot/templates/navbar.html'; ?>
             <form action="insert.php" method="post"> 
                     <p>
-                        <label for="Input">Input what you'd like to display (255 chararcter limit):</label>
-                        <input type="text" name="selected_input" id="Input">
+                        <label for="Input">Input what you'd like to display (250 chararcter limit):</label>
+                        <input type="text" name="selected_input" id="Input" maxlength="250">
                     </p>
                     
                     <input type="submit" value="Submit">

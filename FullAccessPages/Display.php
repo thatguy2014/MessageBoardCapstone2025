@@ -1,5 +1,5 @@
 <style>
-html {
+html, body {
     background: white;
     height: 100%;
     width: 100%;
@@ -7,55 +7,52 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-body {
     margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 h2 {
-    font-size: 10vw; /* Base size, auto-adjusted in JS */
+    font-size: 10vw; /* Start with a large font size */
     font-family: <?php echo $UserFont["Font"] ?>;
     text-align: center;
     margin: 0;
     padding: 0;
     word-wrap: break-word;
-    width: 90%; /* Ensures text stays within bounds */
-    white-space: normal; /* Allows text wrapping */
+    width: 90%;
+    white-space: normal; /* Ensures wrapping */
+    max-width: 100%;
 }
 </style>
 
 <html>
-    <h2 id="currentdisplay">
-        <?php   
-            if ($resultbool) {
-                echo "<img src='" . $ImageDir . "' style='max-width: 100%; height: auto;'>";
-            } else {
-                while ($row = mysqli_fetch_assoc($res)) {
-                    printf("%s \n", $row["CurrentDisplay"]);
-                } 
-            }
-        ?>
-    </h2>
+    <body>
+        <h2 id="currentdisplay">
+            <?php   
+                $displayText = "";
+                if ($resultbool) {
+                    $displayText = "<img src='" . $ImageDir . "' style='max-width: 100%; height: auto;'>";
+                } else {
+                    while ($row = mysqli_fetch_assoc($res)) {
+                        $displayText .= $row["CurrentDisplay"] . " ";
+                    }
+                }
+                echo $displayText;
+            ?>
+        </h2>
+    </body>
 
     <script>
         function adjustFontSize() {
             let textElement = document.getElementById("currentdisplay");
+            if (!textElement || textElement.innerHTML.trim() === "") return; // Prevents running if empty
+
             let parent = document.documentElement;
-            let fontSize = 10; // Starting font size in vw
+            let fontSize = 10; // Start with a large font size
             textElement.style.fontSize = fontSize + "vw";
 
-            // Reduce font size if text overflows
             while (textElement.scrollHeight > parent.clientHeight || textElement.scrollWidth > parent.clientWidth) {
-                fontSize -= 0.5; // Reduce size step by step
+                fontSize -= 0.5; // Decrease step by step
                 textElement.style.fontSize = fontSize + "vw";
-                if (fontSize < 2) break; // Prevents infinite loop
+                if (fontSize < 2) break; // Prevents infinite shrinking
             }
         }
 

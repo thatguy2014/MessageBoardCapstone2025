@@ -45,7 +45,7 @@ html {
     background:white;
 }
 h2 {
-  font-size: 10em;
+  font-size: 5em;
   font-family: <?php echo $UserFont["Font"] ?>;
 }
     </style>

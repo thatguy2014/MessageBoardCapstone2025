@@ -46,7 +46,7 @@ html {
 }
 h2 {
   font-size: 10em;
-  font-family: <?php echo "$UserFont" ?>;
+  font-family: <?php echo $UserFont["Font"] ?>;
 }
     </style>
 <html>

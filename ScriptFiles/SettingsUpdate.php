@@ -43,7 +43,7 @@
         }
     }
 
-    
+    header("refresh:6; url=currentdisplay.php");
 ?>
 
 <!DOCTYPE html>

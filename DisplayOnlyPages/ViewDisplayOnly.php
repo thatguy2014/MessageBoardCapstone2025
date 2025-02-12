@@ -1,19 +1,21 @@
 <?php
 
-// starts displaying errors when things go wrong
+// Starts displaying errors when things go wrong
 // ini_set('display_errors', 1);
 // error_reporting(E_ALL);
-// start a session
+// Start a session
 session_start();           
 
-// verify user is logged in
+// Verify user is logged in
 require_once "/home/site/wwwroot/ScriptFiles/VerifyViewOnlyLogin.php";
 
-// verify we are connected to the db
+// Verify we are connected to the database
 require_once "/home/site/wwwroot/ScriptFiles/sql.php";
 
-// the following lines should connect to the database and run the query
+// Fetch the user ID
 $userid = $_SESSION["UserId"];
+
+// Retrieve whether the user has an image display enabled
 $stmt = mysqli_prepare($conn, "SELECT ImageView FROM userinfo WHERE UserId = ?");
 $res = mysqli_query($conn, "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = '" . $userid . "'");
 
@@ -25,6 +27,7 @@ if (mysqli_stmt_execute($stmt)) {
     mysqli_stmt_fetch($stmt);
 }
 
+// Retrieve the image location (if any)
 $ImageStmt = mysqli_prepare($conn, "SELECT ImageLocation FROM currentdisplays where UserId = ?");
 mysqli_stmt_bind_param($ImageStmt, "i", $userid);
 if (mysqli_stmt_execute($ImageStmt)) {
@@ -45,18 +48,6 @@ if (!$resultbool) {
     $displayText = trim($displayText);
 }
 
-// Calculate font size dynamically based on text length
-$wordCount = str_word_count($displayText);
-$charCount = strlen($displayText);
-$baseFontSize = 48; // Default for short text
-$minFontSize = 20;  // Minimum font size for very long text
-
-if ($charCount > 100) {
-    $calculatedFontSize = max($baseFontSize - ($charCount / 5), $minFontSize);
-} else {
-    $calculatedFontSize = min($baseFontSize + (200 / max($wordCount, 1)), 80);
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,7 +56,7 @@ if ($charCount > 100) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Current Display</title>
     <style>
-        html, body {                  
+        html, body {
             background: white;
             height: 100%;
             width: 100%;
@@ -87,7 +78,17 @@ if ($charCount > 100) {
             max-width: 100%;
             margin: 0;
             padding: 0;
-            font-size: <?php echo $calculatedFontSize; ?>px;
+            font-size: 10vw; /* Start with a very large base size */
+            font-weight: bold;
+        }
+
+        /* Dynamically adjust text size to fill screen */
+        @media (max-width: 1200px) {
+            h2 { font-size: 8vw; } /* Smaller screens, adjust */
+        }
+
+        @media (max-width: 800px) {
+            h2 { font-size: 6vw; } /* Mobile or very small displays */
         }
 
         /* Ensures images fit properly */

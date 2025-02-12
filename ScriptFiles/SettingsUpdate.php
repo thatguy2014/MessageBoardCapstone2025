@@ -44,12 +44,12 @@
         if ($success) {
             echo "<p>Message updated successfully.</p>";
             echo "<p>Query sent,click <a href='/../FullAccessPages/CurrentDisplay.php'>here</a> to view current display</p>";
-            header("location: currentdisplay.php");
+            // Delay redirect for 6 seconds
+            header("refresh:6; url=/../FullAccessFiles/currentdisplay.php");
         } else {
             echo "<p>There has been an error, please try again</p>";
         }
     }
 
-    // Delay redirect for 6 seconds
-    header("refresh:6; url=currentdisplay.php");
+    
 ?>

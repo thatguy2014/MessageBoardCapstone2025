@@ -27,9 +27,10 @@
             echo "<p>Message updated successfully.</p>";
             echo "<p>Query sent,click <a href='/../FullAccessPages/CurrentDisplay.php'>here</a> to view current display</p>";
             header("location: currentdisplay.php");
-        } elseif(isset($_POST['Font'])) {
+        } 
+        if (isset($_POST['Font'])) {
             $selectedFont = htmlspecialchars($_POST['Font']);
-            $FontUpdateQuery = "UPDATE userinfo SET Font = '$selectedFont' WHERE UserId = $userid'";
+            $FontUpdateQuery = "UPDATE userinfo SET Font = '$selectedFont' WHERE UserId = '$userid';";
 
             // Update the database with the selected input
             if (mysqli_query($conn, $FontUpdateQuery)) {
@@ -38,10 +39,7 @@
                 $message = "<div class='alert alert-danger'>Error updating Settings. Try again.</div>";
             }
 
-        }else {
-            echo "<p>Error: No message selected. <a href=/../FullAccessPages/CurrentDisplay.php>Go Back</a></p>";
         }
-
     }
 
     // Delay redirect for 6 seconds

@@ -91,6 +91,7 @@
         <h2>Settings Update</h2>
         <?php if ($success): ?>
             <div class="alert alert-success"></div>
+            <p><?= $message; ?><br>
             <p>You will be redirected in 6 seconds...</p>
             <div class="loader"></div>
             <a href="/../FullAccessPages/currentdisplay.php" class="btn btn-dark mt-3">Go Now</a>

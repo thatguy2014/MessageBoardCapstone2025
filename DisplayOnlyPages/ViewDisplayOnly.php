@@ -38,14 +38,36 @@
 ?>
 <!--the style is so the fullscreen view looks right-->
 <style>
-html {                  
-    background:white;
-}
-h2 {
-  font-size: 10em;
+html, body {                  
+    background: white;
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Prevents scrolling */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
 
-    </style>
+h2 {
+    font-family: <?php echo $UserFont["Font"] ?>;
+    text-align: center;
+    word-wrap: break-word;
+    white-space: normal;
+    width: 90%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Ensures images fit properly */
+h2 img {
+    max-width: 90%;
+    height: auto;
+}
+</style>
 <html>
     <h2 id="currentdisplay" style="background:white">
         <?php   

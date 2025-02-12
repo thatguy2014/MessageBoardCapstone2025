@@ -36,7 +36,7 @@
             $FontUpdateQuery = "UPDATE userinfo SET Font = '$selectedFont' WHERE UserId = '$userid';";
             // Update the database with the selected input
             if (mysqli_query($conn, $FontUpdateQuery)) {
-                if (empty($selectedFont)) {
+                if (empty($selectedFont) && !isset($_POST['ImageSetting'])) {
                     $message = "<div class = 'alert alert-danger'>No Font input given. Try again. </div>";
                 } else {
                     $success = true;

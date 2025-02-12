@@ -36,11 +36,11 @@
             $FontUpdateQuery = "UPDATE userinfo SET Font = '$selectedFont' WHERE UserId = '$userid';";
             // Update the database with the selected input
             if (mysqli_query($conn, $FontUpdateQuery)) {
-                $message = "<div class='alert alert-success'>Settings updated successfully. Redirecting...</div>";
-                if ($selectedFont = "") {
+                if (empty($selectedFont)) {
                     $message = "<div class = 'alert alert-danger'>No Font input given. Try again. </div>";
                 } else {
                     $success = true;
+                    $message = "<div class='alert alert-success'>Settings updated successfully. Redirecting...</div>";
                 }
             } else {
                 $message = "<div class='alert alert-danger'>Error updating Settings. Try again.</div>";
@@ -96,15 +96,15 @@
         <h2>Settings Update</h2>
         <?php if ($success): ?>
             <div class="alert alert-success"></div>
-            <p><?= $message; ?><br>
+            <?= $message; ?><br>
             <p>You will be redirected in 6 seconds...</p>
             <div class="loader"></div>
             <a href="/../FullAccessPages/currentdisplay.php" class="btn btn-dark mt-3">Go Now</a>
         <?php endif; ?>
         <?php if (!$success): ?>
             <div class="alert alert-danger"></div>
-            <p><?= $message; ?><br>
-            You will be redirected in 6 seconds...</p>
+            <?= $message; ?><br>
+            <p>You will be redirected in 6 seconds...</p>
             <div class="loader"></div>
             <a href="/../FullAccessPages/currentdisplay.php" class="btn btn-dark mt-3">Go Now</a>
         <?php endif;?>

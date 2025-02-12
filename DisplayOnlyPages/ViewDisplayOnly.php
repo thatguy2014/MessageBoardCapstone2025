@@ -78,17 +78,8 @@ if (!$resultbool) {
             max-width: 100%;
             margin: 0;
             padding: 0;
-            font-size: 10vw; /* Start with a very large base size */
+            font-size: 5vw; /* Default size */
             font-weight: bold;
-        }
-
-        /* Dynamically adjust text size to fill screen */
-        @media (max-width: 1200px) {
-            h2 { font-size: 8vw; } /* Smaller screens, adjust */
-        }
-
-        @media (max-width: 800px) {
-            h2 { font-size: 6vw; } /* Mobile or very small displays */
         }
 
         /* Ensures images fit properly */
@@ -108,5 +99,27 @@ if (!$resultbool) {
             }
         ?>
     </h2>
+
+    <script>
+        function resizeText() {
+            const textElement = document.getElementById('currentdisplay');
+            const parent = document.body;
+            
+            let fontSize = 10; // Start small
+            textElement.style.fontSize = fontSize + "px";
+
+            // Increase font size until it fits the screen width/height
+            while (textElement.scrollWidth < parent.clientWidth && textElement.scrollHeight < parent.clientHeight) {
+                fontSize += 2;
+                textElement.style.fontSize = fontSize + "px";
+            }
+
+            // Reduce font size slightly to prevent overflow
+            textElement.style.fontSize = (fontSize - 4) + "px";
+        }
+
+        window.onload = resizeText;
+        window.onresize = resizeText; // Resize text when screen size changes
+    </script>
 </body>
 </html>

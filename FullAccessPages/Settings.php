@@ -28,7 +28,7 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
                     <option value="">Select...</option>
                     <option value="TimesNewRoman">Times New Roman</option>
                     <option value="Arial">Arial</option>
-                    <option value="ComicSans">Comic Sans</option>
+                    <option value="Courier New">Courier New</option>
                     <option value="Impact">Impact</option>
                 </select>
 

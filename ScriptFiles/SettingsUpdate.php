@@ -37,7 +37,7 @@
             // Update the database with the selected input
             if (mysqli_query($conn, $FontUpdateQuery)) {
                 if (empty($selectedFont) && !isset($_POST['ImageSetting'])) {
-                    $message = "<div class = 'alert alert-danger'>No Font input given. Try again. </div>";
+                    $message = "<div class = 'alert alert-danger'>No input given. Try again. </div>";
                 } else {
                     $success = true;
                     $message = "<div class='alert alert-success'>Settings updated successfully. Redirecting...</div>";
@@ -48,7 +48,7 @@
         }
     }
 
-    header("refresh:6; url=/../FullAccessFiles/currentdisplay.php");
+    header("refresh:6; url=/../FullAccessPages/currentdisplay.php");
 ?>
 
 <!DOCTYPE html>

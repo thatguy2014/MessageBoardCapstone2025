@@ -48,7 +48,7 @@
         }
     }
 
-    header("refresh:6; url=currentdisplay.php");
+    header("refresh:6; url=/../FullAccessFiles/currentdisplay.php");
 ?>
 
 <!DOCTYPE html>

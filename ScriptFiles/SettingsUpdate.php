@@ -32,11 +32,16 @@
         } 
         if (isset($_POST['Font'])) {
             $selectedFont = htmlspecialchars($_POST['Font']);
+            
             $FontUpdateQuery = "UPDATE userinfo SET Font = '$selectedFont' WHERE UserId = '$userid';";
             // Update the database with the selected input
             if (mysqli_query($conn, $FontUpdateQuery)) {
                 $message = "<div class='alert alert-success'>Settings updated successfully. Redirecting...</div>";
-                $success = true;
+                if ($selectedFont = "") {
+                    $message = "<div class = 'alert alert-danger'>No Font input given. Try again. </div>";
+                } else {
+                    $success = true;
+                }
             } else {
                 $message = "<div class='alert alert-danger'>Error updating Settings. Try again.</div>";
             }

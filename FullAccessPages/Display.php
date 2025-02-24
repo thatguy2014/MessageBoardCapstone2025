@@ -68,6 +68,17 @@ h2 {
     padding: 0;
 }
 
+p {
+    font-family: <?php echo $UserFont["Font"] ?>;
+    text-align: center;
+    word-wrap: break-word;
+    white-space: normal;
+    width: 90%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 /* Ensures images fit properly */
 h2 img {
     max-width: 90%;
@@ -88,18 +99,22 @@ h2 img {
                     }
                     echo $content;
                     $content = "";
-                    $timestamp = "";
-                    echo "<br> Posted Time: ";
-                    if (mysqli_num_rows($time) > 0) {
-                        $rowTime = mysqli_fetch_assoc($time);
-                        $timestamp = $rowTime["Formatted_Time"];  
-                    } else {
-                        $timestamp = "";
-                    }
-                    echo $timestamp;
                 }
             ?>
         </h2>
+        <p>
+            <?php
+                $timestamp = "";
+                echo "<br> Posted Time: ";
+                if (mysqli_num_rows($time) > 0) {
+                    $rowTime = mysqli_fetch_assoc($time);
+                    $timestamp = $rowTime["Formatted_Time"];  
+                } else {
+                    $timestamp = "";
+                }
+                echo $timestamp;
+            ?>
+        </p>
     </body>
 
     <script>

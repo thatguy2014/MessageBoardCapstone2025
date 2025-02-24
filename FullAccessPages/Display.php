@@ -94,7 +94,11 @@ h2 img {
                         $row = mysqli_fetch_assoc($time);
                         //debugging lines
                         echo "debugging: ";
+                        $i = 0;
                         while ($row = mysqli_fetch_assoc($time)) {
+                            $i++;
+                            $content .= $i . " ";
+                            echo $row["UpdateTime - INTERVAL 5 HOUR"];
                             $content .= $row["UpdateTime - INTERVAL 5 HOUR"] . " ";
                             echo $content;
                         }

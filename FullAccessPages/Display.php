@@ -91,11 +91,10 @@ h2 img {
                     $timestamp = "";
                     echo "<br> Posted Time: ";
                     if (mysqli_num_rows($time) > 0) {
-                        $row = mysqli_fetch_assoc($time);
+                        $rowTime = mysqli_fetch_assoc($time);
 
                         //debugging lines
-                        $row = mysqli_fetch_assoc($time);
-                        if (isset($row["Formatted_Time"])) {
+                        if (isset($rowTime["Formatted_Time"])) {
                             $timestamp = date("Y-m-d H:i:s", strtotime($row["Formatted_Time"]));  
                         }
                         //end of debugging

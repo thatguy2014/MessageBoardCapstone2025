@@ -168,12 +168,10 @@ h2 img {
         }
 
         function exitFullscreen() {
-            if (document.exitFullscreen) {
+            if (document.fullscreenElement) {
                 document.exitFullscreen();
-            } else if (document.webkitExitFullscreen) { /* Safari */
-                document.webkitExitFullscreen();
-            } else if (document.msExitFullscreen) { /* IE11 */
-                document.msExitFullscreen();
+            } else {
+                window.history.back(); // Go back to the previous page
             }
         }
 
@@ -183,5 +181,9 @@ h2 img {
         
         window.onload = adjustFontSize;
         window.onresize = adjustFontSize;
+
+        
+        
+
     </script>
 </html>

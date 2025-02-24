@@ -11,16 +11,15 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
             <header>
                 <h1>Office Message Board Current Display</h1>
             </header>
-            <!--Should import the navbar -->
+
+            <!-- Import Navbar -->
             <?php include '/home/site/wwwroot/templates/navbar.html'; ?>
 
-            
             <div class="iframe-container">
                 <iframe id="iframe" src="Display.php" height="400" width="1000"></iframe><br>
                 <button onclick="openFullscreen()">Fullscreen</button>
             </div>
 
-            
             <script>
                 var elem = document.getElementById("iframe");
 
@@ -32,23 +31,41 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
                     } else if (elem.msRequestFullscreen) { 
                         elem.msRequestFullscreen();
                     }
-                }
-            </script>
 
-            
-            <script>
+                    setTimeout(() => {
+                        elem.contentWindow.postMessage("fullscreenOn", "*");
+                    }, 500);
+                }
+
+                window.addEventListener("fullscreenchange", function() {
+                    if (!document.fullscreenElement) {
+                        elem.contentWindow.postMessage("fullscreenOff", "*");
+                    }
+                });
+
+                window.addEventListener("message", function(event) {
+                    if (event.data === "exitFullscreen") {
+                        if (document.exitFullscreen) {
+                            document.exitFullscreen();
+                        } else if (document.webkitExitFullscreen) {
+                            document.webkitExitFullscreen();
+                        } else if (document.msExitFullscreen) {
+                            document.msExitFullscreen();
+                        }
+                    }
+                });
+
                 window.setInterval(function() {
-                    reloadIFrame()
+                    reloadIFrame();
                 }, 10000);
 
                 function reloadIFrame() {
-                    console.log('reloading..');
+                    console.log('Reloading iframe...');
                     document.getElementById('iframe').contentWindow.location.reload();
                 }
             </script>
-            
+
             <footer>
-            
             </footer>
         </div>
     </body>

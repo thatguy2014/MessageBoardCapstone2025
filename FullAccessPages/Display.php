@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 session_start();          
 
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     $_SESSION["Displayloggedin"] = false;
     echo "<h1>Please refresh the page and log back in</h1><br>";
     exit;
@@ -13,7 +13,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 // Make sure we have SQL access
 require_once "/home/site/wwwroot/ScriptFiles/sql.php";
 
-// The following lines should connect to the database and run the query
 $userid = $_SESSION["UserId"];
 
 $res = mysqli_query($conn, "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = '" . $userid . "'");
@@ -22,7 +21,7 @@ $time = mysqli_query($conn, "SELECT (UpdateTime - INTERVAL 5 HOUR) AS Formatted_
 // Image-related queries
 $stmt = mysqli_prepare($conn, "SELECT ImageView FROM userinfo WHERE UserId = ?");
 mysqli_stmt_bind_param($stmt, "i", $userid);
-if(mysqli_stmt_execute($stmt)) {
+if (mysqli_stmt_execute($stmt)) {
     mysqli_stmt_store_result($stmt);
     mysqli_stmt_bind_result($stmt, $resultbool);
     mysqli_stmt_fetch($stmt);
@@ -48,7 +47,7 @@ html, body {
     background: white;
     height: 100%;
     width: 100%;
-    overflow: hidden; /* Prevents scrolling */
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -150,52 +149,55 @@ h2 img {
             if (!textElement || textElement.innerHTML.trim() === "") return;
 
             let parent = document.documentElement;
-            let fontSize = 10; // Start with a large font size
+            let fontSize = 10; 
             textElement.style.fontSize = fontSize + "vw";
 
-            // Reduce font size if text overflows
             while (textElement.scrollHeight > parent.clientHeight || textElement.scrollWidth > parent.clientWidth) {
                 fontSize -= 0.5;
                 textElement.style.fontSize = fontSize + "vw";
-                if (fontSize < 2) break; // Prevents infinite loop
+                if (fontSize < 2) break;
             }
         }
 
         function checkFullscreen() {
             if (document.fullscreenElement) {
                 document.getElementById("fullscreenControls").style.display = "flex";
+                window.parent.postMessage("fullscreenOn", "*"); 
             } else {
                 document.getElementById("fullscreenControls").style.display = "none";
+                window.parent.postMessage("fullscreenOff", "*");
             }
         }
 
         function exitFullscreen() {
-            if (window.parent.document.fullscreenElement) {
-                window.parent.document.exitFullscreen();
-            } else if (window.parent.document.webkitFullscreenElement) { /* Safari */
-                window.parent.document.webkitExitFullscreen();
-            } else if (window.parent.document.msFullscreenElement) { /* IE11 */
-                window.parent.document.msExitFullscreen();
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) { 
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { 
+                document.msExitFullscreen();
             }
+
+            window.parent.postMessage("exitFullscreen", "*");
         }
 
-        // Attach this function to the back arrow
-        document.getElementById("backArrow").addEventListener("click", exitFullscreen);
-
-        
-        // Function to adjust the logo size dynamically
-        function adjustLogoSize() {
+        function adjustLogoSize(isFullscreen) {
             let logo = document.getElementById("logo");
-        
-            if (document.fullscreenElement) {
-                logo.style.width = "100px"; // Larger size in fullscreen
+            if (isFullscreen) {
+                logo.style.width = "100px";
             } else {
-                logo.style.width = "60px";  // Smaller size in normal mode
+                logo.style.width = "60px";
             }
         }
 
-        // Detect fullscreen changes
-        document.addEventListener("fullscreenchange", adjustLogoSize);
+        window.addEventListener("message", function(event) {
+            if (event.data === "fullscreenOn") {
+                adjustLogoSize(true);
+            } else if (event.data === "fullscreenOff") {
+                adjustLogoSize(false);
+            }
+        });
+
         document.addEventListener("fullscreenchange", checkFullscreen);
         document.addEventListener("webkitfullscreenchange", checkFullscreen);
         document.addEventListener("msfullscreenchange", checkFullscreen);

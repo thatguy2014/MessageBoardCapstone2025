@@ -92,15 +92,7 @@ h2 img {
                     echo "<br> Posted Time: ";
                     if (mysqli_num_rows($time) > 0) {
                         $rowTime = mysqli_fetch_assoc($time);
-
-                        //debugging lines
-                        if (isset($rowTime["Formatted_Time"])) {
-                            $timestamp = $rowTime["Formatted_Time"];  
-                            echo "rowTime is set!";
-                        }
-                        //end of debugging
-                        
-                        echo $timestamp;
+                        $timestamp = $rowTime["Formatted_Time"];  
                     } else {
                         $timestamp = "";
                     }

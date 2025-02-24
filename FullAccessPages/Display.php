@@ -95,11 +95,11 @@ h2 img {
                         //debugging lines
                         echo "debugging: ";
                         while ($row = mysqli_fetch_assoc($res)) {
-                            $content .= $row["UpdateTime"] . " ";
+                            $content .= $row["UpdateTime - INTERVAL 5 HOUR"] . " ";
                             echo $content;
                         }
                         echo "<br>";
-                        $timestamp = date("Y-m-d H:i:s", $row["UpdateTime"]);
+                        $timestamp = date("Y-m-d H:i:s", $row["UpdateTime - INTERVAL 5 HOUR"]);
                         //end of debugging
                         echo $timestamp;
                     } else {

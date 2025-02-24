@@ -95,7 +95,8 @@ h2 img {
 
                         //debugging lines
                         if (isset($rowTime["Formatted_Time"])) {
-                            $timestamp = date("Y-m-d H:i:s", strtotime($row["Formatted_Time"]));  
+                            $timestamp = $rowTime["Formatted_Time"];  
+                            echo "rowTime is set!";
                         }
                         //end of debugging
                         

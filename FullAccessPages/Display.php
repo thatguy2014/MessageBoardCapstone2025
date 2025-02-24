@@ -56,6 +56,7 @@ html, body {
     margin: 0;
     padding: 0;
     text-align: center;
+    position: relative;
 }
 
 h2 {
@@ -85,10 +86,33 @@ h2 img {
     max-width: 90%;
     height: auto;
 }
+
+/* Fullscreen back arrow and logo */
+#fullscreenControls {
+    display: none;
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+#backArrow, #logo {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
 </style>
 
 <html>
     <body>
+        <div id="fullscreenControls">
+            <img id="backArrow" src="uploads/backarrow.png" onclick="exitFullscreen()" alt="Back">
+            <img id="onulogo" src="uploads/onulogo.png" alt="ONULogo">
+
+        </div>
+
         <h2 id="currentdisplay">
             <?php  
                 if ($resultbool) {
@@ -135,6 +159,28 @@ h2 img {
             }
         }
 
+        function checkFullscreen() {
+            if (document.fullscreenElement) {
+                document.getElementById("fullscreenControls").style.display = "flex";
+            } else {
+                document.getElementById("fullscreenControls").style.display = "none";
+            }
+        }
+
+        function exitFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) { /* Safari */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE11 */
+                document.msExitFullscreen();
+            }
+        }
+
+        document.addEventListener("fullscreenchange", checkFullscreen);
+        document.addEventListener("webkitfullscreenchange", checkFullscreen);
+        document.addEventListener("msfullscreenchange", checkFullscreen);
+        
         window.onload = adjustFontSize;
         window.onresize = adjustFontSize;
     </script>

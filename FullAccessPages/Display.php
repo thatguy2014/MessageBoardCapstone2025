@@ -49,7 +49,7 @@ html, body {
     height: 100%;
     width: 100%;
     overflow: hidden; /* Prevents scrolling */
-    display: flex;
+    /*display: flex;*/
     justify-content: center;
     align-items: center;
     margin: 0;

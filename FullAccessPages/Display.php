@@ -108,10 +108,10 @@ h2 img {
 <html>
     <body>
         <div id="fullscreenControls">
-        <img id="backArrow" src="assets/back_arrow.png" onclick="simulateEscapeKey()" alt="Back" 
+        <img id="backArrow" src="assets/backarrow.png" onclick="simulateEscapeKey()" alt="Back" 
             style="cursor: pointer; position: fixed; top: 10px; left: 10px; width: 40px; height: 40px; z-index: 1000;">
 
-        <img id="logo" src="assets/your_logo.png" alt="Logo" 
+        <img id="logo" src="assets/onulogo.png" alt="Logo" 
             style="position: fixed; top: 10px; right: 10px; width: 60px; height: auto; z-index: 1000; transition: width 0.3s ease;">
 
         </div>

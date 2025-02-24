@@ -93,9 +93,9 @@ h2 img {
                     if (mysqli_num_rows($time) > 0) {
                         $row = mysqli_fetch_assoc($time);
                         //debugging lines
-                        echo "debugging: ";
                         $i = 0;
                         while ($row = mysqli_fetch_assoc($time)) {
+                            echo "loop running";
                             $i++;
                             $content .= $i . " ";
                             echo $row["Formatted_Time"];

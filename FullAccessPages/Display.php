@@ -91,7 +91,7 @@ h2 img {
                     $timestamp = "";
                     echo "<br> Posted Time: ";
                     if (mysqli_num_rows($time) > 0) {
-                        $row = mysqli_fetch_assoc($time)
+                        $row = mysqli_fetch_assoc($time);
                         echo "debugging: ";
                         echo $row["UpdateTime"];
                         echo "<br>";

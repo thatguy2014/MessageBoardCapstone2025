@@ -108,8 +108,8 @@ h2 img {
 <html>
     <body>
         <div id="fullscreenControls">
-            <img id="backArrow" src="uploads/backarrow.png" onclick="exitFullscreen()" alt="Back">
-            <img id="onulogo" src="uploads/onulogo.png" alt="ONULogo">
+            <img id="backArrow" src="assets/backarrow.png" onclick="exitFullscreen()" alt="Back">
+            <img id="onulogo" src="assets/onulogo.png" alt="ONULogo">
 
         </div>
 

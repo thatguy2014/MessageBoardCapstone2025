@@ -170,14 +170,18 @@ h2 img {
         }
 
         function exitFullscreen() {
-            if (document.fullscreenElement) {
-                document.exitFullscreen();
-            } else if (document.webkitFullscreenElement) { // Safari
-                document.webkitExitFullscreen();
-            } else if (document.msFullscreenElement) { // IE11
-                document.msExitFullscreen();
+            if (window.parent.document.fullscreenElement) {
+                window.parent.document.exitFullscreen();
+            } else if (window.parent.document.webkitFullscreenElement) { /* Safari */
+                window.parent.document.webkitExitFullscreen();
+            } else if (window.parent.document.msFullscreenElement) { /* IE11 */
+                window.parent.document.msExitFullscreen();
             }
         }
+
+        // Attach this function to the back arrow
+        document.getElementById("backArrow").addEventListener("click", exitFullscreen);
+
         
         // Function to adjust the logo size dynamically
         function adjustLogoSize() {

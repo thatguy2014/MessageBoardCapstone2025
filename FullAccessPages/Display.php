@@ -108,12 +108,11 @@ h2 img {
 <html>
     <body>
         <div id="fullscreenControls">
-        <img id="backArrow" src="assets/backarrow.png" onclick="simulateEscapeKey()" alt="Back" 
-            style="cursor: pointer; position: fixed; top: 10px; left: 10px; width: 40px; height: 40px; z-index: 1000;">
+            <img id="backArrow" src="assets/backarrow.png" onclick="exitFullscreen()" alt="Back" 
+                style="cursor: pointer; position: fixed; top: 10px; left: 10px; width: 40px; height: 40px; z-index: 1000;">
 
-        <img id="logo" src="assets/onulogo.png" alt="Logo" 
-            style="position: fixed; top: 10px; right: 10px; width: 60px; height: auto; z-index: 1000; transition: width 0.3s ease;">
-
+            <img id="logo" src="assets/onulogo.png" alt="Logo" 
+                style="position: fixed; top: 10px; right: 10px; width: 60px; height: auto; z-index: 1000; transition: width 0.3s ease;">
         </div>
 
         <h2 id="currentdisplay">
@@ -171,16 +170,13 @@ h2 img {
         }
 
         function exitFullscreen() {
-            if (document.exitFullscreen) {
+            if (document.fullscreenElement) {
                 document.exitFullscreen();
-            } else if (document.webkitExitFullscreen) { /* Safari */
+            } else if (document.webkitFullscreenElement) { // Safari
                 document.webkitExitFullscreen();
-            } else if (document.msExitFullscreen) { /* IE11 */
+            } else if (document.msFullscreenElement) { // IE11
                 document.msExitFullscreen();
             }
-        }
-        function simulateEscapeKey() {
-            document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', keyCode: 27, which: 27 }));
         }
         
         // Function to adjust the logo size dynamically
@@ -196,13 +192,11 @@ h2 img {
 
         // Detect fullscreen changes
         document.addEventListener("fullscreenchange", adjustLogoSize);
-        window.onload = adjustLogoSize;
-
-                document.addEventListener("fullscreenchange", checkFullscreen);
-                document.addEventListener("webkitfullscreenchange", checkFullscreen);
-                document.addEventListener("msfullscreenchange", checkFullscreen);
-                
-                window.onload = adjustFontSize;
-                window.onresize = adjustFontSize;
+        document.addEventListener("fullscreenchange", checkFullscreen);
+        document.addEventListener("webkitfullscreenchange", checkFullscreen);
+        document.addEventListener("msfullscreenchange", checkFullscreen);
+        
+        window.onload = adjustFontSize;
+        window.onresize = adjustFontSize;
     </script>
 </html>

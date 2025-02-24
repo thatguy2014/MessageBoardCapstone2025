@@ -89,10 +89,10 @@ h2 img {
                     echo $content;
                     $timestamp = "";
                     echo "<br> Posted Time: "
-                    while ($realtime = mysqli_fetch_assoc($time)) {
-                        $timestamp .= $realtime["UpdateTime"] . " ";
-                    }
-                    echo $timestamp
+                    //while ($realtime = mysqli_fetch_assoc($time)) {
+                    //    $timestamp .= $realtime["UpdateTime"] . " ";
+                    //}
+                    //echo $timestamp
                 }
             ?>
         </h2>

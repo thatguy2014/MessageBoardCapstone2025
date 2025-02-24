@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 session_start();          
 
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     $_SESSION["Displayloggedin"] = false;
     echo "<h1>Please refresh the page and log back in</h1><br>";
     exit;
@@ -21,7 +21,7 @@ $time = mysqli_query($conn, "SELECT (UpdateTime - INTERVAL 5 HOUR) AS Formatted_
 // Image-related queries
 $stmt = mysqli_prepare($conn, "SELECT ImageView FROM userinfo WHERE UserId = ?");
 mysqli_stmt_bind_param($stmt, "i", $userid);
-if (mysqli_stmt_execute($stmt)) {
+if(mysqli_stmt_execute($stmt)) {
     mysqli_stmt_store_result($stmt);
     mysqli_stmt_bind_result($stmt, $resultbool);
     mysqli_stmt_fetch($stmt);
@@ -80,13 +80,7 @@ p {
     padding: 0;
 }
 
-/* Ensures images fit properly */
-h2 img {
-    max-width: 90%;
-    height: auto;
-}
-
-/* Fullscreen back arrow and logo */
+/* Fullscreen controls */
 #fullscreenControls {
     display: none;
     position: absolute;
@@ -102,16 +96,18 @@ h2 img {
     height: 40px;
     cursor: pointer;
 }
+
 </style>
 
 <html>
     <body>
         <div id="fullscreenControls">
-            <img id="backArrow" src="assets/backarrow.png" onclick="exitFullscreen()" alt="Back" 
-                style="cursor: pointer; position: fixed; top: 10px; left: 10px; width: 40px; height: 40px; z-index: 1000;">
+        <img id="backArrow" src="assets/backarrow.png" alt="Back" 
+            style="cursor: pointer; position: fixed; top: 10px; left: 10px; width: 40px; height: 40px; z-index: 1000;">
 
-            <img id="logo" src="assets/onulogo.png" alt="Logo" 
-                style="position: fixed; top: 10px; right: 10px; width: 60px; height: auto; z-index: 1000; transition: width 0.3s ease;">
+        <img id="logo" src="assets/onulogo.png" alt="Logo" 
+            style="position: fixed; top: 10px; right: 10px; width: 60px; height: auto; z-index: 1000; transition: width 0.3s ease;">
+
         </div>
 
         <h2 id="currentdisplay">
@@ -149,7 +145,7 @@ h2 img {
             if (!textElement || textElement.innerHTML.trim() === "") return;
 
             let parent = document.documentElement;
-            let fontSize = 10; 
+            let fontSize = 10;
             textElement.style.fontSize = fontSize + "vw";
 
             while (textElement.scrollHeight > parent.clientHeight || textElement.scrollWidth > parent.clientWidth) {
@@ -162,46 +158,35 @@ h2 img {
         function checkFullscreen() {
             if (document.fullscreenElement) {
                 document.getElementById("fullscreenControls").style.display = "flex";
-                window.parent.postMessage("fullscreenOn", "*"); 
             } else {
                 document.getElementById("fullscreenControls").style.display = "none";
-                window.parent.postMessage("fullscreenOff", "*");
             }
         }
 
         function exitFullscreen() {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (document.webkitExitFullscreen) { 
-                document.webkitExitFullscreen();
-            } else if (document.msExitFullscreen) { 
-                document.msExitFullscreen();
-            }
-
             window.parent.postMessage("exitFullscreen", "*");
         }
 
-        function adjustLogoSize(isFullscreen) {
+        // Back Arrow Click - Send Message to Parent
+        document.getElementById("backArrow").addEventListener("click", exitFullscreen);
+
+        function adjustLogoSize() {
             let logo = document.getElementById("logo");
-            if (isFullscreen) {
+        
+            if (document.fullscreenElement) {
                 logo.style.width = "100px";
             } else {
                 logo.style.width = "60px";
             }
         }
 
-        window.addEventListener("message", function(event) {
-            if (event.data === "fullscreenOn") {
-                adjustLogoSize(true);
-            } else if (event.data === "fullscreenOff") {
-                adjustLogoSize(false);
-            }
-        });
+        document.addEventListener("fullscreenchange", adjustLogoSize);
+        window.onload = adjustLogoSize;
 
         document.addEventListener("fullscreenchange", checkFullscreen);
         document.addEventListener("webkitfullscreenchange", checkFullscreen);
         document.addEventListener("msfullscreenchange", checkFullscreen);
-        
+
         window.onload = adjustFontSize;
         window.onresize = adjustFontSize;
     </script>

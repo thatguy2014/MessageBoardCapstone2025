@@ -17,6 +17,7 @@ require_once "/home/site/wwwroot/ScriptFiles/sql.php";
 $userid = $_SESSION["UserId"];
 
 $res = mysqli_query($conn, "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = '" . $userid . "'");
+$time = mysqli_query($conn, "SELECT (UpdateTime - INTERVAL 5 HOUR) FROM CurrentDisplays WHERE UserId = '" . $userid . "'");
 
 // Image-related queries
 $stmt = mysqli_prepare($conn, "SELECT ImageView FROM userinfo WHERE UserId = ?");
@@ -86,6 +87,12 @@ h2 img {
                         $content .= $row["CurrentDisplay"] . " ";
                     }
                     echo $content;
+                    $realtime = "";
+                    echo "<br> Posted Time: "
+                    while ($realtime = mysqli_fetch_assoc($time)) {
+                        $timestamp .= $realtime["UpdateTime"] . " ";
+                    }
+                    echo $timestamp
                 }
             ?>
         </h2>

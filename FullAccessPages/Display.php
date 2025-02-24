@@ -17,7 +17,7 @@ require_once "/home/site/wwwroot/ScriptFiles/sql.php";
 $userid = $_SESSION["UserId"];
 
 $res = mysqli_query($conn, "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = '" . $userid . "'");
-$time = mysqli_query($conn, "SELECT (UpdateTime - INTERVAL 5 HOUR) FROM CurrentDisplays WHERE UserId = '" . $userid . "'");
+$time = mysqli_query($conn, "SELECT (UpdateTime - INTERVAL 5 HOUR) AS Formatted_Time FROM CurrentDisplays WHERE UserId = '" . $userid . "'");
 
 // Image-related queries
 $stmt = mysqli_prepare($conn, "SELECT ImageView FROM userinfo WHERE UserId = ?");
@@ -98,12 +98,13 @@ h2 img {
                         while ($row = mysqli_fetch_assoc($time)) {
                             $i++;
                             $content .= $i . " ";
-                            echo $row["UpdateTime - INTERVAL 5 HOUR"];
-                            $content .= $row["UpdateTime - INTERVAL 5 HOUR"] . " ";
+                            echo $row["Formatted_Time"];
+                            $content .= $row["Formatted_Time"] . " ";
                             echo $content;
                         }
                         echo "<br>";
-                        $timestamp = date("Y-m-d H:i:s", $row["UpdateTime - INTERVAL 5 HOUR"]);
+                        $row = mysqli_fetch_assoc($time);
+                        $timestamp = date("Y-m-d H:i:s", $row["Formatted_Time"]);
                         //end of debugging
                         echo $timestamp;
                     } else {

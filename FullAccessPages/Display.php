@@ -87,10 +87,14 @@ h2 img {
                         $content .= $row["CurrentDisplay"] . " ";
                     }
                     echo $content;
+
                     $timestamp = "";
                     echo "<br> Posted Time: ";
-                    while ($realtime = mysqli_fetch_assoc($time)) {
-                        $timestamp .= $realtime["UpdateTime"] . " ";
+                    if (mysqli_num_rows($time) > 0) {
+                        $row = mysqli_fetch_assoc($time);
+                        $timestamp = $row["UpdateTime"] ?? "";
+                    } else {
+                        $timestamp = "";
                     }
                     echo $timestamp;
                 }

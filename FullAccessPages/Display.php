@@ -92,20 +92,14 @@ h2 img {
                     echo "<br> Posted Time: ";
                     if (mysqli_num_rows($time) > 0) {
                         $row = mysqli_fetch_assoc($time);
+
                         //debugging lines
-                        $i = 0;
-                        while ($row = mysqli_fetch_assoc($time)) {
-                            echo "loop running";
-                            $i++;
-                            $content .= $i . " ";
-                            echo $row["Formatted_Time"];
-                            $content .= $row["Formatted_Time"] . " ";
-                            echo $content;
-                        }
-                        echo "<br>";
                         $row = mysqli_fetch_assoc($time);
-                        $timestamp = date("Y-m-d H:i:s", $row["Formatted_Time"]);
+                        if (isset($row["Formatted_Time"])) {
+                            $timestamp = date("Y-m-d H:i:s", strtotime($row["Formatted_Time"]));  
+                        }
                         //end of debugging
+                        
                         echo $timestamp;
                     } else {
                         $timestamp = "";

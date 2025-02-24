@@ -18,6 +18,7 @@ $userid = $_SESSION["UserId"];
 // Retrieve whether the user has an image display enabled
 $stmt = mysqli_prepare($conn, "SELECT ImageView FROM userinfo WHERE UserId = ?");
 $res = mysqli_query($conn, "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = '" . $userid . "'");
+$time = mysqli_query($conn, "SELECT (UpdateTime - INTERVAL 5 HOUR) AS Formatted_Time FROM CurrentDisplays WHERE UserId = '" . $userid . "'");
 
 mysqli_stmt_bind_param($stmt, "i", $userid);
 
@@ -93,9 +94,14 @@ if (!$resultbool) {
     <h2 id="currentdisplay">
         <?php   
             if ($resultbool) {
-                echo "<img src='$ImageDir'>";
+                echo "<img src='" . $ImageDir . "'>";
             } else {
-                echo $displayText;
+                $content = "";
+                while ($row = mysqli_fetch_assoc($res)) {
+                    $content .= $row["CurrentDisplay"] . " ";
+                }
+                echo $content;
+                $content = "";
             }
         ?>
     </h2>

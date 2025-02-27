@@ -4,6 +4,11 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
 // Enable error reporting for debugging (comment out in production)
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL);
+
+// Connect to the database
+require_once "/home/site/wwwroot/ScriptFiles/sql.php";
+
+$userid = $_SESSION["UserId"];
 ?>
 <html>
     <head>
@@ -44,8 +49,35 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
                         <input type = "hidden" name="customPresets" value="">
                         <select name="custompresets" id="custompresets" onchange="setSelectedValue(this)">
                             <option value="">Select...</option>
-                            <option value="custompresettest">CustomPresetTest</option>
-                            <!-- need php to handle the database custom preset pulling-->
+                            <?php
+                            $presetsQuery = mysqli_prepare($conn, "SELECT PresetString FROM presets WHERE UserId = ?");
+                            mysqli_stmt_bind_param($presetsQuery, "i", $userid);
+                            if(mysqli_stmt_execute($presetsQuery)) {
+                                mysqli_stmt_store_result($presetsQuery);
+                                mysqli_stmt_bind_result($presetsQuery, $presetsResult);
+                                if (mysqli_stmt_fetch($presetsQuery)) {
+                                    echo "<option value = \"" . htmlspecialchars($presetsResult) . "\">" . htmlspecialchars($presetsResult) . "</option>";
+                                }    
+                            }
+
+                            $presets = array();
+                            if (mysqli_stmt_num_rows($presetsQuery) > 0) {
+                                while (mysqli_stmt_fetch($presetsQuery)) {
+                                    $presets[] = $presetsResult;
+                                }
+                            } else {
+                                // If no results were found, add a default option
+                                $presets[] = '';
+                            }
+
+                            // Then use $presets in your HTML generation
+                            foreach ($presets as $preset) {
+                                if (!empty($preset)) {
+                                    $content = "<option value=\"" . htmlspecialchars($preset) . "\">" . htmlspecialchars($preset) . "</option>";
+                                    echo $content;
+                                }
+                            }
+                            ?>
                         </select>
                     </div>
 

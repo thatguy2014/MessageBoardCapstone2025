@@ -7,13 +7,7 @@ error_reporting(E_ALL);
 
 $userid = $_SESSION["UserId"];
 
-$presetsQuery = mysqli_prepare($conn, "SELECT PresetString FROM presets WHERE UserId = ?");
-mysqli_stmt_bind_param($presetsQuery, "i", $userid);
-if(mysqli_stmt_execute($presetsQuery)) {
-    mysqli_stmt_store_result($presetsQuery);
-    mysqli_stmt_bind_result($presetsQuery, $presetsResult);
-    mysqli_stmt_fetch($presetsQuery);    
-}
+
 
 ?>
 <html>
@@ -48,6 +42,17 @@ if(mysqli_stmt_execute($presetsQuery)) {
                         <option value="custompresettest">CustomPresetTest</option>
                         <?php
                             //need sql to pull all of the current custompreset options
+
+                            $presetsQuery = mysqli_prepare($conn, "SELECT PresetString FROM presets WHERE UserId = ?");
+                            mysqli_stmt_bind_param($presetsQuery, "i", $userid);
+                            if(mysqli_stmt_execute($presetsQuery)) {
+                                mysqli_stmt_store_result($presetsQuery);
+                                mysqli_stmt_bind_result($presetsQuery, $presetsResult);
+                                if (mysqli_stmt_fetch($presetsQuery)) {
+                                    echo "<option value = \"" . htmlspecialchars($presetsResult) . "\">" . htmlspecialchars($presetsResult) . "</option>";
+                                }    
+                            }
+
                             $presets = array();
                             if (mysqli_stmt_num_rows($presetsQuery) > 0) {
                                 while (mysqli_stmt_fetch($presetsQuery)) {

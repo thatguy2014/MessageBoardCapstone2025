@@ -11,10 +11,9 @@ require_once "/home/site/wwwroot/ScriptFiles/sql.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     var_dump($_POST);
-    /*
-    if($_POST['addPresetinput'].trim() !== '') {
+    if($_POST['addPresetinput'] !== '') {
         //then add the selected preset
-        $NewPreset = $_POST['addPresetinput'].trim();
+        $NewPreset = $_POST['addPresetinput'];
         $addPresetQuery = mysqli_prepare($conn, "INSERT INTO presets(PresetString,UserId) VALUES (?,?)");
         mysqli_stmt_bind_param($addPresetQuery, "si", $NewPreset, $userid);
         if(mysqli_stmt_execute($addPresetQuery)) {
@@ -33,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             //it didn't work :(
         }
-    }*/
+    }
 }
 
 

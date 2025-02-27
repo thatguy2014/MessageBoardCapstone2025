@@ -92,12 +92,10 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
             var triggerElement = select;
             
             // Update the input value based on the triggering element
-            if (triggerElement.id === 'presets') {
-                console.log("preset has triggered setSelectedValue")    //debug
+            if (triggerElement.id === 'presets') {      //I've confirmed these if statements have been working right
                 document.getElementById('changedisplay').querySelector('[name="custompresets"]').value = '';
                 document.getElementById('changedisplay').querySelector('[name="presets"]').value = selectedValue;
             } else if (triggerElement.id === 'custompresets') {
-                console.log("custompresets has triggered setSelectedValue")    //debug
                 document.getElementById('changedisplay').querySelector('[name="custompresets"]').value = selectedValue;
                 document.getElementById('changedisplay').querySelector('[name="presets"]').value = '';
             }

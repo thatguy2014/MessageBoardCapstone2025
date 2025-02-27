@@ -18,6 +18,7 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
                         <label for="TypeSpinner">Select what type of display you'd like to input:</label>
                         <input type="hidden" name="no_input" value="">
                         <select id="TypeSpinner" name="InputType" onchange="displayQuestion(this.value)">
+                            <option value="">Select...</option>
                             <option value="CustomText">Custom Text</option>
                             <option value="PresetText">Preset Text</option>
                             <option value="Image">Image</option>
@@ -38,13 +39,14 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
                         <p>or select a custom preset:</p>
                         <input type = "hidden" name="selected_input" value="">
                         <select name="custompresets" id="custompresets" onchange="setSelectedValue(this)">
+                            <option value="">Select...</option>
                             <!-- need php to handle the database custom preset pulling-->
                         </select>
                     </div>
 
                     <div id = "Image" style = "display:none;">
                         <label for="fileToUpload">Select image to upload (max 500kb):</label>
-                        <input type="file" name="fileToUpload" id="fileToUpload">
+                        <input type="file" name="selected_input" id="fileToUpload">
                     </div>
 
 

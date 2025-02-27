@@ -90,14 +90,14 @@ error_reporting(E_ALL);
             
             // Update the input value
             document.getElementById('changedisplay').querySelector('[name="selected_input"]').value = selectedValue;
-
+            
             // Reset other preset dropdowns
             document.querySelectorAll('#changedisplay select[name="presets"], #changedisplay select[name="custompresets"]').forEach(function(presetSelect) {
                 if (presetSelect !== select) {
                     presetSelect.value = '';
                 }
             });
-
+            
             // Update form validation
             validateForm();
         }

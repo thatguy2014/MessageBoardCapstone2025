@@ -10,6 +10,8 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
 require_once "/home/site/wwwroot/ScriptFiles/sql.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    var_dump($_POST);
+    /*
     if($_POST['addPresetinput'].trim() !== '') {
         //then add the selected preset
         $NewPreset = $_POST['addPresetinput'].trim();
@@ -31,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             //it didn't work :(
         }
-    }
+    }*/
 }
 
 

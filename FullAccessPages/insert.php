@@ -21,10 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $selectedInput = substr(htmlspecialchars($_POST['textInput']), 0, 250);
         }
         if ($_POST['InputType'] == 'presetText') {
-            if($_POST['presets'] == "") {
-                $selectedInput = substr(htmlspecialchars($_POST['custompresets']), 0, 250);
-            } else if($_POST['custompresets'] == "") {
-                $selectedInput = substr(htmlspecialchars($_POST['presets']), 0, 250);
+            if($_POST['setPresets'] == "") {
+                $selectedInput = substr(htmlspecialchars($_POST['customPresets']), 0, 250);
+            } else if($_POST['customPresets'] == "") {
+                $selectedInput = substr(htmlspecialchars($_POST['setPresets']), 0, 250);
             }
         }
         

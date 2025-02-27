@@ -93,11 +93,11 @@ error_reporting(E_ALL);
             
             // Update the input value based on the triggering element
             if (triggerElement.id === 'presets') {
-                document.getElementById('changedisplay').querySelector('[name="custompresets"]').value = '';
-                document.getElementById('changedisplay').querySelector('[name="presets"]').value = selectedValue;
+                document.getElementById('changedisplay').querySelector('[name="customPresets"]').value = '';
+                document.getElementById('changedisplay').querySelector('[name="setPresets"]').value = selectedValue;
             } else if (triggerElement.id === 'custompresets') {
-                document.getElementById('changedisplay').querySelector('[name="custompresets"]').value = selectedValue;
-                document.getElementById('changedisplay').querySelector('[name="presets"]').value = '';
+                document.getElementById('changedisplay').querySelector('[name="customPresets"]').value = selectedValue;
+                document.getElementById('changedisplay').querySelector('[name="setPresets"]').value = '';
             }
             
             // Update form validation

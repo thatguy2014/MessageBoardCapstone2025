@@ -20,14 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($_POST['InputType'] == 'CustomText') {
             $selectedInput = substr(htmlspecialchars($_POST['textInput']), 0, 250);
         }
-        if ($_POST['InputType'] == 'presetText') {
+        if ($_POST['InputType'] == 'PresetText') {
             if($_POST['setPresets'] == "") {
                 $selectedInput = substr(htmlspecialchars($_POST['customPresets']), 0, 250);
+                var_dump($_POST);
             } else if($_POST['customPresets'] == "") {
                 $selectedInput = substr(htmlspecialchars($_POST['setPresets']), 0, 250);
             }
-            var_dump($_POST);
-            die();
         }
         
 

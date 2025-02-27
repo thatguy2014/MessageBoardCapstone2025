@@ -48,15 +48,16 @@ if(mysqli_stmt_execute($presetsQuery)) {
                         <option value="custompresettest">CustomPresetTest</option>
                         <?php
                             //need sql to pull all of the current custompreset options
-                            echo "running php";
-                            $content = "";
-                            while ($row = mysqli_fetch_assoc($presetsQuery)) {
-                                $content = "<option value=\"";
-                                $content .= $row["PresetString"] . "\"> " . $row["PresetString"] . "</option>";
+                            $presets = array();
+                            if (mysqli_stmt_fetch($presetsQuery)) {
+                                $presets[] = $presetsResult;
+                            }
+
+                            // Then use $presets in your HTML generation
+                            foreach ($presets as $preset) {
+                                $content = "<option value=\"" . htmlspecialchars($preset['PresetString']) . "\">" . htmlspecialchars($preset['PresetString']) . "</option>";
                                 echo $content;
                             }
-                            $content = "";
-                            echo "done with php";
                         ?>
                     </select>
                 </div>

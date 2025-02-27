@@ -93,23 +93,8 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
             
             // Update the input value based on the triggering element
             if (triggerElement.id === 'presets') {
-                echo "Debug 1:";
-                echo document.getElementById('changedisplay').querySelector('[name="customPresets"]').value;
-                echo "<br>";
-                echo document.getElementById('changedisplay').querySelector('[name="setPresets"]').value;
-                echo "<br>";
-
                 document.getElementById('changedisplay').querySelector('[name="customPresets"]').value = '';
-                
-                echo "Debug 2:";
-                echo document.getElementById('changedisplay').querySelector('[name="customPresets"]').value;
-                echo "<br>";
-
                 document.getElementById('changedisplay').querySelector('[name="setPresets"]').value = selectedValue;
-
-                echo "Debug 3:";
-                echo document.getElementById('changedisplay').querySelector('[name="setPresets"]').value;
-                echo "<br>";
             } else if (triggerElement.id === 'custompresets') {
                 document.getElementById('changedisplay').querySelector('[name="customPresets"]').value = selectedValue;
                 document.getElementById('changedisplay').querySelector('[name="setPresets"]').value = '';

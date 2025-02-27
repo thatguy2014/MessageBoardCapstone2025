@@ -17,7 +17,7 @@ error_reporting(E_ALL);
                 <h1>Office Message Board Change Display</h1>
             </header>
             <?php include '/home/site/wwwroot/templates/navbar.html'; ?>
-            <form action="insert.php" method="post" id="changedisplay"> 
+            <form action="insert.php" method="post" id="changedisplay" enctype="multipart/form-data"> 
                     <p> 
                         <label for="TypeSpinner">Select what type of display you'd like to input:</label>
                         <input type="hidden" name="no_input" value="">

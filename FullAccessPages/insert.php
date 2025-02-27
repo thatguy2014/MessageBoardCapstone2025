@@ -36,16 +36,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             error_log("Error adding new row: " . $e->getMessage());
         }
         
-        // Update the database with the selected input THIS likely needs secured to prevent sql injection
         $updateQuery = $conn->prepare("UPDATE CurrentDisplays SET CurrentDisplay = ? WHERE UserId = ?");
         $updateQuery->bind_param("si", $selectedInput, $userid);
-        if (mysqli_query($conn, $updateQuery)) {
-            $message = "<div class='alert alert-success'>Message updated successfully. Redirecting...</div>";
-        } else {
+
+        try {
+            $updateQuery->execute();
+        } catch (Exception $e) {
+            error_log("Error updating message: " . $e->getMessage());
             $message = "<div class='alert alert-danger'>Error updating message. Try again.</div>";
         }
-
         $updateQuery->close();
+        if ($updateQuery->affected_rows > 0) {
+            $message = "<div class='alert alert-success'>Message updated successfully. Redirecting...</div>";
+        }
     }
 }
 

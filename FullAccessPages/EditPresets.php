@@ -51,12 +51,17 @@ if(mysqli_stmt_execute($presetsQuery)) {
                             $presets = array();
                             if (mysqli_stmt_fetch($presetsQuery)) {
                                 $presets[] = $presetsResult;
+                            } else {
+                                // If no results were found, add a default option
+                                $presets[] = '';
                             }
 
                             // Then use $presets in your HTML generation
                             foreach ($presets as $preset) {
-                                $content = "<option value=\"" . htmlspecialchars($preset['PresetString']) . "\">" . htmlspecialchars($preset['PresetString']) . "</option>";
-                                echo $content;
+                                if (!empty($preset)) {
+                                    $content = "<option value=\"" . htmlspecialchars($preset) . "\">" . htmlspecialchars($preset) . "</option>";
+                                    echo $content;
+                                }
                             }
                         ?>
                     </select>

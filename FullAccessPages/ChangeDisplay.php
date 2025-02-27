@@ -110,23 +110,23 @@ error_reporting(E_ALL);
                 submitButton.disabled = false;
             } else {
                 //figure out which element we are looking at and get its selectedValue
-                if(document.getElementById('TypeSpinner').value === "CustomText") {
-                    var selectedValue = form.querySelector('[name="textInput"]').value;
-                }
-                if(document.getElementById('TypeSpinner').value === "PresetText" && document.getElementById('custompresets').value === "") {
-                    var selectedValue = form.querySelector('[name="presets"]').value;
-                }
-                if(document.getElementById('TypeSpinner').value === "PresetText" && document.getElementById('presets').value === "") {
-                    var selectedValue = form.querySelector('[name="custompresets"]').value;
-                }
-                if(document.getElementById('TypeSpinner').value === "Image") {
-                    var selectedValue = form.querySelector('[name="imageUpload"]').value;
-                }
 
-                if (selectedValue === "") {
-                    submitButton.disabled = true;
-                } else {
+                var hasValue = false;
+                if(document.getElementById('TypeSpinner').value === "CustomText") {
+                    hasValue = document.querySelector('[name="textInput"]').value.trim() !== '';
+                }
+                if (document.getElementById('TypeSpinner').value === "PresetText") {
+                    hasValue =  document.querySelector('[name="presets"]').value !== '' || 
+                                document.querySelector('[name="custompresets"]').value !== '';
+                }
+                if (document.getElementById('TypeSpinner').value === "Image") {
+                    hasValue = document.querySelector('[name="imageUpload"]').files.length > 0;
+                }
+                
+                if (hasValue) {
                     submitButton.disabled = false;
+                } else {
+                    submitButton.disabled = true;
                 }
             }
         }

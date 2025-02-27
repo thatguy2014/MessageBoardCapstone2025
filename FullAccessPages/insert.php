@@ -45,10 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             error_log("Error updating message: " . $e->getMessage());
             $message = "<div class='alert alert-danger'>Error updating message. Try again.</div>";
         }
-        $updateQuery->close();
         if ($updateQuery->affected_rows > 0) {
             $message = "<div class='alert alert-success'>Message updated successfully. Redirecting...</div>";
         }
+        $updateQuery->close();
     }
 }
 

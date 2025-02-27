@@ -21,7 +21,7 @@ function deleteExistingFile($filepath) {
 $userid = $_SESSION["UserId"];
 $message = ""; // Initialize message variable
 $target_dir = "uploads/";
-$target_file = dirname(dirname(__FILE__)) . '/' . $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$target_file = dirname(dirname(__FILE__)) . '/' . $target_dir . basename($_FILES["imageUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 $errorMessage = "";
@@ -29,7 +29,7 @@ $successMessage = "";
 
 // Check if a new message is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if ($_POST['InputType'] == 'Image' && $_FILES['fileToUpload']['name']) {    //check if the input was an image
+    if ($_POST['InputType'] == 'Image' && $_FILES['imageUpload']['name']) {    //check if the input was an image
         mysqli_query($conn, "UPDATE userinfo SET ImageView = 1 WHERE UserId = '$userid';");
 
         // Ensure directory exists
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Check if file is an image
         if (isset($_POST["submit"])) {
-            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+            $check = getimagesize($_FILES["imageUpload"]["tmp_name"]);
             if ($check === false) {
                 $errorMessage = "File is not an image.";
                 $uploadOk = 0;
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Check file size
-        if ($_FILES["fileToUpload"]["size"] > 500000) {
+        if ($_FILES["imageUpload"]["size"] > 500000) {
             $errorMessage = "Sorry, your file is too large.";
             $uploadOk = 0;
         }
@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Move new file
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+        if (move_uploaded_file($_FILES["imageUpload"]["tmp_name"], $target_file)) {
             // Update database
             try {
                 mysqli_query($conn, "UPDATE CurrentDisplays SET ImageLocation = '$target_file' WHERE UserId = $userid;");

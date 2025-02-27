@@ -29,7 +29,7 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
                         <label for = "presets">Select what preset you'd like to display</label>
                         <input type="hidden" name="selected_input" value="">
                         <select name="presets" id="presets" onchange="setSelectedValue(this)">
-                            <option value=" ">Select...</option>
+                            <option value="">Select...</option>
                             <option value="I'll be back in 5">I'll be back in 5</option>
                             <option value="I'm off campus for the rest of the day">I'm off campus for the rest of the day</option>
                             <option value="I'll be back soon">I'll be back soon</option>

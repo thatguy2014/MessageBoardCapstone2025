@@ -31,7 +31,7 @@ error_reporting(E_ALL);
 
                     <div id = "PresetText" style = "display:none;">
                         <label for = "presets">Select what preset you'd like to display</label>
-                        <input type="hidden" name="selected_input" value="">
+                        <input type="hidden" name="setPresets" value="">
                         <select name="presets" id="presets" onchange="setSelectedValue(this)">
                             <option value="">Select...</option>
                             <option value="I'll be back in 5">I'll be back in 5</option>
@@ -41,7 +41,7 @@ error_reporting(E_ALL);
                         </select>
 
                         <p>or select a custom preset:</p>
-                        <input type = "hidden" name="selected_input" value="">
+                        <input type = "hidden" name="customPresets" value="">
                         <select name="custompresets" id="custompresets" onchange="setSelectedValue(this)">
                             <option value="">Select...</option>
                             <option value="custompresettest">CustomPresetTest</option>
@@ -51,14 +51,14 @@ error_reporting(E_ALL);
 
                     <div id = "Image" style = "display:none;">
                         <label for="fileToUpload">Select image to upload (max 500kb):</label>
-                        <input type="file" name="selected_input" id="fileToUpload" onchange="validateForm()">
+                        <input type="file" name="imageUpload" id="fileToUpload" onchange="validateForm()">
                     </div>
 
 
                     <div id="CustomText" style ="display:none;">
                         <p>
                             <label for="Input">Input what you'd like to display (250 chararcter limit):</label>
-                            <input type="text" name="selected_input" id="Input" maxlength="250" onchange="validateForm()">
+                            <input type="text" name="textInput" id="Input" maxlength="250" onchange="validateForm()">
                         </p>
                     </div>
                     

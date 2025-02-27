@@ -18,8 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
     } else { //if the input was text and not and image do the following
         if ($_POST['InputType'] == 'CustomText') {
-            var_dump($_POST); //debugging
-            die();            //debugging
             $selectedInput = substr(htmlspecialchars($_POST['textInput']), 0, 250);
         }
         if ($_POST['InputType'] == 'presetText') {

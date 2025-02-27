@@ -18,6 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
     } else { //if the input was text and not and image do the following
         if ($_POST['InputType'] == 'CustomText') {
+            var_dump($_POST); //debugging
+            die();            //debugging
             $selectedInput = substr(htmlspecialchars($_POST['textInput']), 0, 250);
         }
         if ($_POST['InputType'] == 'presetText') {
@@ -37,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         // Update the database with the selected input THIS likely needs secured to prevent sql injection
-        $updateQuery = $con->prepare("UPDATE CurrentDisplays SET CurrentDisplay = ? WHERE UserId = ?");
+        $updateQuery = $conn->prepare("UPDATE CurrentDisplays SET CurrentDisplay = ? WHERE UserId = ?");
         $updateQuery->bind_param("si", $selectedInput, $userid);
         if (mysqli_query($conn, $updateQuery)) {
             $message = "<div class='alert alert-success'>Message updated successfully. Redirecting...</div>";

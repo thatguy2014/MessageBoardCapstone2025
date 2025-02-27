@@ -39,7 +39,6 @@ $userid = $_SESSION["UserId"];
                     <input type = "hidden" name="deletePresetInput_hidden" value="">
                     <select name="deletePresetInput" id="deletePresetInput" onchange="">
                         <option value="">Select...</option>
-                        <option value="custompresettest">CustomPresetTest</option>
                         <?php
                             //need sql to pull all of the current custompreset options
 

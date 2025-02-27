@@ -17,7 +17,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_POST['InputType'] == 'Image' && $_FILES['fileToUpload']['name']) {    //check if the input was an image
         
     } else { //if the input was text and not and image do the following
-        $selectedInput = substr(htmlspecialchars($_POST['selected_input']), 0, 250);
+        if ($_POST['InputType'] == 'CustomText') {
+            $selectedInput = substr(htmlspecialchars($_POST['textInput']), 0, 250);
+        }
+        if ($_POST['InputType'] == 'presetText') {
+            if($_POST['presets'] == "") {
+                $selectedInput = substr(htmlspecialchars($_POST['customPresets']), 0, 250);
+            } else if($_POST['custompresets'] == "") {
+                $selectedInput = substr(htmlspecialchars($_POST['setPresets']), 0, 250);
+            }
+        }
+        
 
         // Insert a new row if it doesn't already exist
         try {

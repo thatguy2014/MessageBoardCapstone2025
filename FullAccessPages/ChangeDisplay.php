@@ -88,8 +88,12 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
         function setSelectedValue(select) {
             var selectedValue = select.value;
 
+            // Clear all fields first
+            document.getElementById('changedisplay').querySelectorAll('input, select').forEach(input => {input.value = '';
+            });
+
              // Determine which select element triggered the event
-            var triggerElement = event.target;
+            var triggerElement = select;
             
             // Update the input value based on the triggering element
             if (triggerElement.id === 'presets') {

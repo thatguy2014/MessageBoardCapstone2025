@@ -87,16 +87,18 @@ error_reporting(E_ALL);
 
         function setSelectedValue(select) {
             var selectedValue = select.value;
+
+             // Determine which select element triggered the event
+            var triggerElement = event.target;
             
-            // Update the input value
-            document.getElementById('changedisplay').querySelector('[name="selected_input"]').value = selectedValue;
-            
-            // Reset other preset dropdowns
-            document.querySelectorAll('#changedisplay select[name="presets"], #changedisplay select[name="custompresets"]').forEach(function(presetSelect) {
-                if (presetSelect !== select) {
-                    presetSelect.value = '';
-                }
-            });
+            // Update the input value based on the triggering element
+            if (triggerElement.id === 'presets') {
+                document.getElementById('changedisplay').querySelector('[name="custompresets"]').value = '';
+                document.getElementById('changedisplay').querySelector('[name="presets"]').value = selectedValue;
+            } else if (triggerElement.id === 'custompresets') {
+                document.getElementById('changedisplay').querySelector('[name="custompresets"]').value = selectedValue;
+                document.getElementById('changedisplay').querySelector('[name="presets"]').value = '';
+            }
             
             // Update form validation
             validateForm();

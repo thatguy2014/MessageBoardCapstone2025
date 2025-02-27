@@ -73,7 +73,7 @@ $userid = $_SESSION["UserId"];
                     </select>
                 </div>
 
-                <input type="submit" value="Submit" disabled>
+                <input type="submit" value="Submit">
             </form>
 
 

@@ -27,12 +27,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         // Update the database with the selected input THIS likely needs secured to prevent sql injection
-        $updateQuery = "UPDATE CurrentDisplays SET CurrentDisplay = '$selectedInput' WHERE UserId = '$userid'";
+        $updateQuery = $con->prepare("UPDATE CurrentDisplays SET CurrentDisplay = ? WHERE UserId = ?");
+        $updateQuery->bind_param("si", $selectedInput, $userid);
         if (mysqli_query($conn, $updateQuery)) {
             $message = "<div class='alert alert-success'>Message updated successfully. Redirecting...</div>";
         } else {
             $message = "<div class='alert alert-danger'>Error updating message. Try again.</div>";
         }
+
+        $updateQuery->close();
     }
 }
 

@@ -15,7 +15,7 @@ $message = ""; // Initialize message variable
 // Check if a new message is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_POST['InputType'] == 'Image' && $_FILES['fileToUpload']['name']) {    //check if the input was an image
-        require_once "../ScriptFiles/upload.php"    //note that this may cause errors. I haven't double checked it
+        
     } else { //if the input was text and not and image do the following
         $selectedInput = substr(htmlspecialchars($_POST['selected_input']), 0, 250);
 
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             error_log("Error adding new row: " . $e->getMessage());
         }
         
-        // Update the database with the selected input
+        // Update the database with the selected input THIS likely needs secured to prevent sql injection
         $updateQuery = "UPDATE CurrentDisplays SET CurrentDisplay = '$selectedInput' WHERE UserId = '$userid'";
         if (mysqli_query($conn, $updateQuery)) {
             $message = "<div class='alert alert-success'>Message updated successfully. Redirecting...</div>";

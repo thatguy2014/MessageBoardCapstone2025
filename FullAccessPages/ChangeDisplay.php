@@ -109,7 +109,20 @@ error_reporting(E_ALL);
             if (submitButton.disabled) {
                 submitButton.disabled = false;
             } else {
-                var selectedValue = form.querySelector('[name="selected_input"]').value; //this may need fixed, idk if it'll work right
+                //figure out which element we are looking at and get its selectedValue
+                if(document.getElementById('TypeSpinner').value === "CustomText") {
+                    var selectedValue = form.querySelector('[name="textInput"]').value;
+                }
+                if(document.getElementById('TypeSpinner').value === "PresetText" && document.getElementById('custompresets').value === "") {
+                    var selectedValue = form.querySelector('[name="presets"]').value;
+                }
+                if(document.getElementById('TypeSpinner').value === "PresetText" && document.getElementById('presets').value === "") {
+                    var selectedValue = form.querySelector('[name="custompresets"]').value;
+                }
+                if(document.getElementById('TypeSpinner').value === "Image") {
+                    var selectedValue = form.querySelector('[name="imageUpload"]').value;
+                }
+
                 if (selectedValue === "") {
                     submitButton.disabled = true;
                 } else {

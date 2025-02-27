@@ -12,7 +12,7 @@ mysqli_stmt_bind_param($presetsQuery, "i", $userid);
 if(mysqli_stmt_execute($presetsQuery)) {
     mysqli_stmt_store_result($presetsQuery);
     mysqli_stmt_bind_result($presetsQuery, $presetsResult);
-    mysqli_stmt_fetch($presetsQuery);
+    mysqli_stmt_fetch($presetsQuery);    
 }
 
 ?>
@@ -49,8 +49,10 @@ if(mysqli_stmt_execute($presetsQuery)) {
                         <?php
                             //need sql to pull all of the current custompreset options
                             $presets = array();
-                            if (mysqli_stmt_fetch($presetsQuery)) {
-                                $presets[] = $presetsResult;
+                            if (mysqli_stmt_num_rows($presetsQuery) > 0) {
+                                while (mysqli_stmt_fetch($presetsQuery)) {
+                                    $presets[] = $presetsResult;
+                                }
                             } else {
                                 // If no results were found, add a default option
                                 $presets[] = '';

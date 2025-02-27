@@ -50,7 +50,7 @@ if(mysqli_stmt_execute($presetsQuery)) {
                             //need sql to pull all of the current custompreset options
                             echo "running php";
                             $content = "";
-                            while ($row = mysqli_fetch_assoc($res)) {
+                            while ($row = mysqli_fetch_assoc($presetsQuery)) {
                                 $content = "<option value=\"";
                                 $content .= $row["PresetString"] . "\"> " . $row["PresetString"] . "</option>";
                                 echo $content;

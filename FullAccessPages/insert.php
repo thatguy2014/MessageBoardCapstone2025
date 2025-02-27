@@ -22,8 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         if ($_POST['InputType'] == 'presetText') {
             if($_POST['setPresets'] == "") {
+                var_dump($_POST);
                 $selectedInput = substr(htmlspecialchars($_POST['customPresets']), 0, 250);
             } else if($_POST['customPresets'] == "") {
+                var_dump($_POST);
                 $selectedInput = substr(htmlspecialchars($_POST['setPresets']), 0, 250);
             }
         }

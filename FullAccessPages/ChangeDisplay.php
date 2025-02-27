@@ -29,7 +29,7 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
                         <label for = "presets">Select what preset you'd like to display</label>
                         <input type="hidden" name="selected_input" value="">
                         <select name="presets" id="presets" onchange="setSelectedValue(this)">
-                            <option value="">Select...</option>
+                            <option value=" ">Select...</option>
                             <option value="I'll be back in 5">I'll be back in 5</option>
                             <option value="I'm off campus for the rest of the day">I'm off campus for the rest of the day</option>
                             <option value="I'll be back soon">I'll be back soon</option>
@@ -40,20 +40,21 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
                         <input type = "hidden" name="selected_input" value="">
                         <select name="custompresets" id="custompresets" onchange="setSelectedValue(this)">
                             <option value="">Select...</option>
+                            <option value="custompresettest">CustomPresetTest</option>
                             <!-- need php to handle the database custom preset pulling-->
                         </select>
                     </div>
 
                     <div id = "Image" style = "display:none;">
                         <label for="fileToUpload">Select image to upload (max 500kb):</label>
-                        <input type="file" name="selected_input" id="fileToUpload">
+                        <input type="file" name="selected_input" id="fileToUpload" onchange="validateForm()">
                     </div>
 
 
                     <div id="CustomText" style ="display:none;">
                         <p>
                             <label for="Input">Input what you'd like to display (250 chararcter limit):</label>
-                            <input type="text" name="selected_input" id="Input" maxlength="250">
+                            <input type="text" name="selected_input" id="Input" maxlength="250" onchange="validateForm()">
                         </p>
                     </div>
                     

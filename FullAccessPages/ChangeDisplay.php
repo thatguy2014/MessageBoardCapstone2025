@@ -50,8 +50,8 @@ error_reporting(E_ALL);
                     </div>
 
                     <div id = "Image" style = "display:none;">
-                        <label for="fileToUpload">Select image to upload (max 500kb):</label>
-                        <input type="file" name="imageUpload" id="fileToUpload" onchange="validateForm()">
+                        <label for="imageUpload">Select image to upload (max 500kb):</label>
+                        <input type="file" name="imageUpload" id="imageUpload" onchange="validateForm()">
                     </div>
 
 

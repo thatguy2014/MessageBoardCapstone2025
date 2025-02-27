@@ -7,6 +7,14 @@ error_reporting(E_ALL);
 
 $userid = $_SESSION["UserId"];
 
+$presetsQuery = mysqli_prepare($conn, "SELECT PresetString FROM presets WHERE UserId = ?");
+mysqli_stmt_bind_param($presetsQuery, "i", $userid);
+if(mysqli_stmt_execute($presetsQuery)) {
+    mysqli_stmt_store_result($presetsQuery);
+    mysqli_stmt_bind_result($presetsQuery, $presetsResult);
+    mysqli_stmt_fetch($presetsQuery);
+}
+
 ?>
 <html>
     <head>
@@ -28,27 +36,20 @@ $userid = $_SESSION["UserId"];
                 <div id="addPresetDiv" style ="display:block;">
                     <p>
                         <label for="addPresetinput">Input what text you would like to be a preset(max characters: 250)</label>
-                        <input type="text" name="addPresetinput" id="addPresetinput" maxlength="250" onchange="validateForm()">
+                        <input type="text" name="addPresetinput" id="addPresetinput" maxlength="250" onchange="">
                     </p>
                 </div>
 
                 <div id = "deletePresetDiv" style = "display:block;">
                     <label for = "deletePresetInput">Select what preset you'd like to delete</label>
                     <input type = "hidden" name="deletePresetInput_hidden" value="">
-                    <select name="deletePresetInput" id="deletePresetInput" onchange="setSelectedValue(this)">
+                    <select name="deletePresetInput" id="deletePresetInput" onchange="">
                         <option value="">Select...</option>
                         <option value="custompresettest">CustomPresetTest</option>
                         <?php
                             //need sql to pull all of the current custompreset options
                             echo "running php";
-                            $presetsQuery = mysqli_prepare($conn, "SELECT PresetString FROM presets WHERE UserId = ?");
-                            mysqli_stmt_bind_param($presetsQuery, "i", $userid);
-                            echo "running query";
-                            if(mysqli_stmt_execute($presetsQuery)) {
-                                mysqli_stmt_store_result($presetsQuery);
-                                mysqli_stmt_bind_result($presetsQuery, $presetsResult);
-                                mysqli_stmt_fetch($presetsQuery);
-                            }
+                            $content = "";
                             while ($row = mysqli_fetch_assoc($res)) {
                                 $content = "<option value=\"";
                                 $content .= $row["PresetString"] . "\"> " . $row["PresetString"] . "</option>";

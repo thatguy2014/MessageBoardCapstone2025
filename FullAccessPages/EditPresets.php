@@ -40,8 +40,10 @@ $userid = $_SESSION["UserId"];
                         <option value="custompresettest">CustomPresetTest</option>
                         <?php
                             //need sql to pull all of the current custompreset options
+                            echo "running php";
                             $presetsQuery = mysqli_prepare($conn, "SELECT PresetString FROM presets WHERE UserId = ?");
                             mysqli_stmt_bind_param($presetsQuery, "i", $userid);
+                            echo "running query";
                             if(mysqli_stmt_execute($presetsQuery)) {
                                 mysqli_stmt_store_result($presetsQuery);
                                 mysqli_stmt_bind_result($presetsQuery, $presetsResult);
@@ -53,9 +55,11 @@ $userid = $_SESSION["UserId"];
                                 echo $content;
                             }
                             $content = "";
+                            echo "done with php";
                         ?>
                     </select>
                 </div>
+
                 <input type="submit" value="Submit" disabled>
             </form>
 

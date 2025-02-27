@@ -9,6 +9,8 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
 // Connect to the database
 require_once "/home/site/wwwroot/ScriptFiles/sql.php";
 
+$userid = $_SESSION["UserId"];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo $_POST['addPresetinput'];
     echo "<br>";

@@ -94,16 +94,12 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
             // Update the input value based on the triggering element
             if (triggerElement.id === 'presets') {
                 console.log("preset has triggered setSelectedValue")    //debug
-                document.getElementById('changedisplay').querySelector('[name="customPresets"]').value = '';
-                document.getElementById('changedisplay').querySelector('[name="setPresets"]').value = selectedValue;
+                document.getElementById('changedisplay').querySelector('[name="custompresets"]').value = '';
+                document.getElementById('changedisplay').querySelector('[name="presets"]').value = selectedValue;
             } else if (triggerElement.id === 'custompresets') {
                 console.log("custompresets has triggered setSelectedValue")    //debug
-                document.getElementById('changedisplay').querySelector('[name="customPresets"]').value = selectedValue;
-                document.getElementById('changedisplay').querySelector('[name="setPresets"]').value = '';
-            } else if (triggerElement.id === 'customPresets') {                 //this whole section is debug
-                console.log("customPresets has triggered setSelectedValue")    //debug
-                document.getElementById('changedisplay').querySelector('[name="customPresets"]').value = selectedValue;
-                document.getElementById('changedisplay').querySelector('[name="setPresets"]').value = '';
+                document.getElementById('changedisplay').querySelector('[name="custompresets"]').value = selectedValue;
+                document.getElementById('changedisplay').querySelector('[name="presets"]').value = '';
             }
             
             // Update form validation

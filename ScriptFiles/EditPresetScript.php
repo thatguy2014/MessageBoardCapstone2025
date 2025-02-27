@@ -40,9 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-
-
-
+header("refresh:6; url=/../FullAccessPages/currentdisplay.php");
 ?>
 
 <!DOCTYPE html>
@@ -90,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?= $message; ?>
         <p>You will be redirected in 6 seconds...</p>
         <div class="loader"></div>
-        <a href="currentdisplay.php" class="btn btn-dark mt-3">Go Now</a>
+        <a href="/../FullAccessPages/currentdisplay.php" class="btn btn-dark mt-3">Go Now</a>
     </div>
 </body>
 </html>

@@ -118,6 +118,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $selectedInput = substr(htmlspecialchars($_POST['textInput']), 0, 250);
         }
         if ($_POST['InputType'] == 'PresetText') {
+            var_dump($_POST);
+            die();
             if($_POST['setPresets'] == "") {
                 $selectedInput = substr(htmlspecialchars($_POST['customPresets']), 0, 250);
             } else if($_POST['customPresets'] == "") {

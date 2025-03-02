@@ -97,8 +97,8 @@ h2, p {
 
 /* Default sizes */
 #backArrow {
-    width: 40px;
-    height: 40px;
+    width: 200px;
+    height: 200px;
     position: fixed;
     top: 10px;
     left: 10px;
@@ -106,7 +106,7 @@ h2, p {
 }
 
 #logo {
-    width: 60px;
+    width: 200px;
     height: auto;
     position: fixed;
     top: 10px;

@@ -25,7 +25,6 @@ mysqli_stmt_bind_param($time, "i", $userid);
 mysqli_stmt_execute($time);
 $time = mysqli_stmt_get_result($time);
 
-// Image-related queries
 $stmt = mysqli_prepare($conn, "SELECT ImageView FROM userinfo WHERE UserId = ?");
 mysqli_stmt_bind_param($stmt, "i", $userid);
 mysqli_stmt_execute($stmt);
@@ -42,7 +41,6 @@ mysqli_stmt_fetch($ImageStmt);
 
 $ImageDir = "/.." . substr($ImageDir, 18);
 
-// Font family SQL
 $Font = mysqli_prepare($conn, "SELECT Font FROM userinfo WHERE UserId = ?");
 mysqli_stmt_bind_param($Font, "i", $userid);
 mysqli_stmt_execute($Font);
@@ -77,20 +75,19 @@ h2, p {
     padding: 0;
 }
 
-/* Fullscreen controls */
+/* Fullscreen Controls */
 #fullscreenControls {
-    display: none;
+    display: flex;
     position: absolute;
     top: 10px;
     width: 100%;
-    display: flex;
     justify-content: space-between;
     padding: 0 20px;
 }
 
 #backArrow, #logo {
     cursor: pointer;
-    transition: width 0.3s ease, height 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 /* Default sizes */
@@ -110,16 +107,6 @@ h2, p {
     top: 10px;
     right: 10px;
     z-index: 1000;
-}
-
-/* Dynamic resizing when in fullscreen */
-:fullscreen #backArrow {
-    width: 80px;
-    height: 80px;
-}
-
-:fullscreen #logo {
-    width: 120px;
 }
 </style>
 
@@ -155,26 +142,20 @@ h2, p {
     </body>
 
     <script>
-        function adjustFontSize() {
-            let textElement = document.getElementById("currentdisplay");
-            if (!textElement || textElement.innerHTML.trim() === "") return;
-
-            let parent = document.documentElement;
-            let fontSize = 10;
-            textElement.style.fontSize = fontSize + "vw";
-
-            while (textElement.scrollHeight > parent.clientHeight || textElement.scrollWidth > parent.clientWidth) {
-                fontSize -= 0.5;
-                textElement.style.fontSize = fontSize + "vw";
-                if (fontSize < 2) break;
-            }
-        }
-
         function checkFullscreen() {
+            let logo = document.getElementById("logo");
+            let backArrow = document.getElementById("backArrow");
+
             if (document.fullscreenElement) {
-                document.getElementById("fullscreenControls").style.display = "flex";
+                // Increase sizes when fullscreen is enabled
+                backArrow.style.width = "80px";
+                backArrow.style.height = "80px";
+                logo.style.width = "120px";
             } else {
-                document.getElementById("fullscreenControls").style.display = "none";
+                // Reset to original sizes when exiting fullscreen
+                backArrow.style.width = "40px";
+                backArrow.style.height = "40px";
+                logo.style.width = "60px";
             }
         }
 
@@ -182,45 +163,12 @@ h2, p {
             window.parent.postMessage("exitFullscreen", "*");
         }
 
-        // Adjust control sizes on fullscreen toggle
-        function adjustControlSizes() {
-            let logo = document.getElementById("logo");
-            let backArrow = document.getElementById("backArrow");
-
-            if (document.fullscreenElement) {
-                logo.style.width = "120px";
-                backArrow.style.width = "80px";
-                backArrow.style.height = "80px";
-            } else {
-                logo.style.width = "60px";
-                backArrow.style.width = "40px";
-                backArrow.style.height = "40px";
-            }
-        }
-
-        // Back Arrow Click - Send Message to Parent
         document.getElementById("backArrow").addEventListener("click", exitFullscreen);
 
-        document.addEventListener("fullscreenchange", () => {
-            adjustControlSizes();
-            checkFullscreen();
-        });
+        document.addEventListener("fullscreenchange", checkFullscreen);
+        document.addEventListener("webkitfullscreenchange", checkFullscreen);
+        document.addEventListener("msfullscreenchange", checkFullscreen);
 
-        document.addEventListener("webkitfullscreenchange", () => {
-            adjustControlSizes();
-            checkFullscreen();
-        });
-
-        document.addEventListener("msfullscreenchange", () => {
-            adjustControlSizes();
-            checkFullscreen();
-        });
-
-        window.onload = function() {
-            adjustControlSizes();
-            adjustFontSize();
-        };
-
-        window.onresize = adjustFontSize;
+        window.onload = checkFullscreen;
     </script>
 </html>

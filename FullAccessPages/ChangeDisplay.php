@@ -120,9 +120,9 @@ $userid = $_SESSION["UserId"];
 
         function displayExpiration(answer) {
             if (answer){
-                document.getElementById("ExpirationInput").style.display = block;
+                document.getElementById("ExpirationInput").style.display = "block";
             } else {
-                document.getElementById("ExpirationInput").style.display = none;
+                document.getElementById("ExpirationInput").style.display = "none";
             }
         }
 

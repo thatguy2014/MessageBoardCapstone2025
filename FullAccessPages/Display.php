@@ -141,6 +141,7 @@ p {
             ?>
 
             <?php
+                date_default_timezone_set('America/New_York');
                 $ExpirationPrint = "";
                 $now = Date("Y-m-d H:i:s");
                 if(mysqli_num_rows($time) > 0) {

@@ -40,6 +40,9 @@ $ImageDir = "/.." . $ImageDir;
 // Font family SQL
 $Font = mysqli_query($conn, "SELECT Font FROM userinfo WHERE UserId = '" . $userid . "'");
 $UserFont = mysqli_fetch_assoc($Font);
+
+$Expiration = mysqli_query($conn, "SELECT Expiration FROM CurrentDisplays WHERE UserId = '" . $userid . "'");
+
 ?>
 
 <style>
@@ -135,6 +138,20 @@ p {
                     $timestamp = "";
                 }
                 echo $timestamp;
+            ?>
+
+            <?php
+                $ExpirationPrint = "";
+                $now = Date("Y-m-d H:i:s");
+                if(mysqli_num_rows($time) > 0) {
+                    $rowExp = mysqli_fetch_assoc($Expiration);
+                    $ExpirationPrint = $rowExp["Expiration"];
+                    if ($ExpirationPrint < $now) {
+                        echo "<br> <h1>WARNING THIS MESSAGE HAS EXPIRED AS OF:";
+                        echo $ExpirationPrint;
+                        echo "</h1>";
+                    }
+                }
             ?>
         </p>
     </body>

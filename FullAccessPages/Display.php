@@ -147,7 +147,7 @@ p {
                 if(mysqli_num_rows($time) > 0) {
                     $rowExp = mysqli_fetch_assoc($Expiration);
                     $ExpirationPrint = $rowExp["Expiration"];
-                    if ($ExpirationPrint < $now) {
+                    if ($ExpirationPrint < $now && $ExpirationPrint != null) {
                         echo "<br> <h1>WARNING THIS MESSAGE HAS EXPIRED AS OF:";
                         echo $ExpirationPrint;
                         echo "</h1>";

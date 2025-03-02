@@ -150,7 +150,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //set expiration date
     if($_POST['Expiration'] == 'Yes') {
         $DateTime = $_POST['expiration-time'];
-        $ExpirationQuery = $conn->prepare("UPDATE CurrentDisplays SET Expiration = ? WHERE Userid = ?");
+    } else {
+        $DateTime = null;
+    }
+    $ExpirationQuery = $conn->prepare("UPDATE CurrentDisplays SET Expiration = ? WHERE Userid = ?");
         $ExpirationQuery->bind_param("si", $DateTime, $userid);
         try {
             $ExpirationQuery->execute();
@@ -159,7 +162,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $message = "<div class='alert alert-danger'>Error updating Expiration Date. Try again.</div>";
         }
         $ExpirationQuery->close();
-    }
 }
 
 // Delay redirect for 6 seconds

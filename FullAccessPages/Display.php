@@ -1,5 +1,5 @@
 <?php
-// Starts displaying errors when things go wrong
+// Display errors for debugging
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 session_start();          
@@ -10,21 +10,24 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
-// Make sure we have SQL access
+// Database connection
 require_once "/home/site/wwwroot/ScriptFiles/sql.php";
 
 $userid = intval($_SESSION["UserId"]); // Ensure UserId is an integer
 
+// Get display text
 $res = mysqli_prepare($conn, "SELECT CurrentDisplay FROM CurrentDisplays WHERE UserId = ?");
 mysqli_stmt_bind_param($res, "i", $userid);
 mysqli_stmt_execute($res);
 $res = mysqli_stmt_get_result($res);
 
+// Get last updated time
 $time = mysqli_prepare($conn, "SELECT (UpdateTime - INTERVAL 5 HOUR) AS Formatted_Time FROM CurrentDisplays WHERE UserId = ?");
 mysqli_stmt_bind_param($time, "i", $userid);
 mysqli_stmt_execute($time);
 $time = mysqli_stmt_get_result($time);
 
+// Get image display setting
 $stmt = mysqli_prepare($conn, "SELECT ImageView FROM userinfo WHERE UserId = ?");
 mysqli_stmt_bind_param($stmt, "i", $userid);
 mysqli_stmt_execute($stmt);
@@ -32,6 +35,7 @@ mysqli_stmt_store_result($stmt);
 mysqli_stmt_bind_result($stmt, $resultbool);
 mysqli_stmt_fetch($stmt);
 
+// Get image location
 $ImageStmt = mysqli_prepare($conn, "SELECT ImageLocation FROM currentdisplays WHERE UserId = ?");
 mysqli_stmt_bind_param($ImageStmt, "i", $userid);
 mysqli_stmt_execute($ImageStmt);
@@ -41,6 +45,7 @@ mysqli_stmt_fetch($ImageStmt);
 
 $ImageDir = "/.." . substr($ImageDir, 18);
 
+// Get user font preference
 $Font = mysqli_prepare($conn, "SELECT Font FROM userinfo WHERE UserId = ?");
 mysqli_stmt_bind_param($Font, "i", $userid);
 mysqli_stmt_execute($Font);
@@ -145,17 +150,37 @@ h2, p {
         function checkFullscreen() {
             let logo = document.getElementById("logo");
             let backArrow = document.getElementById("backArrow");
+            let textElement = document.getElementById("currentdisplay");
 
             if (document.fullscreenElement) {
-                // Increase sizes when fullscreen is enabled
+                // Increase logo and arrow size in fullscreen
                 backArrow.style.width = "80px";
                 backArrow.style.height = "80px";
                 logo.style.width = "120px";
+
+                // Increase text size dynamically
+                textElement.style.fontSize = "8vw";
             } else {
-                // Reset to original sizes when exiting fullscreen
+                // Reset to normal sizes when exiting fullscreen
                 backArrow.style.width = "40px";
                 backArrow.style.height = "40px";
                 logo.style.width = "60px";
+
+                // Reset text size
+                textElement.style.fontSize = "4vw";
+            }
+        }
+
+        function adjustFontSize() {
+            let textElement = document.getElementById("currentdisplay");
+            let parent = document.documentElement;
+            let fontSize = 8; // Start with a reasonable font size
+            textElement.style.fontSize = fontSize + "vw";
+
+            while (textElement.scrollHeight > parent.clientHeight || textElement.scrollWidth > parent.clientWidth) {
+                fontSize -= 0.5;
+                textElement.style.fontSize = fontSize + "vw";
+                if (fontSize < 2) break; // Prevent text from getting too small
             }
         }
 
@@ -169,6 +194,11 @@ h2, p {
         document.addEventListener("webkitfullscreenchange", checkFullscreen);
         document.addEventListener("msfullscreenchange", checkFullscreen);
 
-        window.onload = checkFullscreen;
+        window.onload = () => {
+            checkFullscreen();
+            adjustFontSize();
+        };
+
+        window.onresize = adjustFontSize;
     </script>
 </html>

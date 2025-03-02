@@ -93,6 +93,19 @@ $userid = $_SESSION["UserId"];
                             <input type="text" name="textInput" id="Input" maxlength="250" onchange="validateForm()">
                         </p>
                     </div>
+
+                    <div id="ExpirationRadio" style="display:none;">
+                        <p>Would you like your message to expire?</p>
+                        <input type="radio" id="ExpirationYes" name="Expiration" value="Yes" onchange="displayExpiration(true)">
+                        <label for="ExpirationYes">Yes</label><br>
+                        <input type="radio" id="ExpirationNo" name="Expiration" value="No" onchange="displayExpiration(false)" checked="checked">
+                        <label for="ExpirationNo">No</label><br>
+                    </div>
+
+                    <div id="ExpirationInput" style="display:none;">
+                        <label for="expiration-time">Choose when your message should expire:</label>
+                        <input type="datetime-local" id="expiration-time" name="expiration-time" />
+                    </div>
                     
                     <input type="submit" value="Submit" disabled>
             </form>
@@ -104,8 +117,22 @@ $userid = $_SESSION["UserId"];
 
 
     <script>
+
+        function displayExpiration(answer) {
+            if (answer){
+                document.getElementById("ExpirationInput").style.display = block;
+            } else {
+                document.getElementById("ExpirationInput").style.display = none;
+            }
+        }
+
         function displayQuestion(answer) {
             document.getElementById(answer).style.display = "block";
+            if (answer != "") {
+                document.getElementById('ExpirationRadio').style.display = "block";
+            } else {
+                document.getElementById('ExpirationRadio').style.display = "none";
+            }
             if (answer != "PresetText") { // hide the div that is not selected
                 document.getElementById('PresetText').style.display = "none";
             }
@@ -144,7 +171,6 @@ $userid = $_SESSION["UserId"];
                 submitButton.disabled = false;
             } else {
                 //figure out which element we are looking at and get its selectedValue
-
                 var hasValue = false;
                 if(document.getElementById('TypeSpinner').value === "CustomText") {
                     hasValue = document.querySelector('[name="textInput"]').value.trim() !== '';
@@ -156,7 +182,6 @@ $userid = $_SESSION["UserId"];
                 if (document.getElementById('TypeSpinner').value === "Image") {
                     hasValue = document.querySelector('[name="imageUpload"]').files.length > 0;
                 }
-                
                 if (hasValue) {
                     submitButton.disabled = false;
                 } else {

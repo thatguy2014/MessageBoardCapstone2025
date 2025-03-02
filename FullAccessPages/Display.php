@@ -96,22 +96,20 @@ h2, p {
 }
 
 /* Default sizes */
-#backArrow {
-    width: 200px;
-    height: 200px;
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 1000;
-}
-
-#logo {
+#backArrow, #logo {
     width: 200px;
     height: auto;
     position: fixed;
     top: 10px;
-    right: 10px;
     z-index: 1000;
+}
+
+#backArrow {
+    left: 10px;
+}
+
+#logo {
+    right: 10px;
 }
 </style>
 
@@ -152,7 +150,9 @@ h2, p {
             let backArrow = document.getElementById("backArrow");
             let textElement = document.getElementById("currentdisplay");
 
-            if (document.fullscreenElement) {
+            console.log("Fullscreen Check Triggered"); // Debugging log
+
+            if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
                 // Increase logo and arrow size in fullscreen
                 backArrow.style.width = "80px";
                 backArrow.style.height = "80px";
@@ -160,14 +160,18 @@ h2, p {
 
                 // Increase text size dynamically
                 textElement.style.fontSize = "8vw";
+
+                console.log("Entered Fullscreen Mode");
             } else {
                 // Reset to normal sizes when exiting fullscreen
-                backArrow.style.width = "40px";
-                backArrow.style.height = "40px";
-                logo.style.width = "60px";
+                backArrow.style.width = "200px";
+                backArrow.style.height = "200px";
+                logo.style.width = "200px";
 
                 // Reset text size
                 textElement.style.fontSize = "4vw";
+
+                console.log("Exited Fullscreen Mode");
             }
         }
 

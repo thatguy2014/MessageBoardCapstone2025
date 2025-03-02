@@ -153,15 +153,15 @@ h2, p {
             console.log("Fullscreen Check Triggered"); // Debugging log
 
             if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
-                // Increase logo and arrow size in fullscreen
-                backArrow.style.width = "80px";
-                backArrow.style.height = "80px";
-                logo.style.width = "120px";
+                // Make images smaller in fullscreen
+                backArrow.style.width = "60px";
+                backArrow.style.height = "60px";
+                logo.style.width = "80px";
 
-                // Increase text size dynamically
-                textElement.style.fontSize = "8vw";
+                // Adjust text size dynamically
+                textElement.style.fontSize = "6vw";
 
-                console.log("Entered Fullscreen Mode");
+                console.log("Entered Fullscreen Mode - Images Shrunk");
             } else {
                 // Reset to normal sizes when exiting fullscreen
                 backArrow.style.width = "200px";
@@ -171,9 +171,10 @@ h2, p {
                 // Reset text size
                 textElement.style.fontSize = "4vw";
 
-                console.log("Exited Fullscreen Mode");
+                console.log("Exited Fullscreen Mode - Images Back to Normal");
             }
         }
+
 
         function adjustFontSize() {
             let textElement = document.getElementById("currentdisplay");

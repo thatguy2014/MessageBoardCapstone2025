@@ -127,7 +127,8 @@ $userid = $_SESSION["UserId"];
         }
 
         function displayQuestion(answer = null) {
-            console.log("answer = " . answer);            //for debugging
+            let consolelog = "answer = " + answer;
+            console.log(consolelog);            //for debugging
             if (answer === null) {
                 console.log("answer was null");
                 // Hide all divs when answer is null

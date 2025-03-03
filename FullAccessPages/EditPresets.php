@@ -24,7 +24,41 @@ $userid = $_SESSION["UserId"];
             <?php include '/home/site/wwwroot/templates/navbar.html'; ?>
 
             <p>
-            this is going to display all of your current presets
+            <?php
+            //need sql to pull all of the current custompreset options
+
+            $presetsQuery = mysqli_prepare($conn, "SELECT PresetString FROM presets WHERE UserId = ?");
+            mysqli_stmt_bind_param($presetsQuery, "i", $userid);
+            if(mysqli_stmt_execute($presetsQuery)) {
+                mysqli_stmt_store_result($presetsQuery);
+                mysqli_stmt_bind_result($presetsQuery, $presetsResult);
+                if (mysqli_stmt_fetch($presetsQuery)) {
+                    echo "<option value = \"" . htmlspecialchars($presetsResult) . "\">" . htmlspecialchars($presetsResult) . "</option>";
+                }    
+            }
+
+            $presets = array();
+            if (mysqli_stmt_num_rows($presetsQuery) > 0) {
+                while (mysqli_stmt_fetch($presetsQuery)) {
+                    $presets[] = $presetsResult;
+                }
+            } else {
+                // If no results were found, add a default option
+                $presets[] = '';
+            }
+
+            // Then use $presets in your HTML generation
+            $count = 0
+            foreach ($presets as $preset) {
+                if (!empty($preset)) {
+                    $count++;
+                    $content = "Preset " . $count . ": " . htmlspecialchars($preset) . ".<br>";
+                    echo $content;
+                }
+            }
+
+
+            ?>
             </p>
             <form action="/../ScriptFiles/EditPresetScript.php" method="post" id="editpresets"> 
                 <div id="addPresetDiv" style ="display:block;">

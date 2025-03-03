@@ -1,7 +1,7 @@
 <?php
 // Display errors for debugging
-//ini_set('display_errors', 1);
-//error_reporting(E_ALL);
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 session_start();          
 
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
@@ -51,6 +51,9 @@ mysqli_stmt_bind_param($Font, "i", $userid);
 mysqli_stmt_execute($Font);
 $FontResult = mysqli_stmt_get_result($Font);
 $UserFont = mysqli_fetch_assoc($FontResult);
+
+//Get expiration date
+$Expiration = mysqli_query($conn, "SELECT Expiration FROM CurrentDisplays WHERE UserId = '" . $userid . "'");
 ?>
 
 <style>
@@ -139,6 +142,22 @@ h2, p {
                 if (mysqli_num_rows($time) > 0) {
                     $rowTime = mysqli_fetch_assoc($time);
                     echo htmlspecialchars($rowTime["Formatted_Time"], ENT_QUOTES, 'UTF-8');
+                }
+            ?>
+
+            <?php
+
+                date_default_timezone_set('America/New_York');
+                $ExpirationPrint = "";
+                $now = Date("Y-m-d H:i:s");
+                if(mysqli_num_rows($Expiration) > 0) {
+                    $rowExp = mysqli_fetch_assoc($Expiration);
+                    $ExpirationPrint = $rowExp["Expiration"];
+                    if ($ExpirationPrint < $now && $ExpirationPrint != null) {
+                        echo "<br> <h1>WARNING THIS MESSAGE HAS EXPIRED AS OF:";
+                        echo $ExpirationPrint;
+                        echo "</h1>";
+                    }
                 }
             ?>
         </p>

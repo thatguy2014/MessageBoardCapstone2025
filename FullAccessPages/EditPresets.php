@@ -26,13 +26,15 @@ $userid = $_SESSION["UserId"];
             <p>
             <?php
             //need sql to pull all of the current custompreset options
-
+            $count = 1;
             $presetsQuery = mysqli_prepare($conn, "SELECT PresetString FROM presets WHERE UserId = ?");
             mysqli_stmt_bind_param($presetsQuery, "i", $userid);
             if(mysqli_stmt_execute($presetsQuery)) {
                 mysqli_stmt_store_result($presetsQuery);
                 mysqli_stmt_bind_result($presetsQuery, $presetsResult);
-                mysqli_stmt_fetch($presetsQuery);
+                if (mysqli_stmt_fetch($presetsQuery)) {
+                    echo "Preset " . $count . ": " . htmlspecialchars($presetsResult) . ".<br>";
+                }    
             }
 
             $presets = array();
@@ -46,7 +48,7 @@ $userid = $_SESSION["UserId"];
             }
 
             // Then use $presets in your HTML generation
-            $count = 0;
+            
             foreach ($presets as $preset) {
                 if (!empty($preset)) {
                     $count++;

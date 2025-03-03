@@ -127,9 +127,9 @@ $userid = $_SESSION["UserId"];
         }
 
         function displayQuestion(answer = null) {
-            document.getElementById(answer).style.display = "block";
             if (answer != null) {
                 document.getElementById('ExpirationRadio').style.display = "block";
+                document.getElementById(answer).style.display = "block";
             } else {
                 document.getElementById('ExpirationRadio').style.display = "none";
             }

@@ -127,20 +127,32 @@ $userid = $_SESSION["UserId"];
         }
 
         function displayQuestion(answer = null) {
-            if (answer != null) {
-                document.getElementById('ExpirationRadio').style.display = "block";
-                document.getElementById(answer).style.display = "block";
+            if (answer === null) {
+                // Hide all divs when answer is null
+                ['PresetText', 'Image', 'CustomText','ExpirationRadio'].forEach(divId => {
+                    const div = document.getElementById(divId);
+                    if (div) {
+                        div.style.display = "none";
+                    }
+                });
             } else {
-                document.getElementById('ExpirationRadio').style.display = "none";
-            }
-            if (answer != "PresetText") { // hide the div that is not selected
-                document.getElementById('PresetText').style.display = "none";
-            }
-            if (answer != "Image") {
-                document.getElementById('Image').style.display = "none";
-            }
-            if (answer != "CustomText") {
-                document.getElementById('CustomText').style.display = "none";
+                document.getElementById(answer).style.display = "block";
+                if (answer != "PresetText") { // hide the div that is not selected
+                    document.getElementById('PresetText').style.display = "none";
+                }
+                if (answer != "Image") {
+                    document.getElementById('Image').style.display = "none";
+                }
+                if (answer != "CustomText") {
+                    document.getElementById('CustomText').style.display = "none";
+                }
+
+                //showing expiration radio button
+                if (['CustomText', 'Image','PresetText'].includes(answer)) {
+                    document.getElementById('ExpirationRadio').style.display = "block";
+                } else {
+                    document.getElementById('ExpirationRadio').style.display = "none";
+                }
             }
         }
 

@@ -127,7 +127,9 @@ $userid = $_SESSION["UserId"];
         }
 
         function displayQuestion(answer = null) {
+            console.log("answer = " . answer);            //for debugging
             if (answer === null) {
+                console.log("answer was null");
                 // Hide all divs when answer is null
                 ['PresetText', 'Image', 'CustomText','ExpirationRadio'].forEach(divId => {
                     const div = document.getElementById(divId);
@@ -136,6 +138,7 @@ $userid = $_SESSION["UserId"];
                     }
                 });
             } else {
+                console.log("answer was not null");
                 document.getElementById(answer).style.display = "block";
                 if (answer != "PresetText") { // hide the div that is not selected
                     document.getElementById('PresetText').style.display = "none";

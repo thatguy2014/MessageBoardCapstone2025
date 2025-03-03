@@ -27,7 +27,7 @@ $userid = $_SESSION["UserId"];
                         <label for="TypeSpinner">Select what type of display you'd like to input:</label>
                         <input type="hidden" name="no_input" value="">
                         <select id="TypeSpinner" name="InputType" onchange="displayQuestion(this.value)">
-                            <option value="">Select...</option>
+                            <option value="Select">Select...</option>
                             <option value="CustomText">Custom Text</option>
                             <option value="PresetText">Preset Text</option>
                             <option value="Image">Image</option>
@@ -126,12 +126,9 @@ $userid = $_SESSION["UserId"];
             }
         }
 
-        function displayQuestion(answer = null) {
-            let consolelog = "answer = " + answer;
-            console.log(consolelog);            //for debugging
-            if (answer === null) {
-                console.log("answer was null");
-                // Hide all divs when answer is null
+        function displayQuestion(answer ) {
+            if (answer == "Select") {
+                // Hide all divs when answer is Select
                 ['PresetText', 'Image', 'CustomText','ExpirationRadio'].forEach(divId => {
                     const div = document.getElementById(divId);
                     if (div) {
@@ -139,7 +136,6 @@ $userid = $_SESSION["UserId"];
                     }
                 });
             } else {
-                console.log("answer was not null");
                 document.getElementById(answer).style.display = "block";
                 if (answer != "PresetText") { // hide the div that is not selected
                     document.getElementById('PresetText').style.display = "none";

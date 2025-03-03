@@ -32,9 +32,7 @@ $userid = $_SESSION["UserId"];
             if(mysqli_stmt_execute($presetsQuery)) {
                 mysqli_stmt_store_result($presetsQuery);
                 mysqli_stmt_bind_result($presetsQuery, $presetsResult);
-                if (mysqli_stmt_fetch($presetsQuery)) {
-                    echo "<option value = \"" . htmlspecialchars($presetsResult) . "\">" . htmlspecialchars($presetsResult) . "</option>";
-                }    
+                mysqli_stmt_fetch($presetsQuery)
             }
 
             $presets = array();

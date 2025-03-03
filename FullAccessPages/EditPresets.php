@@ -32,7 +32,7 @@ $userid = $_SESSION["UserId"];
             if(mysqli_stmt_execute($presetsQuery)) {
                 mysqli_stmt_store_result($presetsQuery);
                 mysqli_stmt_bind_result($presetsQuery, $presetsResult);
-                mysqli_stmt_fetch($presetsQuery)
+                mysqli_stmt_fetch($presetsQuery);
             }
 
             $presets = array();

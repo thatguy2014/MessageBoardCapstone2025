@@ -181,7 +181,7 @@ h2, p {
                 } else {
                     $content = "";
                     while ($row = mysqli_fetch_assoc($res)) {
-                        $content .= htmlspecialchars($row["CurrentDisplay"], ENT_QUOTES, 'UTF-8') . " ";
+                        $content .= htmlspecialchars_decode(htmlspecialchars($row["CurrentDisplay"], ENT_QUOTES, 'UTF-8'), ENT_QUOTES) . " ";
                     }
                     echo $content;
                 }

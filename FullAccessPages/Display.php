@@ -138,6 +138,24 @@ h2, p {
 #logo {
     right: 10px;
 }
+
+.presetbutton {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.presetbutton:hover {
+    background-color: darkorange;
+}
 </style>
 
 <html>
@@ -190,11 +208,17 @@ h2, p {
                 foreach ($presets as $preset) {
                     if (!empty($preset)) {
                         if($count < 4) {
-                            $count++;
                             $content = "<button class = 'presetbutton' id = button" . $count . ">" . htmlspecialchars($preset) . "</button>";
                             echo $content;
+                            $count++;
                         } else {
                             break;
+                        }
+                    } else {
+                        until ($count >= 4) {
+                            $content = "<button class = 'presetbutton' id = button" . $count . "></button>";
+                            echo $content;
+                            $count++;
                         }
                     }
                 }

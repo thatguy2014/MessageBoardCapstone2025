@@ -288,11 +288,48 @@ h2, p {
             window.parent.postMessage("exitFullscreen", "*");
         }
 
+        function handlePresetButtonClick(event) {
+            // Get the clicked button element
+            const button = event.target;
+            
+            // Check if the button has text content
+            if (button.textContent.trim()) {
+                // Get the text content of the button
+                const buttonText = button.textContent.trim();
+                
+                // Call a function to process the selected preset
+                processSelectedPreset(buttonText);
+            }
+        }
+
+        // Function to process the selected preset
+        function processSelectedPreset(buttonText) {
+            // Send an AJAX request to your insert.php
+            fetch('insert.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `textInput=${encodeURIComponent(buttonText)}&InputType=CustomText`
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                // Handle the result of the processing
+                // You might want to update the UI here
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
         document.getElementById("backArrow").addEventListener("click", exitFullscreen);
 
         document.addEventListener("fullscreenchange", checkFullscreen);
         document.addEventListener("webkitfullscreenchange", checkFullscreen);
         document.addEventListener("msfullscreenchange", checkFullscreen);
+
+        document.querySelectorAll('.presetbutton').forEach(button => {
+        button.addEventListener('click', handlePresetButtonClick);
+        });
 
         window.onload = () => {
             checkFullscreen();

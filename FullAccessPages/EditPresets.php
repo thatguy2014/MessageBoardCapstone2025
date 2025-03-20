@@ -33,6 +33,7 @@ $userid = $_SESSION["UserId"];
                 mysqli_stmt_store_result($presetsQuery);
                 mysqli_stmt_bind_result($presetsQuery, $presetsResult);
                 if (mysqli_stmt_fetch($presetsQuery)) {
+                    $Preset1 = htmlspecialchars($presetsResult);
                     echo "Preset " . $count . ": " . htmlspecialchars($presetsResult) . ".<br>";
                 }    
             }
@@ -74,7 +75,9 @@ $userid = $_SESSION["UserId"];
                     <select name="deletePresetInput" id="deletePresetInput" onchange="">
                         <option value="">Select...</option>
                         <?php
+
                             //  use $presets in your HTML generation
+                            echo "<option value=\"" . $Preset1 . "\">" . $Preset1 . "</option>";
                             foreach ($presets as $preset) {
                                 if (!empty($preset)) {
                                     $content = "<option value=\"" . htmlspecialchars($preset) . "\">" . htmlspecialchars($preset) . "</option>";

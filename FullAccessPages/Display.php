@@ -214,13 +214,12 @@ h2, p {
                         } else {
                             break;
                         }
-                    } else {
-                        until ($count >= 4) {
-                            $content = "<button class = 'presetbutton' id = button" . $count . "></button>";
-                            echo $content;
-                            $count++;
-                        }
                     }
+                }
+                while ($count < 4) {
+                    $content = "<button class = 'presetbutton' id = button" . $count . "></button>";
+                    echo $content;
+                    $count++;
                 }
             ?>
         </p>

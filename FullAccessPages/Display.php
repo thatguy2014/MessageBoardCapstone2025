@@ -151,6 +151,14 @@ h2, p {
     font-size: 16px;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    margin-right: 10px;
+    width: 100px;
+    height: 40px;
+}
+
+.presetbutton:last-child {
+    margin-right: 0;
 }
 
 .presetbutton:hover {

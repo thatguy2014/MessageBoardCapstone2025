@@ -184,6 +184,9 @@ h2, p {
                     }
                 }
                 $count = 0;
+                $content = "<button class = 'presetbutton' id = button" . $count . ">" . htmlspecialchars($preset1) . "</button>";
+                echo $content;
+                $count++;
                 foreach ($presets as $preset) {
                     if (!empty($preset)) {
                         if($count < 4) {

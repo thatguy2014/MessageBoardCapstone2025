@@ -315,8 +315,8 @@ h2, p {
             .then(response => response.text())
             .then(data => {
                 console.log(data);
-                // Handle the result of the processing
-                // You might want to update the UI here
+                // Refresh the page
+                window.location.reload();
             })
             .catch(error => console.error('Error:', error));
         }

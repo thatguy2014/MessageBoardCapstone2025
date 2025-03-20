@@ -84,7 +84,9 @@ $userid = $_SESSION["UserId"];
                         ?>
                     </select>
                 </div>
-
+                    <p>
+                        <b>Note: Your top 4 Custom Presets will be made quick presets on the display page.</b>
+                    </p>
                 <input type="submit" value="Submit">
             </form>
 

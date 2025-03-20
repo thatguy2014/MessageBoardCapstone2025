@@ -139,11 +139,17 @@ h2, p {
     right: 10px;
 }
 
-.presetbutton {
+.presetbutton-container {
     position: fixed;
     bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.presetbutton {
     background-color: orange;
     color: white;
     border: none;
@@ -151,14 +157,8 @@ h2, p {
     font-size: 16px;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    display: inline-block;
-    margin-right: 10px;
-    width: 100px;
-    height: 40px;
-}
-
-.presetbutton:last-child {
-    margin-right: 0;
+    min-width: 100px;
+    min-height: 40px;
 }
 
 .presetbutton:hover {
@@ -209,6 +209,9 @@ h2, p {
                         echo "</h1>";
                     }
                 }
+
+                //buttons
+                echo "<div class='presetbutton-container'>"
                 $count = 0;
                 $content = "<button class = 'presetbutton' id = button" . $count . ">" . htmlspecialchars($preset1) . "</button>";
                 echo $content;
@@ -230,6 +233,7 @@ h2, p {
                     $count++;
                 }
             ?>
+            </div>
         </p>
     </body>
 

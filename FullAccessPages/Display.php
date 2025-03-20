@@ -211,7 +211,7 @@ h2, p {
                 }
 
                 //buttons
-                echo "<div class='presetbutton-container'>"
+                echo "<div class='presetbutton-container'>";
                 $count = 0;
                 $content = "<button class = 'presetbutton' id = button" . $count . ">" . htmlspecialchars($preset1) . "</button>";
                 echo $content;

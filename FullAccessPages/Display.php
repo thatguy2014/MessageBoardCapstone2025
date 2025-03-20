@@ -54,7 +54,31 @@ $UserFont = mysqli_fetch_assoc($FontResult);
 
 //Get expiration date
 $Expiration = mysqli_query($conn, "SELECT Expiration FROM CurrentDisplays WHERE UserId = '" . $userid . "'");
+
+//Get custom presets
+$presetsQuery = mysqli_prepare($conn, "SELECT PresetString FROM presets WHERE UserId = ?");
+$preset1;
+mysqli_stmt_bind_param($presetsQuery, "i", $userid);
+if(mysqli_stmt_execute($presetsQuery)) {
+    mysqli_stmt_store_result($presetsQuery);
+    mysqli_stmt_bind_result($presetsQuery, $presetsResult);
+    if (mysqli_stmt_fetch($presetsQuery)) {
+        $preset1 = htmlspecialchars($presetsResult);
+    }  
+}
+
+$presets = array();
+if (mysqli_stmt_num_rows($presetsQuery) > 0) {
+    while (mysqli_stmt_fetch($presetsQuery)) {
+        $presets[] = $presetsResult;
+    }
+} else {
+    // If no results were found, add a default option
+    $presets[] = '';
+}
 ?>
+
+
 
 <style>
 html, body {                  
@@ -157,6 +181,18 @@ h2, p {
                         echo "<br> <h1>WARNING THIS MESSAGE HAS EXPIRED AS OF:";
                         echo $ExpirationPrint;
                         echo "</h1>";
+                    }
+                }
+                $count = 0;
+                foreach ($presets as $preset) {
+                    if (!empty($preset)) {
+                        if($count < 4) {
+                            $count++;
+                            $content = "<button class = 'presetbutton' id = button" . $count . ">" . htmlspecialchars($preset) . "</button>";
+                            echo $content;
+                        } else {
+                            break;
+                        }
                     }
                 }
             ?>

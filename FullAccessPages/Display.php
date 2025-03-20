@@ -175,6 +175,7 @@ h2, p {
 
         <h2 id="currentdisplay">
             <?php  
+                //printing actual data (text or image)
                 if (!empty($resultbool) && $resultbool == 1) {
                     echo "<img src='" . htmlspecialchars($ImageDir, ENT_QUOTES, 'UTF-8') . "'>";
                 } else {
@@ -188,6 +189,7 @@ h2, p {
         </h2>
         <p>
             <?php
+                //printing posted time
                 echo "<br> Posted Time: ";
                 if (mysqli_num_rows($time) > 0) {
                     $rowTime = mysqli_fetch_assoc($time);
@@ -196,7 +198,7 @@ h2, p {
             ?>
 
             <?php
-
+                //printing expiration
                 date_default_timezone_set('America/New_York');
                 $ExpirationPrint = "";
                 $now = Date("Y-m-d H:i:s");

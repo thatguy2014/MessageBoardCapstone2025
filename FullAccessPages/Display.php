@@ -224,12 +224,12 @@ h2, p {
                     //printing expiration
                     date_default_timezone_set('America/New_York');
                     $ExpirationPrint = "";
-                    $now = Date("Y-m-d H:i:s");
+                    $now = Date("m-d H:i:s");
                     if(mysqli_num_rows($Expiration) > 0) {
                         $rowExp = mysqli_fetch_assoc($Expiration);
                         $ExpirationPrint = $rowExp["Expiration"];
                         if ($ExpirationPrint < $now && $ExpirationPrint != null) {
-                            echo "<br> <h1>WARNING THIS MESSAGE HAS EXPIRED AS OF:";
+                            echo "<br> <br> <h1>MESSAGE EXPIRED ON:";
                             echo $ExpirationPrint;
                             echo "</h1>";
                         }

@@ -272,31 +272,6 @@ h2, p {
             }, 500);
         }
 
-        function checkFullscreen() {
-            let logo = document.getElementById("logo");
-            let textElement = document.getElementById("currentdisplay");
-
-            console.log("Fullscreen Check Triggered"); // Debugging log
-
-            if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
-                // Make images smaller in fullscreen
-                logo.style.width = "80px";
-
-                // Adjust text size dynamically
-                textElement.style.fontSize = "6vw";
-
-                console.log("Entered Fullscreen Mode - Images Shrunk");
-            } else {
-                // Reset to normal sizes when exiting fullscreen
-                logo.style.width = "200px";
-
-                // Reset text size
-                textElement.style.fontSize = "4vw";
-
-                console.log("Exited Fullscreen Mode - Images Back to Normal");
-            }
-        }
-
 
         function adjustFontSize() {
             let textElement = document.getElementById("currentdisplay");
@@ -360,16 +335,12 @@ h2, p {
         }
 
         document.getElementById('fullscreen').addEventListener('click', FullscreenPress)
-        document.addEventListener("fullscreenchange", checkFullscreen);
-        document.addEventListener("webkitfullscreenchange", checkFullscreen);
-        document.addEventListener("msfullscreenchange", checkFullscreen);
 
         document.querySelectorAll('.presetbutton').forEach(button => {
         button.addEventListener('click', handlePresetButtonClick);
         });
 
         window.onload = () => {
-            checkFullscreen();
             adjustFontSize();
         };
 

@@ -217,10 +217,10 @@ header("refresh:6; url=currentdisplay.php");
             <a href="currentdisplay.php" class="btn btn-dark mt-3">Go Now</a>
         </div>
         <script>
-                var countdown = 6;
+                var countdowntime = 6;
                 function countdown() {
-                        document.getElementById('countdown').innerHTML = Countdown + " seconds";
-                        countdown--;
+                        document.getElementById('countdown').innerHTML = countdowntime + " seconds";
+                        countdowntime--;
                 }
                 countdown();
                 window.setInterval(function() {

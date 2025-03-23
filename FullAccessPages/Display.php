@@ -336,7 +336,7 @@ h2, p {
                         exitFullscreen();
                     }
                 }
-                
+
         function handlePresetButtonClick(event) {
             // Get the clicked button element
             const button = event.target;
@@ -371,7 +371,7 @@ h2, p {
         }
 
         document.getElementById("backArrow").addEventListener("click", exitFullscreen);
-        document.getElementById('fullscreenButton').addEventListener('click', FullscreenPress)
+        document.getElementById('fullscreen').addEventListener('click', FullscreenPress)
         document.addEventListener("fullscreenchange", checkFullscreen);
         document.addEventListener("webkitfullscreenchange", checkFullscreen);
         document.addEventListener("msfullscreenchange", checkFullscreen);

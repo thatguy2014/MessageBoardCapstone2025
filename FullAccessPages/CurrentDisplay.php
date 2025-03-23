@@ -17,7 +17,6 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
 
             <div class="iframe-container">
                 <iframe id="iframe" src="Display.php" height="400" width="1000"></iframe><br>
-                <button onclick="openFullscreen()">Fullscreen</button>
             </div>
 
             <script>

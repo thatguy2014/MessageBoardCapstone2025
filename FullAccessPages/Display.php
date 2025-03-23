@@ -233,7 +233,7 @@ h2, p {
                 ?>
         </div>
             <div class='bottomrow-container'>
-                <img id="backArrow" src="assets/backarrow.png" alt="Back">
+                <img id="fullscreen" src="assets/fullscreen.png" alt="fullscreen">
                 <?php
                     $count = 0;
                     $content = "<button class = 'presetbutton' id = button" . $count . ">" . htmlspecialchars($preset1) . "</button>";
@@ -256,7 +256,6 @@ h2, p {
                         $count++;
                     }
                 ?>
-                <img id="fullscreen" src="assets/fullscreen.png" alt="fullscreen">
             </div>
         </p>
     </body>
@@ -281,15 +280,12 @@ h2, p {
 
         function checkFullscreen() {
             let logo = document.getElementById("logo");
-            let backArrow = document.getElementById("backArrow");
             let textElement = document.getElementById("currentdisplay");
 
             console.log("Fullscreen Check Triggered"); // Debugging log
 
             if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
                 // Make images smaller in fullscreen
-                backArrow.style.width = "60px";
-                backArrow.style.height = "60px";
                 logo.style.width = "80px";
 
                 // Adjust text size dynamically

@@ -222,9 +222,6 @@ header("refresh:6; url=currentdisplay.php");
             document.addEventListener('DOMContentLoaded', function() {
                 function countdown() {
                         now = Date();
-                        console.log("Current time:", now.toISOString());
-                        console.log("Target time:", then.toISOString());
-                        console.log("Difference:", (then - now));
                         console.log("Seconds left:", Math.floor((then - now) / 1000));
                         document.getElementById('countdown').innerHTML = Math.floor((then - now) / 1000) + " seconds";
                 }

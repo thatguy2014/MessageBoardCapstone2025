@@ -188,9 +188,11 @@ h2, p {
 
 <html>
     <body>
+        <div id="fullscreenControls">
+            <img id="logo" src="assets/onulogo.png" alt="logo">
+        </div>
         <div id="main-content">
             <h2 id="currentdisplay">
-                
                 <?php  
                     //printing actual data (text or image)
                     if (!empty($resultbool) && $resultbool == 1) {
@@ -254,7 +256,7 @@ h2, p {
                         $count++;
                     }
                 ?>
-                <img id="logo" src="assets/onulogo.png" alt="Logo">
+                <img id="fullscreen" src="assets/fullscreen.png" alt="fullscreen">
             </div>
         </p>
     </body>

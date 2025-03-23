@@ -149,7 +149,7 @@ h2, p {
     z-index: 1000;
 }
 
-.presetbutton-container {
+.bottomrow-container {
     position: fixed;
     bottom: 20px;
     left: 0;
@@ -179,8 +179,6 @@ h2, p {
 <html>
     <body>
         <div id="fullscreenControls">
-            <img id="backArrow" src="assets/backarrow.png" alt="Back">
-            <img id="logo" src="assets/onulogo.png" alt="Logo">
         </div>
 
         <h2 id="currentdisplay">
@@ -223,7 +221,11 @@ h2, p {
                 }
 
                 //buttons
-                echo "<div class='presetbutton-container'>";
+                echo "<div class='bottomrow-container'>";
+                ?>
+                <img id="backArrow" src="assets/backarrow.png" alt="Back">
+                <img id="logo" src="assets/onulogo.png" alt="Logo">
+                <?php
                 $count = 0;
                 $content = "<button class = 'presetbutton' id = button" . $count . ">" . htmlspecialchars($preset1) . "</button>";
                 echo $content;

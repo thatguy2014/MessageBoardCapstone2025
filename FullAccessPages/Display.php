@@ -154,7 +154,7 @@ h2, p {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     min-width: 100px;
     min-height: 40px;
-    max-width:
+    max-width: 200px;
 }
 
 .presetbutton:hover {

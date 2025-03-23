@@ -218,7 +218,7 @@ header("refresh:6; url=currentdisplay.php");
         </div>
         <script>
                 var now = new Date();
-                var then = new Date(now.getTime() + 6 * 1000);
+                var then = new Date(now.getTime() + 7 * 1000);
                 function countdown() {
                         now = new Date();
                         console.log("Current time:", now.toISOString());

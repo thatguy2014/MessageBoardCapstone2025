@@ -128,22 +128,23 @@ h2, p {
 #backArrow, #logo {
     width: 200px;
     height: auto;
-    position: fixed;
     top: 10px;
     z-index: 1000;
+    padding: 10px 20px;
+    cursor: pointer;
 }
 
 #backArrow {
-    position: fixed;
     bottom: 20px;
     left: 20px;
     z-index: 1000;
+
+
+
 }
 
 #logo {
-    cursor: pointer;
     transition: transform 0.3s ease;
-    position: fixed;
     bottom: 20px;
     right: 20px;
     z-index: 1000;
@@ -224,7 +225,6 @@ h2, p {
                 echo "<div class='bottomrow-container'>";
                 ?>
                 <img id="backArrow" src="assets/backarrow.png" alt="Back">
-                <img id="logo" src="assets/onulogo.png" alt="Logo">
                 <?php
                 $count = 0;
                 $content = "<button class = 'presetbutton' id = button" . $count . ">" . htmlspecialchars($preset1) . "</button>";
@@ -247,6 +247,7 @@ h2, p {
                     $count++;
                 }
             ?>
+            <img id="logo" src="assets/onulogo.png" alt="Logo">
             </div>
         </p>
     </body>

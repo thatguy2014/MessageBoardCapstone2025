@@ -105,7 +105,6 @@ h2, p {
     max-width: 100%;
     margin: 0;
     padding: 0;
-    position: fixed;
 }
 
 /* Fullscreen Controls */
@@ -264,15 +263,7 @@ h2, p {
 
     <script>
                 
-                function FullscreenPress() {
-                    var elem = document.documentElement;
-
-                    if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
-                        openFullscreen();
-                    }else {
-                        exitFullscreen();
-                    }
-                }
+                
 
                 function openFullscreen() {
                     if (elem.requestFullscreen) {
@@ -336,6 +327,16 @@ h2, p {
             window.parent.postMessage("exitFullscreen", "*");
         }
 
+        function FullscreenPress() {
+                    var elem = document.documentElement;
+
+                    if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+                        openFullscreen();
+                    }else {
+                        exitFullscreen();
+                    }
+                }
+                
         function handlePresetButtonClick(event) {
             // Get the clicked button element
             const button = event.target;

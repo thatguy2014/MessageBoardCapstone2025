@@ -117,13 +117,6 @@ h2, p {
     padding: 0 20px;
 }
 
-#backArrow, #logo {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    z-index: 1000;
-}
-
 /* Default sizes */
 #backArrow, #logo {
     width: 200px;

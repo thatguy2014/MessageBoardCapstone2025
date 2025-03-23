@@ -131,9 +131,6 @@ h2, p {
     bottom: 20px;
     left: 20px;
     z-index: 1000;
-
-
-
 }
 
 #logo {
@@ -141,16 +138,6 @@ h2, p {
     bottom: 20px;
     right: 20px;
     z-index: 1000;
-}
-
-.bottomrow-container {
-    position: fixed;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
 }
 
 .presetbutton {
@@ -168,14 +155,38 @@ h2, p {
 .presetbutton:hover {
     background-color: darkorange;
 }
+
+.main-content {
+    width: 90%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px 0;
+    padding-bottom: 60px;
+}
+
+.bottomrow-container {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.presetbutton {
+    position: relative;
+    z-index: 1;
+}
+
+
 </style>
 
 <html>
     <body>
-        <div id="fullscreenControls">
-        </div>
-
+        <div id="main-content">
         <h2 id="currentdisplay">
+            
             <?php  
                 //printing actual data (text or image)
                 if (!empty($resultbool) && $resultbool == 1) {
@@ -189,6 +200,7 @@ h2, p {
                 }
             ?>
         </h2>
+            </div>
         <p>
             <?php
                 //printing posted time

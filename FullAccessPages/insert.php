@@ -217,15 +217,10 @@ header("refresh:6; url=currentdisplay.php");
             <a href="currentdisplay.php" class="btn btn-dark mt-3">Go Now</a>
         </div>
         <script>
-                var now = new Date();
-                var then = new Date(now.getTime() + 7 * 1000);
+                var countdown = 6;
                 function countdown() {
-                        now = new Date();
-                        console.log("Current time:", now.toISOString());
-                        console.log("Target time:", then.toISOString());
-                        console.log("Difference:", (then - now));
-                        console.log("Seconds left:", Math.floor((then - now) / 1000));
-                        document.getElementById('countdown').innerHTML = Math.floor((then - now) / 1000) + " seconds";
+                        document.getElementById('countdown').innerHTML = Countdown + " seconds";
+                        countdown--;
                 }
                 countdown();
                 window.setInterval(function() {

@@ -162,16 +162,20 @@ h2, p {
     margin: 0 auto;
     padding: 20px 0;
     padding-bottom: 60px;
+    height: calc(100vh - 60px); /* Subtracting the bottom padding */
+    margin-bottom: 60px; /* Add bottom margin to create space for the footer */
 }
 
 .bottomrow-container {
-    position: absolute;
-    bottom: 20px;
+    position: fixed;
+    bottom: 0;
     left: 0;
     right: 0;
     display: flex;
     justify-content: center;
     gap: 10px;
+    padding: 10px 0; /* Add some padding at the top */
+    z-index: 999; /* A high value to ensure it stays above other elements */
 }
 
 .presetbutton {

@@ -118,7 +118,7 @@ h2, p {
 }
 
 /* Default sizes */
-#backArrow, #logo {
+#backArrow, #logo, #fullscreen {
     width: 200px;
     height: auto;
     top: 10px;

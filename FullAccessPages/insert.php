@@ -217,8 +217,8 @@ header("refresh:6; url=currentdisplay.php");
             <a href="currentdisplay.php" class="btn btn-dark mt-3">Go Now</a>
         </div>
         <script>
-            var then = new Date(now.getTime() + 6 * 1000);
             var now = new Date();
+            var then = new Date(now.getTime() + 6 * 1000);
             document.addEventListener('DOMContentLoaded', function() {
                 function countdown() {
                         now = Date();

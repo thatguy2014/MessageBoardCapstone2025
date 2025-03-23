@@ -263,7 +263,7 @@ h2, p {
     </body>
 
     <script>
-                document.getElementById('fullscreenButton').addEventListener('click', FullscreenPress)
+                
                 function FullscreenPress() {
                     var elem = document.documentElement;
 
@@ -370,7 +370,7 @@ h2, p {
         }
 
         document.getElementById("backArrow").addEventListener("click", exitFullscreen);
-
+        document.getElementById('fullscreenButton').addEventListener('click', FullscreenPress)
         document.addEventListener("fullscreenchange", checkFullscreen);
         document.addEventListener("webkitfullscreenchange", checkFullscreen);
         document.addEventListener("msfullscreenchange", checkFullscreen);

@@ -220,7 +220,7 @@ header("refresh:6; url=currentdisplay.php");
         function countdown() {
             var now = new Date();
             var then = new Date(now.getTime() + 6 * 1000);
-            document.getElementById('countdown').innerHTML = Math.round((then.now - now) / 1000) + " seconds";
+            document.getElementById('countdown').innerHTML = Math.floor((then - now) / 1000) + " seconds";  
         }
 
         window.setInterval(function() {

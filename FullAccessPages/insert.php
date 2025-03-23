@@ -220,6 +220,7 @@ header("refresh:6; url=currentdisplay.php");
                 var now = new Date();
                 var then = new Date(now.getTime() + 6 * 1000);
                 function countdown() {
+                        now = new Date();
                         console.log("Current time:", now.toISOString());
                         console.log("Target time:", then.toISOString());
                         console.log("Difference:", (then - now));

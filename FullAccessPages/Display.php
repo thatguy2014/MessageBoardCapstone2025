@@ -175,7 +175,7 @@ h2, p {
     justify-content: center;
     gap: 10px;
     padding: 10px 0; /* Add some padding at the top */
-    z-index: 998; /* A high value to ensure it stays above other elements */
+    z-index: 999; /* A high value to ensure it stays above other elements */
 }
 
 .presetbutton {
@@ -188,9 +188,6 @@ h2, p {
 
 <html>
     <body>
-        <div id ="logo">
-            <img id="logo" src="assets/onulogo.png" alt="logo">
-        </div>
         <div id="main-content">
             <h2 id="currentdisplay">
                 
@@ -257,7 +254,7 @@ h2, p {
                         $count++;
                     }
                 ?>
-                <img id="fullscreen" src="assets/onulogo.png" alt="fullscreen">
+                <img id="logo" src="assets/onulogo.png" alt="Logo">
             </div>
         </p>
     </body>

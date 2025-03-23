@@ -231,7 +231,7 @@ header("refresh:6; url=currentdisplay.php");
                 window.setInterval(function() {
                     countdown();
                 }, 1000);
-            }
+            });
         </script>
     </body>
 </html>

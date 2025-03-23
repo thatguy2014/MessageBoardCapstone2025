@@ -329,11 +329,13 @@ h2, p {
 
         function FullscreenPress() {
                     var elem = document.documentElement;
-
+                    console.log("Fullscreen Button Pressed");
                     if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
-                        openFullscreen();
-                    }else {
+                        console.log("Unfullscreening page");
                         exitFullscreen();
+                    }else {
+                        console.log("Making screen fullscreen");
+                        openFullscreen();
                     }
                 }
 

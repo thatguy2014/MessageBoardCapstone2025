@@ -211,8 +211,8 @@ header("refresh:6; url=currentdisplay.php");
         <div class="card">
             <h2>Success!</h2>
             <?= $message; ?>
-            <div id="countdown" style="font-size: 16px; font-weight: bold;"></div>
             <p>You will be redirected in:</p>
+            <div id="countdown" style="font-size: 16px; font-weight: bold;"></div>
             <div class="loader"></div>
             <a href="currentdisplay.php" class="btn btn-dark mt-3">Go Now</a>
         </div>
@@ -220,7 +220,9 @@ header("refresh:6; url=currentdisplay.php");
                 var countdowntime = 6;
                 function countdown() {
                         document.getElementById('countdown').innerHTML = countdowntime + " seconds";
-                        countdowntime--;
+                        if (countdowntime > 0) {
+                            countdowntime--;
+                        }
                 }
                 countdown();
                 window.setInterval(function() {

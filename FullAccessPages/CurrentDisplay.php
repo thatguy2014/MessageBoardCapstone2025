@@ -55,9 +55,10 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
                     }
                 });
 
+                //refresh I-frame every 60 seconds
                 window.setInterval(function() {
                     reloadIFrame();
-                }, 10000);
+                }, 60000);
 
                 function reloadIFrame() {
                     console.log('Reloading iframe...');

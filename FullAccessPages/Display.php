@@ -263,6 +263,31 @@ h2, p {
     </body>
 
     <script>
+                document.getElementById('fullscreenButton').addEventListener('click', FullscreenPress)
+                function FullscreenPress() {
+                    var elem = document.documentElement;
+
+                    if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+                        openFullscreen();
+                    }else {
+                        exitFullscreen();
+                    }
+                }
+
+                function openFullscreen() {
+                    if (elem.requestFullscreen) {
+                        elem.requestFullscreen();
+                    } else if (elem.webkitRequestFullscreen) { 
+                        elem.webkitRequestFullscreen();
+                    } else if (elem.msRequestFullscreen) { 
+                        elem.msRequestFullscreen();
+                    }
+
+                    setTimeout(() => {
+                        elem.contentWindow.postMessage("fullscreenOn", "*");
+                    }, 500);
+                }
+
         function checkFullscreen() {
             let logo = document.getElementById("logo");
             let backArrow = document.getElementById("backArrow");

@@ -105,6 +105,7 @@ h2, p {
     max-width: 100%;
     margin: 0;
     padding: 0;
+    position: fixed;
 }
 
 /* Fullscreen Controls */
@@ -138,6 +139,7 @@ h2, p {
     bottom: 20px;
     right: 20px;
     z-index: 1000;
+    width:100px
 }
 
 .presetbutton {
@@ -160,7 +162,6 @@ h2, p {
     width: 90%;
     max-width: 100%;
     margin: 0 auto;
-    padding: 20px 0;
     padding-bottom: 60px;
     height: calc(100vh - 60px); /* Subtracting the bottom padding */
     margin-bottom: 60px; /* Add bottom margin to create space for the footer */

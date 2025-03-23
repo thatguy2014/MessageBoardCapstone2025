@@ -110,7 +110,7 @@ h2, p {
 /* Fullscreen Controls */
 #fullscreenControls {
     display: flex;
-    position: absolute;
+    position: fixed;
     top: 10px;
     width: 100%;
     justify-content: space-between;
@@ -118,8 +118,10 @@ h2, p {
 }
 
 #backArrow, #logo {
-    cursor: pointer;
-    transition: transform 0.3s ease;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
 }
 
 /* Default sizes */
@@ -132,11 +134,19 @@ h2, p {
 }
 
 #backArrow {
-    left: 10px;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
 }
 
 #logo {
-    right: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
 }
 
 .presetbutton-container {

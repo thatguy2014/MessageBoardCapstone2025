@@ -297,7 +297,7 @@ h2, p {
         }
 
         function exitFullscreen() {
-            window.parent.postMessage("exitFullscreen", "*");
+            elem.contentWindow.postMessage("exitFullscreen", "*");
         }
 
         function FullscreenPress() {

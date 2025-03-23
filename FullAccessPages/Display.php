@@ -156,7 +156,7 @@ h2, p {
     background-color: darkorange;
 }
 
-.main-content {
+#main-content {
     width: 90%;
     max-width: 100%;
     margin: 0 auto;
@@ -185,74 +185,72 @@ h2, p {
 <html>
     <body>
         <div id="main-content">
-        <h2 id="currentdisplay">
-            
-            <?php  
-                //printing actual data (text or image)
-                if (!empty($resultbool) && $resultbool == 1) {
-                    echo "<img src='" . htmlspecialchars($ImageDir, ENT_QUOTES, 'UTF-8') . "'>";
-                } else {
-                    $content = "";
-                    while ($row = mysqli_fetch_assoc($res)) {
-                        $content .= htmlspecialchars_decode(htmlspecialchars($row["CurrentDisplay"], ENT_QUOTES, 'UTF-8'), ENT_QUOTES) . " ";
+            <h2 id="currentdisplay">
+                
+                <?php  
+                    //printing actual data (text or image)
+                    if (!empty($resultbool) && $resultbool == 1) {
+                        echo "<img src='" . htmlspecialchars($ImageDir, ENT_QUOTES, 'UTF-8') . "'>";
+                    } else {
+                        $content = "";
+                        while ($row = mysqli_fetch_assoc($res)) {
+                            $content .= htmlspecialchars_decode(htmlspecialchars($row["CurrentDisplay"], ENT_QUOTES, 'UTF-8'), ENT_QUOTES) . " ";
+                        }
+                        echo $content;
                     }
-                    echo $content;
-                }
-            ?>
-        </h2>
-            </div>
-        <p>
-            <?php
-                //printing posted time
-                echo "<br> Posted Time: ";
-                if (mysqli_num_rows($time) > 0) {
-                    $rowTime = mysqli_fetch_assoc($time);
-                    echo htmlspecialchars($rowTime["Formatted_Time"], ENT_QUOTES, 'UTF-8');
-                }
-            ?>
-
-            <?php
-                //printing expiration
-                date_default_timezone_set('America/New_York');
-                $ExpirationPrint = "";
-                $now = Date("Y-m-d H:i:s");
-                if(mysqli_num_rows($Expiration) > 0) {
-                    $rowExp = mysqli_fetch_assoc($Expiration);
-                    $ExpirationPrint = $rowExp["Expiration"];
-                    if ($ExpirationPrint < $now && $ExpirationPrint != null) {
-                        echo "<br> <h1>WARNING THIS MESSAGE HAS EXPIRED AS OF:";
-                        echo $ExpirationPrint;
-                        echo "</h1>";
-                    }
-                }
-
-                //buttons
-                echo "<div class='bottomrow-container'>";
                 ?>
-                <img id="backArrow" src="assets/backarrow.png" alt="Back">
+            </h2>
+            <p>
                 <?php
-                $count = 0;
-                $content = "<button class = 'presetbutton' id = button" . $count . ">" . htmlspecialchars($preset1) . "</button>";
-                echo $content;
-                $count++;
-                foreach ($presets as $preset) {
-                    if (!empty($preset)) {
-                        if($count < 4) {
-                            $content = "<button class = 'presetbutton' id = button" . $count . ">" . htmlspecialchars($preset) . "</button>";
-                            echo $content;
-                            $count++;
-                        } else {
-                            break;
+                    //printing posted time
+                    echo "<br> Posted Time: ";
+                    if (mysqli_num_rows($time) > 0) {
+                        $rowTime = mysqli_fetch_assoc($time);
+                        echo htmlspecialchars($rowTime["Formatted_Time"], ENT_QUOTES, 'UTF-8');
+                    }
+                ?>
+
+                <?php
+                    //printing expiration
+                    date_default_timezone_set('America/New_York');
+                    $ExpirationPrint = "";
+                    $now = Date("Y-m-d H:i:s");
+                    if(mysqli_num_rows($Expiration) > 0) {
+                        $rowExp = mysqli_fetch_assoc($Expiration);
+                        $ExpirationPrint = $rowExp["Expiration"];
+                        if ($ExpirationPrint < $now && $ExpirationPrint != null) {
+                            echo "<br> <h1>WARNING THIS MESSAGE HAS EXPIRED AS OF:";
+                            echo $ExpirationPrint;
+                            echo "</h1>";
                         }
                     }
-                }
-                while ($count < 4) {
-                    $content = "<button class = 'presetbutton' id = button" . $count . "></button>";
+                ?>
+        </div>
+            <div class='bottomrow-container'>
+                <img id="backArrow" src="assets/backarrow.png" alt="Back">
+                <?php
+                    $count = 0;
+                    $content = "<button class = 'presetbutton' id = button" . $count . ">" . htmlspecialchars($preset1) . "</button>";
                     echo $content;
                     $count++;
-                }
-            ?>
-            <img id="logo" src="assets/onulogo.png" alt="Logo">
+                    foreach ($presets as $preset) {
+                        if (!empty($preset)) {
+                            if($count < 4) {
+                                $content = "<button class = 'presetbutton' id = button" . $count . ">" . htmlspecialchars($preset) . "</button>";
+                                echo $content;
+                                $count++;
+                            } else {
+                                break;
+                            }
+                        }
+                    }
+                    while ($count < 4) {
+                        $content = "<button class = 'presetbutton' id = button" . $count . "></button>";
+                        echo $content;
+                        $count++;
+                    }
+                ?>
+                <img id="logo" src="assets/onulogo.png" alt="Logo">
             </div>
         </p>
     </body>

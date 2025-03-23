@@ -262,22 +262,22 @@ h2, p {
     </body>
 
     <script>
-                
+        var elem = document.documentElement;
                 
 
-                function openFullscreen() {
-                    if (elem.requestFullscreen) {
-                        elem.requestFullscreen();
-                    } else if (elem.webkitRequestFullscreen) { 
-                        elem.webkitRequestFullscreen();
-                    } else if (elem.msRequestFullscreen) { 
-                        elem.msRequestFullscreen();
-                    }
+        function openFullscreen() {
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { 
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { 
+                elem.msRequestFullscreen();
+            }
 
-                    setTimeout(() => {
-                        elem.contentWindow.postMessage("fullscreenOn", "*");
-                    }, 500);
-                }
+            setTimeout(() => {
+                elem.contentWindow.postMessage("fullscreenOn", "*");
+            }, 500);
+        }
 
         function checkFullscreen() {
             let logo = document.getElementById("logo");
@@ -328,7 +328,6 @@ h2, p {
         }
 
         function FullscreenPress() {
-                    var elem = document.documentElement;
                     console.log("Fullscreen Button Pressed");
                     if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
                         console.log("Unfullscreening page");

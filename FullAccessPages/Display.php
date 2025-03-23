@@ -118,19 +118,13 @@ h2, p {
 }
 
 /* Default sizes */
-#backArrow, #logo, #fullscreen {
+#logo, #fullscreen {
     width: 200px;
     height: auto;
     top: 10px;
     z-index: 1000;
     padding: 10px 20px;
     cursor: pointer;
-}
-
-#backArrow {
-    bottom: 20px;
-    left: 20px;
-    z-index: 1000;
 }
 
 #logo {
@@ -294,8 +288,6 @@ h2, p {
                 console.log("Entered Fullscreen Mode - Images Shrunk");
             } else {
                 // Reset to normal sizes when exiting fullscreen
-                backArrow.style.width = "200px";
-                backArrow.style.height = "200px";
                 logo.style.width = "200px";
 
                 // Reset text size
@@ -367,7 +359,6 @@ h2, p {
             .catch(error => console.error('Error:', error));
         }
 
-        document.getElementById("backArrow").addEventListener("click", exitFullscreen);
         document.getElementById('fullscreen').addEventListener('click', FullscreenPress)
         document.addEventListener("fullscreenchange", checkFullscreen);
         document.addEventListener("webkitfullscreenchange", checkFullscreen);

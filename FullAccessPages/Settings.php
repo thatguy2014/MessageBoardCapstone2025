@@ -31,7 +31,7 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
                     <option value="Courier New">Courier New</option>
                     <option value="Impact">Impact</option>
                 </select>
-
+                <br>
                 <input type="submit" value="Save Changes">
                 
             </form>

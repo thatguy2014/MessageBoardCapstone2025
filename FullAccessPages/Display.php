@@ -225,6 +225,7 @@ h2, p {
                     date_default_timezone_set('America/New_York');
                     $ExpirationPrint = "";
                     $now = Date("m-d H:i:s");
+                    $now->modify('+1 hour');
                     if(mysqli_num_rows($Expiration) > 0) {
                         $rowExp = mysqli_fetch_assoc($Expiration);
                         $ExpirationPrint = $rowExp["Expiration"];

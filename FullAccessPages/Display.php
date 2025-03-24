@@ -224,7 +224,7 @@ h2, p {
                     //printing expiration
                     date_default_timezone_set('America/New_York');
                     $ExpirationPrint = "";
-                    $now = Date("y-m-d H:i:s");
+                    $now = Date("Y-m-d H:i:s");
                     if(mysqli_num_rows($Expiration) > 0) {
                         $rowExp = mysqli_fetch_assoc($Expiration);
                         $ExpirationPrint = $rowExp["Expiration"];

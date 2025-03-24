@@ -97,7 +97,7 @@
             <p>You will be redirected in:</p>
             <div id="countdown" style="font-size: 16px; font-weight: bold;"></div>
             <div class="loader"></div>
-            <a href="currentdisplay.php" class="btn btn-dark mt-3">Go Now</a>
+            <a href="/../FullAccessPages/CurrentDisplay.php" class="btn btn-dark mt-3">Go Now</a>
         </div>
         <script>
                 var countdowntime = 6;

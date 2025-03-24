@@ -102,6 +102,10 @@ $userid = $_SESSION["UserId"];
                         <label for="ExpirationNo">No</label><br>
                     </div>
 
+                    <?php
+                    date_default_timezone_set('America/New_York');
+                    ?>
+
                     <div id="ExpirationInput" style="display:none;">
                         <label for="expiration-time">Choose when your message should expire:</label>
                         <input type="datetime-local" id="expiration-time" name="expiration-time" value="<?php echo date('Y-m-d\TH:i:s'); ?>"/>

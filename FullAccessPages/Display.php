@@ -22,7 +22,7 @@ mysqli_stmt_execute($res);
 $res = mysqli_stmt_get_result($res);
 
 // Get last updated time
-$time = mysqli_prepare($conn, "SELECT (UpdateTime - INTERVAL 5 HOUR) AS Formatted_Time FROM CurrentDisplays WHERE UserId = ?");
+$time = mysqli_prepare($conn, "SELECT (UpdateTime - INTERVAL 4 HOUR) AS Formatted_Time FROM CurrentDisplays WHERE UserId = ?");
 mysqli_stmt_bind_param($time, "i", $userid);
 mysqli_stmt_execute($time);
 $time = mysqli_stmt_get_result($time);
@@ -224,7 +224,7 @@ h2, p {
                     //printing expiration
                     date_default_timezone_set('America/New_York');
                     $ExpirationPrint = "";
-                    $now = Date("m-d H:i:s");
+                    $now = Date("y-m-d H:i:s");
                     if(mysqli_num_rows($Expiration) > 0) {
                         $rowExp = mysqli_fetch_assoc($Expiration);
                         $ExpirationPrint = $rowExp["Expiration"];

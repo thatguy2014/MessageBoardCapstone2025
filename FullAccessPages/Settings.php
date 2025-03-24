@@ -32,6 +32,8 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
                     <option value="Impact">Impact</option>
                 </select>
                 <br>
+                <br>
+                <br>
                 <input type="submit" value="Save Changes">
                 
             </form>

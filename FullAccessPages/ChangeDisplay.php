@@ -19,7 +19,7 @@ $userid = $_SESSION["UserId"];
     <body>
         <div>
             <header>
-                <h1>Office Message Board Change Display</h1>
+                <h1>Office Message Board Change Message</h1>
             </header>
             <?php include '/home/site/wwwroot/templates/navbar.html'; ?>
             <form action="insert.php" method="post" id="changedisplay" enctype="multipart/form-data"> 

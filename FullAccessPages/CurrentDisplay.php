@@ -9,7 +9,7 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
     <body>
         <div>
             <header>
-                <h1>Office Message Board Current Display</h1>
+                <h1>Office Message Board Current Message</h1>
             </header>
 
             <!-- Import Navbar -->

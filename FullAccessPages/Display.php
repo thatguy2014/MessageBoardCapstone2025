@@ -162,12 +162,11 @@ h2, p {
 }
 
 #main-content {
-    width: 90%;
+    width: 80%;
     max-width: 100%;
-    margin: 0 auto;
+    margin: 30px auto 70px auto;
     padding-bottom: 60px;
     height: calc(100vh - 60px); /* Subtracting the bottom padding */
-    margin-bottom: 60px; /* Add bottom margin to create space for the footer */
 }
 
 #main-content h2, #main-content p {
@@ -382,7 +381,7 @@ h2, p {
 
         // Run on window resize and initial load
         window.addEventListener('resize', adjustContentSize);
-        
+
         window.onload = adjustContentSize;
         window.onresize = adjustFontSize;
     </script>

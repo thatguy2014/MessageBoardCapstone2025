@@ -170,6 +170,11 @@ h2, p {
     margin-bottom: 60px; /* Add bottom margin to create space for the footer */
 }
 
+#main-content h2, #main-content p {
+    display:inline-block;
+    vertical-align:middle;
+}
+
 .bottomrow-container {
     position: fixed;
     bottom: 0;

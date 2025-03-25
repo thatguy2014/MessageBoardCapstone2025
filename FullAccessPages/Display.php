@@ -360,6 +360,30 @@ h2, p {
             adjustFontSize();
         };
 
+        function adjustContentSize() {
+            const mainContent = document.getElementById('main-content');
+            const contentHeight = mainContent.scrollHeight;
+            const viewportHeight = window.innerHeight;
+
+            // Calculate the maximum allowed height (e.g., 80% of viewport)
+            const maxHeight = Math.floor(viewportHeight * 0.8);
+
+            // Adjust font size if content exceeds maximum height
+            let fontSize = 16; // Start with a base font size
+            while (contentHeight > maxHeight && fontSize > 8) {
+                fontSize--;
+                mainContent.style.fontSize = `${fontSize}px`;
+                contentHeight = mainContent.scrollHeight;
+            }
+
+            // Ensure minimum font size
+            mainContent.style.fontSize = Math.max(fontSize, 12) + 'px';
+        }
+
+        // Run on window resize and initial load
+        window.addEventListener('resize', adjustContentSize);
+        
+        window.onload = adjustContentSize;
         window.onresize = adjustFontSize;
     </script>
 </html>

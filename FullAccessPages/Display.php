@@ -290,14 +290,16 @@ h2, p {
         function adjustFontSize() {
             let textElement = document.getElementById("currentdisplay");
             let parent = document.documentElement;
-            let fontSize = 8; // Start with a reasonable font size
+            let fontSize = 20; // Start with a reasonable font size
             textElement.style.fontSize = fontSize + "vw";
 
             while (textElement.scrollHeight > parent.clientHeight || textElement.scrollWidth > parent.clientWidth) {
                 fontSize -= 0.5;
                 textElement.style.fontSize = fontSize + "vw";
-                if (fontSize < 2) break; // Prevent text from getting too small
+                if (fontSize < 3) break; // Prevent text from getting too small
             }
+            fontSize -= 1;
+            textElement.style.fontSize = fontSize + "vw";
         }
 
         function exitFullscreen() {

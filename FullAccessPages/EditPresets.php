@@ -10,6 +10,12 @@ $userid = $_SESSION["UserId"];
 
 
 ?>
+<style>
+div#all {
+    max-width:90%
+}
+</style>
+
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="/../css/Main.css" />
@@ -17,7 +23,7 @@ $userid = $_SESSION["UserId"];
     
     
     <body>
-        <div>
+        <div id="all">
             <header>
                 <h1>Office Message Board Edit Custom Presets</h1>
             </header>

@@ -8,7 +8,7 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
     
     
     <body>
-        <div>
+        <div class="center-container">
             <header>
                 <h1>Office Message Board Display Settings</h1>
             </header>

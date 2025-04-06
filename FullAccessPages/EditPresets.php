@@ -12,7 +12,11 @@ $userid = $_SESSION["UserId"];
 ?>
 <style>
 div#all {
-    max-width:90%
+    max-width: 90%;
+    margin: 0 auto; /* center the div horizontally */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
 }
 </style>
 
@@ -23,7 +27,7 @@ div#all {
     
     
     <body>
-        <div id="all">
+        <div id="all" class="center-container">
             <header>
                 <h1>Office Message Board Edit Custom Presets</h1>
             </header>

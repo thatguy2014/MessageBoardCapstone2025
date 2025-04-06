@@ -18,6 +18,17 @@ div#all {
     overflow-wrap: break-word;
     white-space: normal;
 }
+.preset-display {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    white-space: normal;
+    margin-bottom: 10px;
+    padding: 8px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
 </style>
 
 <html>

@@ -17,7 +17,7 @@ $userid = $_SESSION["UserId"];
     
     
     <body>
-        <div>
+        <div class="center-container">
             <header>
                 <h1>Office Message Board Change Message</h1>
             </header>

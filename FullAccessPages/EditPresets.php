@@ -20,14 +20,16 @@ div#all {
 }
 .preset-display {
     max-width: 100%;
+    word-wrap: break-word;
     overflow-wrap: break-word;
     word-break: break-all;
     white-space: normal;
-    margin-bottom: 10px;
+    background-color: #f2f2f2;
     padding: 8px;
-    background-color: #f9f9f9;
+    margin: 10px 0;
     border-radius: 5px;
     border: 1px solid #ccc;
+    font-family: sans-serif;
 }
 </style>
 
@@ -55,7 +57,7 @@ div#all {
                 mysqli_stmt_bind_result($presetsQuery, $presetsResult);
                 if (mysqli_stmt_fetch($presetsQuery)) {
                     $Preset1 = htmlspecialchars($presetsResult);
-                    echo "Preset " . $count . ": " . htmlspecialchars($presetsResult) . ".<br>";
+                    echo "<div class='preset-display'>Preset $count: " . htmlspecialchars($presetsResult) . ".</div>";
                 }    
             }
 

@@ -76,7 +76,7 @@ div#all {
             foreach ($presets as $preset) {
                 if (!empty($preset)) {
                     $count++;
-                    $content = "Preset " . $count . ": " . htmlspecialchars($preset) . ".<br>";
+                    $content = "<div class='preset-display'>Preset " . $count . ": " . htmlspecialchars($preset) . ".<br></div>";
                     echo $content;
                 }
             }

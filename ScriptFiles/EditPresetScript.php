@@ -10,6 +10,7 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
 require_once "/home/site/wwwroot/ScriptFiles/sql.php";
 
 $userid = $_SESSION["UserId"];
+$error = true;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if($_POST['addPresetinput'] !== '') {
@@ -20,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if(mysqli_stmt_execute($addPresetQuery)) {
             //it worked!
             $message = "<div class='alert alert-success'>Database updated successfully. Redirecting...</div>";
+            $error = false;
         } else {
             //it didn't work :(
             $message = "<div class='alert alert-danger'>Error updating Database. Try again.</div>";
@@ -33,10 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (mysqli_stmt_execute($deletePresetQuery)) {
             //it worked!
             $message = "<div class='alert alert-success'>Database updated successfully. Redirecting...</div>";
+            $error = true;
         } else {
             //it didn't work :(
             $message = "<div class='alert alert-danger'>Error updating Database. Try again.</div>";
         }
+    }
+    if($_POST['deletePresetInput'] == '' && $_POST['addPresetinput'] == '') {
+        $message = "<div class='alert alert-danger'>Error updating Database, no input found. Try again.</div>"
     }
 }
 
@@ -84,7 +90,15 @@ header("refresh:6; url=/../FullAccessPages/currentdisplay.php");
 </head>
 <body>
     <div class="card">
-        <h2>Success!</h2>
+        <h2>
+            <?
+                if($error) {
+                    print("Error!");
+                } else {
+                    print("Success!");
+                }
+            ?>
+        </h2>
         <?= $message; ?>
         <p>You will be redirected in 6 seconds...</p>
         <div class="loader"></div>

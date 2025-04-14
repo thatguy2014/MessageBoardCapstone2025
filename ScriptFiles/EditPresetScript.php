@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     if($_POST['deletePresetInput'] == '' && $_POST['addPresetinput'] == '') {
-        $message = "<div class='alert alert-danger'>Error updating Database, no input found. Try again.</div>"
+        $message = "<div class='alert alert-danger'>Error updating Database, no input found. Try again.</div>";
     }
 }
 

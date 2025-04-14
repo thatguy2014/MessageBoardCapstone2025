@@ -74,7 +74,7 @@ form label {
     font-size: 1rem;
     color: #444;
     margin-bottom: 8px;
-    display: block;
+    /*display: block; /* Deleting for testing purposes */
 }
 
 /* Input, Select, File Upload */

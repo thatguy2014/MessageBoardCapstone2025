@@ -16,7 +16,7 @@ require_once "/home/site/wwwroot/ScriptFiles/VerifyLogin.php";
             <form action="/../ScriptFiles/SettingsUpdate.php" method="post" enctype="multipart/form-data" id="SettingsForm">
                 <p>Would you like to display your uploaded Image or Text?</p>
                 <input type="radio" id="Image" name="ImageSetting" value="Image">
-                <label for="Image">Display Image</label><br>
+                <label style="Padding-right:50px;" for="Image">Display Image</label>
                 <input type="radio" id="Text" name="ImageSetting" value="Text">
                 <label for="Text">Display Text</label><br>
 

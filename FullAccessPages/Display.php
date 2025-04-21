@@ -337,7 +337,6 @@ h2, p {
                         console.log("Making screen fullscreen");
                         document.getElementById('smallscreen').style.display = 'flex';
                         document.getElementById('fullscreen').style.display = 'none';
-                        document.getElementbyClass('presetbutton').style.display = 'none';
                         document.getElementbyId('button0').style.display = 'none';
                         document.getElementbyId('button1').style.display = 'none';
                         document.getElementbyId('button2').style.display = 'none';

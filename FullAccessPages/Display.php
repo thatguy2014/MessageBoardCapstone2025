@@ -410,6 +410,6 @@ h2, p {
                     }
             }
 
-            window.addEventListener('load', checkFullscreen);
+            window.addEventListener('load', checkFullScreen);
     </script>
 </html>

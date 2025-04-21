@@ -127,7 +127,7 @@ h2, p {
     cursor: pointer;
 }
 
-#fullscreen {
+#fullscreen, #smallscreen {
     position: absolute;
     bottom: 10px;
     left: 10px;
@@ -267,7 +267,7 @@ h2, p {
 
                 ?>
             </div>
-            <div class='bottomrow-container' id="fullscreen-bottomrow-container">
+            <div class='bottomrow-container' id="fullscreen-bottomrow-container" display ="none">
                 <img id="smallscreen" src="assets/fullscreen.png" alt="fullscreen">
             </div>
         </p>
@@ -311,10 +311,10 @@ h2, p {
         }
 
         function exitFullscreen() {
-            window.parent.postMessage("exitFullscreen", "*");
-            elem.contentWindow.postMessage("exitFullscreen", "*");
             document.getElementById('notfullscreen-bottomrow-container').style.display = 'flex';
             document.getElementById('fullscreen-bottomrow-container').style.display = 'none';
+            window.parent.postMessage("exitFullscreen", "*");
+            elem.contentWindow.postMessage("exitFullscreen", "*");
         }
 
         function FullscreenPress() {

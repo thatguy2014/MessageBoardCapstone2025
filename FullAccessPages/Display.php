@@ -240,9 +240,10 @@ h2, p {
                     }
                 ?>
         </div>
-            <div class='bottomrow-container'>
+            <div class='bottomrow-container' id="notfullscreen-bottomrow-container">
                 <img id="fullscreen" src="assets/fullscreen.png" alt="fullscreen">
                 <?php
+
                     $count = 0;
                     $content = "<button class = 'presetbutton' id = button" . $count . ">" . htmlspecialchars($preset1) . "</button>";
                     echo $content;
@@ -263,7 +264,11 @@ h2, p {
                         echo $content;
                         $count++;
                     }
+
                 ?>
+            </div>
+            <div class='bottomrow-container' id="fullscreen-bottomrow-container">
+                <img id="smallscreen" src="assets/fullscreen.png" alt="fullscreen">
             </div>
         </p>
     </body>
@@ -284,6 +289,9 @@ h2, p {
             setTimeout(() => {
                 elem.contentWindow.postMessage("fullscreenOn", "*");
             }, 500);
+
+            document.getElementById('notfullscreen-bottomrow-container').style.display = 'none';
+            document.getElementById('fullscreen-bottomrow-container').style.display = 'flex';
         }
 
 
@@ -305,6 +313,8 @@ h2, p {
         function exitFullscreen() {
             window.parent.postMessage("exitFullscreen", "*");
             elem.contentWindow.postMessage("exitFullscreen", "*");
+            document.getElementById('notfullscreen-bottomrow-container').style.display = 'flex';
+            document.getElementById('fullscreen-bottomrow-container').style.display = 'none';
         }
 
         function FullscreenPress() {
@@ -312,6 +322,7 @@ h2, p {
                     if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
                         console.log("Unfullscreening page");
                         exitFullscreen();
+                        
                     }else {
                         console.log("Making screen fullscreen");
                         openFullscreen();
@@ -352,6 +363,7 @@ h2, p {
         }
 
         document.getElementById('fullscreen').addEventListener('click', FullscreenPress)
+        document.getElementById('smallscreen').addEventListener('click', FullscreenPress)
 
         document.querySelectorAll('.presetbutton').forEach(button => {
         button.addEventListener('click', handlePresetButtonClick);

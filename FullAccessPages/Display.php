@@ -258,6 +258,7 @@ h2, p {
         </div>
             <div class='bottomrow-container' id="notfullscreen-bottomrow-container">
                 <img id="fullscreen" src="assets/fullscreen.png" alt="fullscreen">
+                <img id="smallscreen" src="assets/Smallscreen.png" alt="smallscreen">
                 <?php
 
                     $count = 0;
@@ -282,9 +283,6 @@ h2, p {
                     }
 
                 ?>
-            </div>
-            <div class='bottomrow-container' id="fullscreen-bottomrow-container">
-                <img id="smallscreen" src="assets/Smallscreen.png" alt="smallscreen">
             </div>
         </p>
     </body>
@@ -331,13 +329,15 @@ h2, p {
                     if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
                         console.log("Unfullscreening page");
                         exitFullscreen();
-                        document.getElementById('notfullscreen-bottomrow-container').style.display = 'flex';
-                        document.getElementById('fullscreen-bottomrow-container').style.display = 'none';
+                        document.getElementById('smallscreen').style.display = 'none';
+                        document.getElementById('fullscreen').style.display = 'flex';
+                        document.getElementbyClass('presetbutton').style.display = 'flex';
                     }else {
                         console.log("Making screen fullscreen");
                         openFullscreen();
-                        document.getElementById('notfullscreen-bottomrow-container').style.display = 'none';
-                        document.getElementById('fullscreen-bottomrow-container').style.display = 'flex';
+                        document.getElementById('smallscreen').style.display = 'flex';
+                        document.getElementById('fullscreen').style.display = 'none';
+                        document.getElementbyClass('presetbutton').style.display = 'none';
                     }
                 }
 

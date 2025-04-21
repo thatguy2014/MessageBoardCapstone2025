@@ -291,11 +291,11 @@ h2, p {
             }
 
             setTimeout(() => {
-                elem.contentWindow.postMessage("fullscreenOn", "*");
+                document.getElementById('notfullscreen-bottomrow-container').style.display = 'none';
+                document.getElementById('fullscreen-bottomrow-container').style.display = 'flex';
             }, 500);
 
-            document.getElementById('notfullscreen-bottomrow-container').style.display = 'none';
-            document.getElementById('fullscreen-bottomrow-container').style.display = 'flex';
+
         }
 
 
@@ -326,10 +326,13 @@ h2, p {
                     if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
                         console.log("Unfullscreening page");
                         exitFullscreen();
-                        
+                        document.getElementById('notfullscreen-bottomrow-container').style.display = 'flex';
+                        document.getElementById('fullscreen-bottomrow-container').style.display = 'none';
                     }else {
                         console.log("Making screen fullscreen");
                         openFullscreen();
+                        document.getElementById('notfullscreen-bottomrow-container').style.display = 'none';
+                        document.getElementById('fullscreen-bottomrow-container').style.display = 'flex';
                     }
                 }
 

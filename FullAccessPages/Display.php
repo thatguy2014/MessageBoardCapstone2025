@@ -272,7 +272,7 @@ h2, p {
                 ?>
             </div>
             <div class='bottomrow-container' id="fullscreen-bottomrow-container">
-                <img id="smallscreen" src="assets/Smallscreen.png" alt="fullscreen">
+                <img id="smallscreen" src="assets/Smallscreen.png" alt="smallscreen">
             </div>
         </p>
     </body>
@@ -289,11 +289,6 @@ h2, p {
             } else if (elem.msRequestFullscreen) { 
                 elem.msRequestFullscreen();
             }
-
-            setTimeout(() => {
-                document.getElementById('notfullscreen-bottomrow-container').style.display = 'none';
-                document.getElementById('fullscreen-bottomrow-container').style.display = 'flex';
-            }, 500);
 
 
         }
@@ -315,8 +310,6 @@ h2, p {
         }
 
         function exitFullscreen() {
-            document.getElementById('notfullscreen-bottomrow-container').style.display = 'flex';
-            document.getElementById('fullscreen-bottomrow-container').style.display = 'none';
             window.parent.postMessage("exitFullscreen", "*");
             elem.contentWindow.postMessage("exitFullscreen", "*");
         }
@@ -326,13 +319,13 @@ h2, p {
                     if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
                         console.log("Unfullscreening page");
                         exitFullscreen();
-                        document.getElementById('notfullscreen-bottomrow-container').style.display = 'flex';
-                        document.getElementById('fullscreen-bottomrow-container').style.display = 'none';
+                        document.getElementById('notfullscreen-bottomrow-container').style.display = 'none';
+                        document.getElementById('fullscreen-bottomrow-container').style.display = 'flex';
                     }else {
                         console.log("Making screen fullscreen");
                         openFullscreen();
-                        document.getElementById('notfullscreen-bottomrow-container').style.display = 'none';
-                        document.getElementById('fullscreen-bottomrow-container').style.display = 'flex';
+                        document.getElementById('notfullscreen-bottomrow-container').style.display = 'flex';
+                        document.getElementById('fullscreen-bottomrow-container').style.display = 'none';
                     }
                 }
 
@@ -365,6 +358,13 @@ h2, p {
                 console.log(data);
                 // Refresh the page
                 window.location.reload();
+                if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+                    document.getElementById('notfullscreen-bottomrow-container').style.display = 'none';
+                    document.getElementById('fullscreen-bottomrow-container').style.display = 'flex';
+                }else {
+                    document.getElementById('notfullscreen-bottomrow-container').style.display = 'flex';
+                    document.getElementById('fullscreen-bottomrow-container').style.display = 'none';
+                }
             })
             .catch(error => console.error('Error:', error));
         }

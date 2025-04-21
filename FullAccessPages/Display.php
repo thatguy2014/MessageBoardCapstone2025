@@ -392,19 +392,19 @@ h2, p {
         window.onresize = adjustFontSize;
 
         if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+            document.getElementById('smallscreen').style.display = 'flex';
+                    document.getElementById('fullscreen').style.display = 'none';
+                    document.getElementById('button0').style.display = 'none';
+                    document.getElementById('button1').style.display = 'none';
+                    document.getElementById('button2').style.display = 'none';
+                    document.getElementById('button3').style.display = 'none';        
+                }else {
                     document.getElementById('smallscreen').style.display = 'none';
                     document.getElementById('fullscreen').style.display = 'flex';
                     document.getElementById('button0').style.display = 'flex';
                     document.getElementById('button1').style.display = 'flex';
                     document.getElementById('button2').style.display = 'flex';
                     document.getElementById('button3').style.display = 'flex';
-                }else {
-                    document.getElementById('smallscreen').style.display = 'flex';
-                    document.getElementById('fullscreen').style.display = 'none';
-                    document.getElementById('button0').style.display = 'none';
-                    document.getElementById('button1').style.display = 'none';
-                    document.getElementById('button2').style.display = 'none';
-                    document.getElementById('button3').style.display = 'none';
                 }
     </script>
 </html>

@@ -328,19 +328,19 @@ h2, p {
                         console.log("Unfullscreening page");
                         document.getElementById('smallscreen').style.display = 'none';
                         document.getElementById('fullscreen').style.display = 'flex';
-                        document.getElementbyId('button0').style.display = 'flex';
-                        document.getElementbyId('button1').style.display = 'flex';
-                        document.getElementbyId('button2').style.display = 'flex';
-                        document.getElementbyId('button3').style.display = 'flex';
+                        document.getElementById('button0').style.display = 'flex';
+                        document.getElementById('button1').style.display = 'flex';
+                        document.getElementById('button2').style.display = 'flex';
+                        document.getElementById('button3').style.display = 'flex';
                         exitFullscreen();
                     }else {
                         console.log("Making screen fullscreen");
                         document.getElementById('smallscreen').style.display = 'flex';
                         document.getElementById('fullscreen').style.display = 'none';
-                        document.getElementbyId('button0').style.display = 'none';
-                        document.getElementbyId('button1').style.display = 'none';
-                        document.getElementbyId('button2').style.display = 'none';
-                        document.getElementbyId('button3').style.display = 'none';
+                        document.getElementById('button0').style.display = 'none';
+                        document.getElementById('button1').style.display = 'none';
+                        document.getElementById('button2').style.display = 'none';
+                        document.getElementById('button3').style.display = 'none';
                         openFullscreen();
                     }
                 }

@@ -391,8 +391,25 @@ h2, p {
 
         window.onresize = adjustFontSize;
         function checkFullScreen() {
-            if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
-                document.getElementById('smallscreen').style.display = 'flex';
+            if (window.top === window.self) {
+                return false;
+            }
+            
+            if (window.top.document.fullscreenElement ||
+                window.top.document.webkitFullscreenElement ||
+                window.top.document.mozFullScreenElement ||
+                window.top.document.msFullscreenElement) {
+                console.log("Iframe is in fullscreen");
+                return true;
+            } else {
+                console.log("Iframe is not in fullscreen");
+                return false;
+            }
+        }
+
+        function changeQuickPresetBar(boolval) {
+            if (!boolval) {
+                        document.getElementById('smallscreen').style.display = 'flex';
                         document.getElementById('fullscreen').style.display = 'none';
                         document.getElementById('button0').style.display = 'none';
                         document.getElementById('button1').style.display = 'none';
@@ -408,7 +425,8 @@ h2, p {
                         document.getElementById('button3').style.display = 'flex';
                         console.log("displaying smallscreen");
                     }
-            }
+
+        }
 
             window.addEventListener('load', checkFullScreen);
     </script>

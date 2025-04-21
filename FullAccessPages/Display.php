@@ -190,6 +190,18 @@ h2, p {
     z-index: 999; /* A high value to ensure it stays above other elements */
 }
 
+#fullscreen-bottomrow-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 0;
+    z-index: 999;
+}
+
 .presetbutton {
     position: relative;
     z-index: 1;

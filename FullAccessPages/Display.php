@@ -391,43 +391,27 @@ h2, p {
 
         window.onresize = adjustFontSize;
         function checkFullScreen() {
-            if (window.top === window.self) {
-                return false;
-            }
-            
             if (window.top.document.fullscreenElement ||
                 window.top.document.webkitFullscreenElement ||
                 window.top.document.mozFullScreenElement ||
                 window.top.document.msFullscreenElement) {
                 console.log("Iframe is in fullscreen");
-                return true;
+                document.getElementById('smallscreen').style.display = 'flex';
+                document.getElementById('fullscreen').style.display = 'none';
+                document.getElementById('button0').style.display = 'none';
+                document.getElementById('button1').style.display = 'none';
+                document.getElementById('button2').style.display = 'none';
+                document.getElementById('button3').style.display = 'none'; 
             } else {
                 console.log("Iframe is not in fullscreen");
-                return false;
+                document.getElementById('smallscreen').style.display = 'none';
+                document.getElementById('fullscreen').style.display = 'flex';
+                document.getElementById('button0').style.display = 'flex';
+                document.getElementById('button1').style.display = 'flex';
+                document.getElementById('button2').style.display = 'flex';
+                document.getElementById('button3').style.display = 'flex';
             }
         }
-
-        function changeQuickPresetBar(boolval) {
-            if (!boolval) {
-                        document.getElementById('smallscreen').style.display = 'flex';
-                        document.getElementById('fullscreen').style.display = 'none';
-                        document.getElementById('button0').style.display = 'none';
-                        document.getElementById('button1').style.display = 'none';
-                        document.getElementById('button2').style.display = 'none';
-                        document.getElementById('button3').style.display = 'none'; 
-                        console.log("displaying fullscreen");
-                    }else {
-                        document.getElementById('smallscreen').style.display = 'none';
-                        document.getElementById('fullscreen').style.display = 'flex';
-                        document.getElementById('button0').style.display = 'flex';
-                        document.getElementById('button1').style.display = 'flex';
-                        document.getElementById('button2').style.display = 'flex';
-                        document.getElementById('button3').style.display = 'flex';
-                        console.log("displaying smallscreen");
-                    }
-
-        }
-
             window.addEventListener('load', checkFullScreen);
     </script>
 </html>

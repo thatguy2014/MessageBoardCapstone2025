@@ -359,11 +359,11 @@ h2, p {
                 // Refresh the page
                 window.location.reload();
                 if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
-                    document.getElementById('notfullscreen-bottomrow-container').style.display = 'none';
-                    document.getElementById('fullscreen-bottomrow-container').style.display = 'flex';
-                }else {
                     document.getElementById('notfullscreen-bottomrow-container').style.display = 'flex';
                     document.getElementById('fullscreen-bottomrow-container').style.display = 'none';
+                }else {
+                    document.getElementById('notfullscreen-bottomrow-container').style.display = 'none';
+                    document.getElementById('fullscreen-bottomrow-container').style.display = 'flex';
                 }
             })
             .catch(error => console.error('Error:', error));

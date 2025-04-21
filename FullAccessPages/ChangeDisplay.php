@@ -108,7 +108,7 @@ $userid = $_SESSION["UserId"];
 
                     <div id="ExpirationInput" style="display:none;">
                         <label for="expiration-time">Choose when your message should expire:</label>
-                        <input type="datetime-local" id="expiration-time" name="expiration-time" value="<?php echo date('Y-m-d\TH:i:s'); ?>"/>
+                        <input type="datetime-local" id="expiration-time" name="expiration-time" step = "1" value="<?php echo date('Y-m-d\TH:i:s'); ?>"/>
                     </div>
                     
                     <input type="submit" value="Submit" disabled>

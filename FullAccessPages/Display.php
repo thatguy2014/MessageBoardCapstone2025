@@ -299,8 +299,6 @@ h2, p {
             } else if (elem.msRequestFullscreen) { 
                 elem.msRequestFullscreen();
             }
-
-
         }
 
 
@@ -328,16 +326,15 @@ h2, p {
                     console.log("Fullscreen Button Pressed");
                     if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
                         console.log("Unfullscreening page");
-                        exitFullscreen();
                         document.getElementById('smallscreen').style.display = 'none';
                         document.getElementById('fullscreen').style.display = 'flex';
                         document.getElementbyId('button0').style.display = 'flex';
                         document.getElementbyId('button1').style.display = 'flex';
                         document.getElementbyId('button2').style.display = 'flex';
                         document.getElementbyId('button3').style.display = 'flex';
+                        exitFullscreen();
                     }else {
                         console.log("Making screen fullscreen");
-                        openFullscreen();
                         document.getElementById('smallscreen').style.display = 'flex';
                         document.getElementById('fullscreen').style.display = 'none';
                         document.getElementbyClass('presetbutton').style.display = 'none';
@@ -345,6 +342,7 @@ h2, p {
                         document.getElementbyId('button1').style.display = 'none';
                         document.getElementbyId('button2').style.display = 'none';
                         document.getElementbyId('button3').style.display = 'none';
+                        openFullscreen();
                     }
                 }
 

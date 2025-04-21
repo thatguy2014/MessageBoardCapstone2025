@@ -136,6 +136,10 @@ h2, p {
     height: auto;
 }
 
+#smallscreen {
+    display:none;
+}
+
 #logo {
     transition: transform 0.3s ease;
     bottom: 20px;
@@ -267,8 +271,8 @@ h2, p {
 
                 ?>
             </div>
-            <div class='bottomrow-container' id="fullscreen-bottomrow-container" display ="none">
-                <img id="smallscreen" src="assets/fullscreen.png" alt="fullscreen">
+            <div class='bottomrow-container' id="fullscreen-bottomrow-container">
+                <img id="smallscreen" src="assets/Smallscreen.png" alt="fullscreen">
             </div>
         </p>
     </body>

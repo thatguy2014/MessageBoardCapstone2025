@@ -391,7 +391,7 @@ h2, p {
 
         window.onresize = adjustFontSize;
 
-        if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+        if (document.fullscreenElement && document.fullscreenElement !== null) {
             document.getElementById('smallscreen').style.display = 'flex';
                     document.getElementById('fullscreen').style.display = 'none';
                     document.getElementById('button0').style.display = 'none';

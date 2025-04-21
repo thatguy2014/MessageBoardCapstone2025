@@ -331,13 +331,20 @@ h2, p {
                         exitFullscreen();
                         document.getElementById('smallscreen').style.display = 'none';
                         document.getElementById('fullscreen').style.display = 'flex';
-                        document.getElementbyClass('presetbutton').style.display = 'flex';
+                        document.getElementbyId('button0').style.display = 'flex';
+                        document.getElementbyId('button1').style.display = 'flex';
+                        document.getElementbyId('button2').style.display = 'flex';
+                        document.getElementbyId('button3').style.display = 'flex';
                     }else {
                         console.log("Making screen fullscreen");
                         openFullscreen();
                         document.getElementById('smallscreen').style.display = 'flex';
                         document.getElementById('fullscreen').style.display = 'none';
                         document.getElementbyClass('presetbutton').style.display = 'none';
+                        document.getElementbyId('button0').style.display = 'none';
+                        document.getElementbyId('button1').style.display = 'none';
+                        document.getElementbyId('button2').style.display = 'none';
+                        document.getElementbyId('button3').style.display = 'none';
                     }
                 }
 
@@ -371,11 +378,20 @@ h2, p {
                 // Refresh the page
                 window.location.reload();
                 if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
-                    document.getElementById('notfullscreen-bottomrow-container').style.display = 'flex';
-                    document.getElementById('fullscreen-bottomrow-container').style.display = 'none';
+                    document.getElementById('smallscreen').style.display = 'none';
+                        document.getElementById('fullscreen').style.display = 'flex';
+                        document.getElementbyId('button0').style.display = 'flex';
+                        document.getElementbyId('button1').style.display = 'flex';
+                        document.getElementbyId('button2').style.display = 'flex';
+                        document.getElementbyId('button3').style.display = 'flex';
                 }else {
-                    document.getElementById('notfullscreen-bottomrow-container').style.display = 'none';
-                    document.getElementById('fullscreen-bottomrow-container').style.display = 'flex';
+                    document.getElementById('smallscreen').style.display = 'flex';
+                        document.getElementById('fullscreen').style.display = 'none';
+                        document.getElementbyClass('presetbutton').style.display = 'none';
+                        document.getElementbyId('button0').style.display = 'none';
+                        document.getElementbyId('button1').style.display = 'none';
+                        document.getElementbyId('button2').style.display = 'none';
+                        document.getElementbyId('button3').style.display = 'none';
                 }
             })
             .catch(error => console.error('Error:', error));

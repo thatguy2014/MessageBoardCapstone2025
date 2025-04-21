@@ -376,19 +376,18 @@ h2, p {
                 window.location.reload();
                 if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
                     document.getElementById('smallscreen').style.display = 'none';
-                        document.getElementById('fullscreen').style.display = 'flex';
-                        document.getElementbyId('button0').style.display = 'flex';
-                        document.getElementbyId('button1').style.display = 'flex';
-                        document.getElementbyId('button2').style.display = 'flex';
-                        document.getElementbyId('button3').style.display = 'flex';
+                    document.getElementById('fullscreen').style.display = 'flex';
+                    document.getElementById('button0').style.display = 'flex';
+                    document.getElementById('button1').style.display = 'flex';
+                    document.getElementById('button2').style.display = 'flex';
+                    document.getElementById('button3').style.display = 'flex';
                 }else {
                     document.getElementById('smallscreen').style.display = 'flex';
-                        document.getElementById('fullscreen').style.display = 'none';
-                        document.getElementbyClass('presetbutton').style.display = 'none';
-                        document.getElementbyId('button0').style.display = 'none';
-                        document.getElementbyId('button1').style.display = 'none';
-                        document.getElementbyId('button2').style.display = 'none';
-                        document.getElementbyId('button3').style.display = 'none';
+                    document.getElementById('fullscreen').style.display = 'none';
+                    document.getElementById('button0').style.display = 'none';
+                    document.getElementById('button1').style.display = 'none';
+                    document.getElementById('button2').style.display = 'none';
+                    document.getElementById('button3').style.display = 'none';
                 }
             })
             .catch(error => console.error('Error:', error));

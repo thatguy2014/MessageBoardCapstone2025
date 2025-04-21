@@ -397,7 +397,8 @@ h2, p {
                         document.getElementById('button0').style.display = 'none';
                         document.getElementById('button1').style.display = 'none';
                         document.getElementById('button2').style.display = 'none';
-                        document.getElementById('button3').style.display = 'none';        
+                        document.getElementById('button3').style.display = 'none'; 
+                        console.log("displaying fullscreen");
                     }else {
                         document.getElementById('smallscreen').style.display = 'none';
                         document.getElementById('fullscreen').style.display = 'flex';
@@ -405,6 +406,7 @@ h2, p {
                         document.getElementById('button1').style.display = 'flex';
                         document.getElementById('button2').style.display = 'flex';
                         document.getElementById('button3').style.display = 'flex';
+                        console.log("displaying smallscreen");
                     }
             }
 
